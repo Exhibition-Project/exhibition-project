@@ -1,5 +1,8 @@
 package kosta.mvc.model.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
@@ -13,8 +16,28 @@ public class ReviewDAOImpl implements ReviewDAO {
 
 	@Override
 	public int reviewInsert(ReviewDTO review) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		int result = 0;
+		String sql = proFile.getProperty("review.insert");
+		
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			//?에 대한 set 함수
+			ps.setInt(1, review.getMemberNo());
+			ps.setInt(2, review.getExhibitionNo());
+			ps.setString(3, review.getReviewContnet());
+			ps.setInt(4, review.getStars());
+			
+			result = ps.executeUpdate();
+		}finally {
+			DBUtil.dbClose(con, ps);
+		}
+		
+		return result;
 	}
 
 	@Override
@@ -43,8 +66,25 @@ public class ReviewDAOImpl implements ReviewDAO {
 
 	@Override
 	public int ReviewUpdate(ReviewDTO dto) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		int result = 0;
+		String sql = proFile.getProperty("review.update");
+		
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, dto.getReviewContnet());
+			ps.setInt(2, dto.getReviewNo());
+			
+			result = ps.executeUpdate();
+		} finally {
+			DBUtil.dbClose(con, ps);
+		}
+		return result;
 	}
 
 }
