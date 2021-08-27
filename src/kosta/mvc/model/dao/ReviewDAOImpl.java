@@ -1,5 +1,5 @@
 package kosta.mvc.model.dao;
 
-public interface ReviewDAOImpl {
+public class ReviewDAOImpl implements ReviewDAO {
 
 }
