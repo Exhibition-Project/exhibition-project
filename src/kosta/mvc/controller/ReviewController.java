@@ -1,8 +1,11 @@
 package kosta.mvc.controller;
 
 import java.sql.SQLException;
+import java.util.List;
 
+import kosta.mvc.Service.ExhibitionService;
 import kosta.mvc.Service.ReviewService;
+import kosta.mvc.model.dto.ExhibitionDTO;
 import kosta.mvc.model.dto.ReviewDTO;
 import kosta.mvc.view.EndView;
 import kosta.mvc.view.FailView;
@@ -13,17 +16,43 @@ public class ReviewController {
 	
 	
 	/**
-	 * 전체검색
+	 * 전시회 번호로 검색
 	 * */
-	public void reviewSelectAll() {
+	public void selectAllbyExhibitionNo() {
+		ExhibitionService exhibitionSevice = new ExhibitionService();
+		try {
+			List<ReviewDTO> redto = reviewService.selectAllbyExhibitionNo();
+			List<ExhibitionDTO> exdto = exhibitionSevice.exihibitionSelectByNo();
+			EndView.printReAndEx(redto, exdto);
+		}catch(SQLException e) {
+			FailView.errorMessage(e.getMessage());
+		}
 		
 	}
 	
 	/**
-	 * 사용자 번호로 조회 (내 후기 보기)
+	 * 사용자 번호로 검색 (내 후기 보기)
 	 * */
 	public void reviewSelectByReviewNo(int memberNo) {
+		try {
+			List<ReviewDTO> list = reviewService.selectByMemberNo(memberNo);
+			EndView.printReviewList(list);
+		}catch(SQLException e) {
+			FailView.errorMessage(e.getMessage());
+		}
 		
+	}
+	
+	/**
+	 * 후기 번호로 검색
+	 * */
+	public void selectByReviewNo(int reviewNo) {
+		try {
+			ReviewDTO dto = reviewService.selectByReviewNo(reviewNo);
+			EndView.printReviewByNo(dto);
+		}catch(SQLException e) {
+			FailView.errorMessage(e.getMessage());
+		}
 	}
 	
 	/**
@@ -55,7 +84,12 @@ public class ReviewController {
 	 * 삭제
 	 * */
 	public void reviewDelete(int reviewNo) {
-		
+		try {
+			reviewService.reviewDelete(reviewNo);
+			EndView.printMessage("후기가 삭제");
+		}catch(SQLException e) {
+			FailView.errorMessage(e.getMessage());
+		}
 	}
 
 }

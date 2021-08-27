@@ -63,7 +63,7 @@ public class EndView {
 	/**
 	 * 후기 리스트 출력(순수하게 후기 리스트만 출력할지, 전시회 리스트를 받아서 전시회랑 후기 같이 출력할지?)
 	 * */
-	public static void printReviewList(List<ExhibitionDTO> exhibitionList) {
+	public static void printReviewList(List<ReviewDTO> reviewList) {
 		
 	}
 	
@@ -71,6 +71,13 @@ public class EndView {
 	 * 후기 출력
 	 * */
 	public static void printReviewByNo(ReviewDTO reviewDTO) {
+		
+	}
+	
+	/**
+	 * 후기와 전시회 리스트 동시 출력
+	 * */
+	public static void printReAndEx(List<ExhibitionDTO> exhibitionDTO, List<ReviewDTO> reviewDTO) {
 		
 	}
 	

@@ -16,9 +16,9 @@ public interface ReviewDAO {
 	
 	
 	/**
-	 * 후기 전체보기
+	 * 후기 보기 : 전시회 번호로 조희
 	 * */
-	List<ReviewDTO> selectByAllReviews() throws SQLException;
+	List<ReviewDTO> selectAllbyExhibitionNo(int exibitionNo) throws SQLException;
 	
 	/**
 	 * 내 후기 보기

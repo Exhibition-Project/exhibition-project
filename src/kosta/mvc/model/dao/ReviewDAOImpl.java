@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -13,7 +14,9 @@ import kosta.mvc.util.DBUtil;
 
 public class ReviewDAOImpl implements ReviewDAO {
 	private Properties proFile = DBUtil.getProFile();
-
+	
+	
+	//등록
 	@Override
 	public int reviewInsert(ReviewDTO review) throws SQLException {
 		Connection con = null;
@@ -40,30 +43,30 @@ public class ReviewDAOImpl implements ReviewDAO {
 		return result;
 	}
 
-	@Override
-	public List<ReviewDTO> selectByAllReviews() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
+	//삭제
 	@Override
 	public int reviewDelete(int reviewNo) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		int result = 0;
+		String sql = proFile.getProperty("review.delete");
+		
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setInt(1, reviewNo);
+			
+			result = ps.executeUpdate();
+		}finally {
+			DBUtil.dbClose(con, ps);
+		}
+		return result;
 	}
-
-	@Override
-	public List<ReviewDTO> selectByMemberNo(int memberNo) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ReviewDTO selectByReviewNo(int reviewNo) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
+	//수정
 	@Override
 	public int ReviewUpdate(ReviewDTO dto) throws SQLException {
 		
@@ -85,6 +88,87 @@ public class ReviewDAOImpl implements ReviewDAO {
 			DBUtil.dbClose(con, ps);
 		}
 		return result;
+	}
+
+	
+	//내후기보기
+	@Override
+	public List<ReviewDTO> selectByMemberNo(int memberNo) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<ReviewDTO> reviewList = null;
+		String sql = proFile.getProperty("review.selectAllbyMemberNo");
+		
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setInt(1, memberNo);
+			
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				reviewList = new ArrayList<ReviewDTO>(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getInt(5));
+			}
+			
+		}finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		
+		return reviewList;
+	}
+	
+	
+	//후기 번호로 검색 (수정, 삭제를 위한)
+	@Override
+	public ReviewDTO selectByReviewNo(int reviewNo) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ReviewDTO dto = null;
+		String sql = proFile.getProperty("review.selectByReviewNo");
+		
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setInt(1, reviewNo);
+			while(rs.next()) {
+				dto = new ReviewDTO(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getInt(5));
+			}
+		}finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		
+		return dto;
+	}
+
+	
+	//전시회 번호로 후기 조회
+	@Override
+	public List<ReviewDTO> selectAllbyExhibitionNo(int exibitionNo) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<ReviewDTO> reviewList = null;
+		String sql = proFile.getProperty("review.selectAllbyExhibitionNo");
+		
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setInt(1, exibitionNo);
+			
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				reviewList = new ArrayList<ReviewDTO>(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getInt(5));
+			}
+			
+		}finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		
+		return reviewList;
 	}
 
 }
