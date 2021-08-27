@@ -1,5 +1,6 @@
 package kosta.mvc.controller;
 
+import java.util.Calendar;
 import java.util.List;
 
 import kosta.mvc.Service.ReservationService;
@@ -9,17 +10,6 @@ import kosta.mvc.view.FailView;
 
 public class ReservationController {
 	static ReservationService reservationService = new ReservationService();
-	
-	/**
-	 * 예약하기
-	 * */
-	public static void insertReservation(ReservationDTO reservation) {
-		try {
-			reservationService.insertReservation(reservation);
-		} catch (Exception e) {
-			FailView.errorMessage(e.getMessage());
-		}
-	}
 			
 	/**
 	 * 예약내역보기
@@ -45,6 +35,19 @@ public class ReservationController {
 		}
 		
 	}
-
+	
+	/**
+	 * 예매하기 (날짜, 관람 연령, 티켓 수량 입력)
+	 * @param ticket_qty 
+	 * @param visitAge 
+	 * @param reg_date 
+	 * */
+	public static void insertReservation(int reg_date, String visitAge, int ticket_qty) {
+		try {
+			
+		} catch (Exception e) {
+			FailView.errorMessage(e.getMessage());
+		}
+	}
 
 }

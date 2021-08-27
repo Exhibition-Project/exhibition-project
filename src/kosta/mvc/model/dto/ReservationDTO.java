@@ -8,7 +8,7 @@ public class ReservationDTO {
 	private int memberNo;
 	private int ExhibitionNo;
 	private int totalAmount;
-	private String regDate;
+	private String regDate; //예매할 날짜 
 	
 	private List<ReservationLineDTO> reservationLineList;
 	

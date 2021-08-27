@@ -123,8 +123,8 @@ public class MenuView {
 	 * 예매하기 (날짜, 관람 연령, 티켓 수량 입력)
 	 * */
 	public static void InputReservationOption(String memberId) {
-		 System.out.print("예매날짜할 날짜를 입력하세요 : ");
-		 //날짜를 받아서 어디에 담아서 전달할지 
+		 System.out.print("예매할 날짜를 입력하세요 : ");
+		 int reg_date = Integer.parseInt(sc.nextLine());
 		 
 		 System.out.print("관람 연령을 입력해주세요 : ");
 		 String visitAge = sc.nextLine();
@@ -132,7 +132,7 @@ public class MenuView {
 		 System.out.print("예매할 티켓 수량을 입력해주세요 : ");
 		 int ticket_qty = Integer.parseInt(sc.nextLine());
 		 
-//		 ReservationController.insertReservation();
+		 ReservationController.insertReservation(reg_date, visitAge, ticket_qty);
 		
 	}
 	

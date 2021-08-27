@@ -10,7 +10,7 @@ public interface ReservationDAO {
 	/**
 	 * 예약하기 
 	 * 	1) 테이블에 insert
-	 * 	2) order_line테이블에 insert
+	 * 	2) reservation_line테이블에 insert
 	 * */
 	int reservationInsert(ReservationDTO Reservation) throws SQLException;
 	
