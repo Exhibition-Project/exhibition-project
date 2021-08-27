@@ -12,6 +12,13 @@ import kosta.mvc.model.dto.StatisticsDTO;
 public class EndView {
 	
 	/**
+	 * 메시지 출력
+	 * */
+	public static void printMessage(String message) {
+		System.out.println(message);
+	}
+	
+	/**
 	 * 전시회 리스트 출력
 	 * */
 	public static void printExhibitionList(List<ExhibitionDTO> exhibitionList) {
