@@ -60,12 +60,16 @@ insert into exhibition values (exhibition_NO_SEQ.NEXTVAL,'윌리엄 웨그만_비잉 휴�
 SELECT * FROM EXHIBITION;
 
 --MEMBER 테이블 INSERT
+--일반 회원
 insert into member values (member_no_seq.nextval, 'lemon', 'lemon', '1998-08-06', 'lemon123');
 insert into member values (member_no_seq.nextval, 'water', 'water', '1997-08-09', 'water123');
 insert into member values (member_no_seq.nextval, 'strawberry', 'strawberry', '1992-10-13', 'straw123');
 insert into member values (member_no_seq.nextval, 'lion', 'lionking', '2000-08-06', 'lion321');
 insert into member values (member_no_seq.nextval, 'monkey', 'monkey', '1988-02-28', 'monkey321');
 select * from member;
+
+--관리자
+insert into member values (member_no_seq.nextval, 'admin', '관리자', '2000-01-01', 'admin123');
 
 --DISCOUNT 테이블 INSERT
 insert into discount values('kids', 50);
