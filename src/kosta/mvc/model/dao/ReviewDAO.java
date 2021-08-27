@@ -28,10 +28,9 @@ public interface ReviewDAO {
 	List<ReviewDTO> selectByMemberNo (int memberNo) throws SQLException; 
 	
 	/**
-	 * 내 후기 수정
-	 * 1) 사용자 번호로 후기 검색 (후기가 여러개이면..?)
-	 * 2) 내용 수정
+	 * 후기 번호에 해당하는 후기 수정
 	 * */
+	int ReviewUpdate(ReviewDTO dto) throws SQLException;
 	
 	/////////////////////////////////////////////
 	

@@ -34,6 +34,13 @@ public class ReviewService {
 	}
 	
 	/**
+	 * 수정
+	 * */
+	public void reviewUpdate(ReviewDTO dto) throws SQLException{
+		
+	}
+	
+	/**
 	 * 삭제
 	 * */
 	public void reviewDelete(int reviewNo) throws SQLException {

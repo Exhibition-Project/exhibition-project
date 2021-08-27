@@ -29,6 +29,13 @@ public class ReviewController {
 	}
 	
 	/**
+	 * 후기 수정
+	 * */
+	public void reviewUpdate(ReviewDTO dto) {
+		
+	}
+	
+	/**
 	 * 삭제
 	 * */
 	public void reviewDelete(int reviewNo) {

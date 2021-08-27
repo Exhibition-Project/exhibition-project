@@ -41,4 +41,10 @@ public class ReviewDAOImpl implements ReviewDAO {
 		return null;
 	}
 
+	@Override
+	public int ReviewUpdate(ReviewDTO dto) throws SQLException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
