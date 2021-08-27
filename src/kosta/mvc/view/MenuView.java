@@ -2,9 +2,13 @@ package kosta.mvc.view;
 
 import java.util.Scanner;
 
+import kosta.mvc.controller.ReservationController;
+import kosta.mvc.model.dto.ReservationDTO;
+import kosta.mvc.model.dto.ReservationLineDTO;
+
 public class MenuView {
 	
-	private Scanner sc = new Scanner(System.in);
+	private static Scanner sc = new Scanner(System.in);
 
 	/**
 	 * 초기화면
@@ -109,13 +113,26 @@ public class MenuView {
 	 * (EndView에서 예매 가능 날짜 출력후 InputReservationOption 호출)
 	 * */
 	public static void InputInsertReservation() {
+		System.out.print("예매할 전시회 번호를 입력해주세요 : ");
+		int exhibitionNo = Integer.parseInt(sc.nextLine());
 		
+		ReservationController.InputReservationOption(exhibitionNo);
 	}
 	
 	/**
-	 * 예매 날짜, 관람 연령, 티켓 수량 입력
+	 * 예매하기 (날짜, 관람 연령, 티켓 수량 입력)
 	 * */
-	public static void InputReservationOption() {
+	public static void InputReservationOption(String memberId) {
+		 System.out.print("예매날짜할 날짜를 입력하세요 : ");
+		 //날짜를 받아서 어디에 담아서 전달할지 
+		 
+		 System.out.print("관람 연령을 입력해주세요 : ");
+		 String visitAge = sc.nextLine();
+		 
+		 System.out.print("예매할 티켓 수량을 입력해주세요 : ");
+		 int ticket_qty = Integer.parseInt(sc.nextLine());
+		 
+//		 ReservationController.insertReservation();
 		
 	}
 	

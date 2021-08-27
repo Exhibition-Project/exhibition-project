@@ -4,6 +4,7 @@ import java.util.List;
 
 import kosta.mvc.model.dto.ExhibitionDTO;
 import kosta.mvc.model.dto.ReservationDTO;
+import kosta.mvc.model.dto.ReservationLineDTO;
 import kosta.mvc.model.dto.ReviewDTO;
 import kosta.mvc.model.dto.StatisticsDTO;
 
@@ -38,6 +39,18 @@ public class EndView {
 	}
 	
 	/**
+	 * 예매내역 상세보기
+	 * */
+	public static void printReservaionByMemberId(List<ReservationDTO> reservationList) {
+		for(ReservationDTO reservaion : reservationList) {
+			System.out.println(reservaion.getReservationNo()+ " | " + reservaion.getMemberNo()+ " | " + reservaion.getTotalAmount()+ " | " + reservaion.getRegDate());
+			for(ReservationLineDTO reservationLine : reservaion.getReservationLineList()) {
+				System.out.println("  ▶ "+reservationLine);
+			}
+			System.out.println();
+		}
+	}
+	/**
 	 * 후기 리스트 출력(순수하게 후기 리스트만 출력할지, 전시회 리스트를 받아서 전시회랑 후기 같이 출력할지?)
 	 * */
 	public static void printReviewList(List<ExhibitionDTO> exhibitionList) {
@@ -57,4 +70,6 @@ public class EndView {
 	public static void printStatistics(StatisticsDTO statisticsDTO) {
 		
 	}
+
+
 }
