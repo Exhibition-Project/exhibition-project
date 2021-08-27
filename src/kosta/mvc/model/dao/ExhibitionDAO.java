@@ -2,6 +2,7 @@ package kosta.mvc.model.dao;
 //각각의 기능을 정의
 
 import java.util.List;
+import java.sql.SQLException;
 
 import kosta.mvc.model.dto.ExhibitionDTO;
 
