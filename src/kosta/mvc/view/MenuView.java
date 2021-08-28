@@ -15,7 +15,24 @@ public class MenuView {
 	 * 로그인, 회원가입
 	 * */
 	public static void menu() {
-		
+		while(true) {
+			System.out.println("1. 로그인  2. 회원가입  9. 나가기");
+			try {
+				int choice = Integer.parseInt(sc.nextLine());
+				switch(choice) {
+				case 1:
+					login();
+					break;
+				case 2:
+					logout();
+					break;
+				case 3:
+					System.exit(1);
+				}
+			}catch (NumberFormatException e) {
+				System.out.println("메뉴는 숫자만 입력해주세요.");
+			}
+		}
 	}
 	
 	/**
@@ -45,8 +62,33 @@ public class MenuView {
 	 * 회원 메인메뉴
 	 * 마이페이지, 전시회조회, 전시회 예매, 후기 조회, 로그아웃
 	 * */
-	public static void printMemberMenu() {
-		
+	public static void printMemberMenu(String memberId) {
+		while(true) {
+			System.out.println("1. 마이페이지  2. 전시회조회  3. 전시회예매  4. 후기조회  9. 로그아웃");
+			try {
+				int choice = Integer.parseInt(sc.nextLine());
+				switch(choice) {
+				
+				case 1:
+					printMyPage(memberId);
+					break;
+				case 2:
+					printExhibitionMenu();
+					break;
+				case 3:
+					InputInsertReservation(memberId);
+					break;
+				case 4:
+					InputReViewByNo();
+					break;
+				case 9:
+					logout();
+					return;
+				}
+			}catch (NumberFormatException e) {
+				System.out.println("메뉴는 숫자만 입력해주세요.");
+			}
+		}
 	}
 	
 	//마이페이지
@@ -54,14 +96,34 @@ public class MenuView {
 	 * 마이페이지 메뉴
 	 * 고객정보수정, 내 예매내역 조회(따로 함수 X), 내 후기관리
 	 * */
-	public static void printMyPage() {
-		
+	public static void printMyPage(String memberId) {
+		while(true) {
+			System.out.println("1. 고객정보수정  2. 내 예매내역 조회  3. 내 후기관리  9. 상위메뉴로 이동");
+			try {
+				int choice = Integer.parseInt(sc.nextLine());
+				switch(choice) {			
+					case 1:
+						inputUpdateMember(memberId);
+						break;
+					case 2:
+						//은솔님 이 자리에서 예내내역 조회 컨트롤러 바로 호출하시면 됩니다.
+						break;
+					case 3:
+						printMemberReviewMenu(memberId);
+						break;
+					case 9:
+						return;
+				}
+			}catch (NumberFormatException e) {
+				System.out.println("메뉴는 숫자만 입력해주세요.");
+			}			
+		}
 	}
 	
 	/**
 	 * 고객정보수정
 	 * */
-	public static void inputUpdateMember() {
+	public static void inputUpdateMember(String memberId) {
 		
 	}
 
@@ -69,21 +131,41 @@ public class MenuView {
 	 * 마이페이지 내 후기관리 메뉴
 	 * 내 후기 조회(따로 함수 X), 등록, 삭제
 	 * */
-	public static void printMemberReviewMenu() {
-		
+	public static void printMemberReviewMenu(String memberId) {
+		while(true) {
+			System.out.println("1. 내 후기 조회  2. 후기 등록  3.후기 삭제  9. 상위 메뉴로 이동");
+			try {
+				int choice = Integer.parseInt(sc.nextLine());
+				switch(choice) {			
+					case 1:
+						//여기서 바로 후기 조회하는 컨트롤러 호출
+						break;
+					case 2:
+						InputInsertReview(memberId);
+						break;
+					case 3:
+						InputDeleteReview(memberId);
+						break;
+					case 9:
+						return;
+				}
+			}catch (NumberFormatException e) {
+				System.out.println("메뉴는 숫자만 입력해주세요.");
+			}			
+		}
 	}
 	
 	/**
 	 * 후기 등록
 	 * */
-	public static void InputInsertReview() {
+	public static void InputInsertReview(String memberId) {
 		
 	}
 	
 	/**
 	 * 후기 삭제
 	 * */
-	public static void InputDeleteReview() {
+	public static void InputDeleteReview(String memberId) {
 		
 	}
 	
@@ -95,7 +177,24 @@ public class MenuView {
 	 * 전체조회(따로 함수 X), 날짜별 조회
 	 * */
 	public static void printExhibitionMenu() {
-		
+		while(true) {
+			System.out.println("1. 전체조회  2. 날짜별조회 9. 상위메뉴로 이동");
+			try {
+				int choice = Integer.parseInt(sc.nextLine());
+				switch(choice) {			
+					case 1:
+						//여기서 바로 전체조회하는 컨트롤러 호출
+						break;
+					case 2:
+						InputExhibitionByDate();
+						break;
+					case 9:
+						return;
+				}
+			}catch (NumberFormatException e) {
+				System.out.println("메뉴는 숫자만 입력해주세요.");
+			}			
+		}
 	}
 	
 	/**
@@ -112,7 +211,7 @@ public class MenuView {
 	 * 전시회 예매(전시회 번호 입력)
 	 * (EndView에서 예매 가능 날짜 출력후 InputReservationOption 호출)
 	 * */
-	public static void InputInsertReservation() {
+	public static void InputInsertReservation(String memberId) {
 		System.out.print("예매할 전시회 번호를 입력해주세요 : ");
 		int exhibitionNo = Integer.parseInt(sc.nextLine());
 		
@@ -154,7 +253,31 @@ public class MenuView {
 	 * 전시회 관리, 후기관리, 예매 통계, 예매 내역 조회
 	 * */
 	public static void printAdminMenu() {
-		
+		while(true) {
+			System.out.println("1. 전시회 관리  2. 후기관리  3. 예매 통계  4. 예매 내역 조회  9.로그아웃");
+			try {
+				int choice = Integer.parseInt(sc.nextLine());
+				switch(choice) {			
+					case 1:
+						printExhibitionManagementMenu();
+						break;
+					case 2:
+						printAdminReviewMenu();
+						break;
+					case 3:
+						InputStatisticsByNo();
+						break;
+					case 4:
+						printReservationHistoryMenu();
+						break;
+					case 9:
+						logout();
+						return;
+				}
+			}catch (NumberFormatException e) {
+				System.out.println("메뉴는 숫자만 입력해주세요.");
+			}
+		}
 	}
 	
 	
@@ -165,7 +288,31 @@ public class MenuView {
 	 * 전시회 조회(회원 메소드와 동일), 등록, 수정, 삭제
 	 * */
 	public static void printExhibitionManagementMenu() {
-		
+		while(true) {
+			System.out.println("1. 전시회 조회  2. 전시회 등록  3. 전시회 수정  4. 전시회 삭제  9. 상위메뉴로 이동");
+			try {
+				int choice = Integer.parseInt(sc.nextLine());
+				switch(choice) {			
+				case 1:
+					printExhibitionMenu();
+					break;
+				case 2:
+					InputInsertExhibition();
+					break;
+				case 3:
+					InputUpdateExhibition();
+					break;
+				case 4:
+					InputDeleteExhibition();
+					break;
+				case 9:
+					return;
+				
+				}
+			}catch (NumberFormatException e) {
+				System.out.println("메뉴는 숫자만 입력해주세요.");
+			}
+		}
 	}
 	
 	/**
@@ -197,7 +344,24 @@ public class MenuView {
 	 * 후기 조회(회원 메소드와 동일), 후기 삭제(회원 메소드와 동일)
 	 * */
 	public static void printAdminReviewMenu() {
-		
+		while(true) {
+			System.out.println("1. 후기 조회  2. 후기 삭제  9. 상위메뉴로 이동");
+			try {
+				int choice = Integer.parseInt(sc.nextLine());
+				switch(choice) {			
+					case 1:
+						InputReViewByNo();
+						break;
+					case 2:
+						InputDeleteReview("admin"); //관리자 후기삭제를 회원의 후기삭제와 아예 다르게 만들어서 구현하는건 어떨지?
+						break;
+					case 9:
+						return;
+				}
+			}catch (NumberFormatException e) {
+				System.out.println("메뉴는 숫자만 입력해주세요.");
+			}
+		}
 	}
 	
 	
@@ -217,7 +381,24 @@ public class MenuView {
 	 * 전체조회, 예매 번호로 조회
 	 * */
 	public static void printReservationHistoryMenu() {
-		
+		while(true) {
+			System.out.println("1. 전체 조회  2. 예매 번호로 조회  9. 상위메뉴로 이동");
+			try {
+				int choice = Integer.parseInt(sc.nextLine());
+				switch(choice) {			
+					case 1:
+						//여기서 바로 예매 내역 조회 컨트롤러 호출.(이부분도 유저의 예매 내역 조회와 구분해야할지)
+						break;
+					case 2:
+						 InputReservationByNo();
+						break;
+					case 9:
+						return;
+				}
+			}catch (NumberFormatException e) {
+				System.out.println("메뉴는 숫자만 입력해주세요.");
+			}
+		}
 	}
 	
 	/**
