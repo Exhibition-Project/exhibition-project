@@ -8,20 +8,20 @@ import kosta.mvc.model.dto.ExhibitionDTO;
 
 public interface ExhibitionDAO {
 
-   //전시회 등록
-   int exhibitionInsert(ExhibitionDTO dto);
-   
    //전시회 전체 보기
-   List<ExhibitionDTO> exhibitionSelectAll();
+   List<ExhibitionDTO> exhibitionSelectAll() throws SQLException;
    
-   //전시회 날짜 보기
-   List<ExhibitionDTO> exhibitionSelectByDate(String startDate, String endDate);
+   //전시회 날짜별 보기
+   List<ExhibitionDTO> exhibitionSelectByDate(String startDate, String endDate) throws SQLException;
+   
+   //전시회 등록
+   int exhibitionInsert(ExhibitionDTO dto) throws SQLException;
    
    //전시회 수정
-   int exhibitionUpdate(int exhibitionNo);
+   int exhibitionUpdate(int exhibitionNo) throws SQLException;
    
    //전시회 삭제
-   int exhibitionDelete(int exhibitionNo);
+   int exhibitionDelete(int exhibitionNo) throws SQLException;
    
    
 }
