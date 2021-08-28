@@ -387,7 +387,7 @@ public class MenuView {
 				int choice = Integer.parseInt(sc.nextLine());
 				switch(choice) {			
 					case 1:
-						//여기서 바로 예매 내역 조회 컨트롤러 호출.(이부분도 유저의 예매 내역 조회와 구분해야할지)
+						//여기서 바로 예매 내역 조회 컨트롤러 호출.(이부분도 유저의 예매 내역 조회와 구분해야할지?)
 						break;
 					case 2:
 						 InputReservationByNo();
