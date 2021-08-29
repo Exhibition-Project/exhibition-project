@@ -12,27 +12,27 @@ public class ExhibitionService {
    //객체 생성
    ExhibitionDAO exhibitionDAO = new ExhibitionDAOImpl();
    //전체 검색
-   public List<Exhibition> exhibitionSelectAll() throws NotFoundException, SQLException{
-      List<Exhibition> list = exhibitionDAO.exhibitionSelectAll();
-      if(list.size()==0) throw new NotFoundException("현재 찾으시는 전시회가 존재하지 않습니다.");
-      return list;
-   }
+//   public List<Exhibition> exhibitionSelectAll() throws NotFoundException, SQLException{
+//      List<Exhibition> list = exhibitionDAO.exhibitionSelectAll();
+//      if(list.size()==0) throw new NotFoundException("현재 찾으시는 전시회가 존재하지 않습니다.");
+//      return list;
+//   }
    //날짜별 검색
    public void exhibitionSelectByDate(String startDate, String endDate) throws SQLException{
       List<ExhibitionDTO> list = exhibitionDAO.exhibitionSelectByDate(startDate, endDate);
    }
    //전시회 등록
-   public void exhibitionInsert(ExhibitionDTO dto) throws SQLException{
-	  List<ExhibitionDTO> list = exhibitionDAO.exhibitionInsert(dto); 
-   }
+//   public void exhibitionInsert(ExhibitionDTO dto) throws SQLException{
+//	  List<ExhibitionDTO> list = exhibitionDAO.exhibitionInsert(dto); 
+//   }
    //전시회 수정
-   public void exhibitionUpdate(int exhibitionNo) throws SQLException{
-	   List<ExhibitionDTO> list = exhibitionDAO.exhibitionUpdate(exhibitionNo);
-   }
+//   public void exhibitionUpdate(int exhibitionNo) throws SQLException{
+//	   List<ExhibitionDTO> list = exhibitionDAO.exhibitionUpdate(exhibitionNo);
+//   }
    //전시회 삭제
-   public void exhibitionDelete(int exhibitionNo) throws SQLException {
-	   List<ExhibitionDTO> list = exhibitionDAO.exhibitionDelete(exhibitionNo);
-   }
+//   public void exhibitionDelete(int exhibitionNo) throws SQLException {
+//	   List<ExhibitionDTO> list = exhibitionDAO.exhibitionDelete(exhibitionNo);
+//   }
    
 
    

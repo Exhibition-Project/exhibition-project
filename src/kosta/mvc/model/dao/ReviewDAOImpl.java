@@ -107,9 +107,9 @@ public class ReviewDAOImpl implements ReviewDAO {
 			ps.setInt(1, memberNo);
 			
 			rs = ps.executeQuery();
-			while(rs.next()) {
-				reviewList = new ArrayList<ReviewDTO>(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getInt(5));
-			}
+//			while(rs.next()) {
+//				reviewList = new ArrayList<ReviewDTO>(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getInt(5));
+//			}
 			
 		}finally {
 			DBUtil.dbClose(con, ps, rs);
@@ -160,9 +160,9 @@ public class ReviewDAOImpl implements ReviewDAO {
 			ps.setInt(1, exibitionNo);
 			
 			rs = ps.executeQuery();
-			while(rs.next()) {
-				reviewList = new ArrayList<ReviewDTO>(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getInt(5));
-			}
+//			while(rs.next()) {
+//				reviewList = new ArrayList<ReviewDTO>(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getInt(5));
+//			}
 			
 		}finally {
 			DBUtil.dbClose(con, ps, rs);

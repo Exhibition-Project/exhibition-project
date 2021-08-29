@@ -15,20 +15,20 @@ public class ReviewController {
 	private ReviewService reviewService = new ReviewService();
 	
 	
-	/**
-	 * 전시회 번호로 검색
-	 * */
-	public void selectAllbyExhibitionNo() {
-		ExhibitionService exhibitionSevice = new ExhibitionService();
-		try {
-			List<ReviewDTO> redto = reviewService.selectAllbyExhibitionNo();
-			List<ExhibitionDTO> exdto = exhibitionSevice.exihibitionSelectByNo();
-			EndView.printReAndEx(redto, exdto);
-		}catch(SQLException e) {
-			FailView.errorMessage(e.getMessage());
-		}
-		
-	}
+//	/**
+//	 * 전시회 번호로 검색
+//	 * */
+//	public void selectAllbyExhibitionNo() {
+//		ExhibitionService exhibitionSevice = new ExhibitionService();
+//		try {
+//			List<ReviewDTO> redto = reviewService.selectAllbyExhibitionNo();
+//			List<ExhibitionDTO> exdto = exhibitionSevice.exihibitionSelectByNo();
+//			EndView.printReAndEx(redto, exdto);
+//		}catch(SQLException e) {
+//			FailView.errorMessage(e.getMessage());
+//		}
+//		
+//	}
 	
 	/**
 	 * 사용자 번호로 검색 (내 후기 보기)
