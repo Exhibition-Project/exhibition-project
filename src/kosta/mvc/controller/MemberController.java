@@ -8,6 +8,7 @@ import kosta.mvc.model.dto.MemberDTO;
 import kosta.mvc.model.service.MemberService;
 import kosta.mvc.view.EndView;
 import kosta.mvc.view.FailView;
+import kosta.mvc.view.MenuView;
 
 public class MemberController {
 	static MemberService memberService = new MemberService();
@@ -19,8 +20,13 @@ public class MemberController {
 	public static void login(String id, String password) {
 		
 		try {
-			memberService.login(id, password);
+			MemberDTO memberDTO = memberService.login(id, password);
 			EndView.printMessage("로그인이 완료되었습니다.");
+			if (memberDTO.getMemberNo() == 0) {
+				MenuView.printAdminMenu();
+			} else {
+				MenuView.printMemberMenu();
+			}
 		} catch (Exception e) {
 			FailView.errorMessage(e.getMessage());
 		}
@@ -68,21 +74,22 @@ public class MemberController {
 	public static MemberDTO memberSelectReservation() {
 		MemberDTO memberDTO = memberService.memberSelectReservation();
 		// EndView에 고객정보 출력할 창이 필요함.
-//		EndView.printMemberInformation(memberDTO);
+		EndView.printMemberInformation(memberDTO);
 		return memberDTO; // 뷰에 로그인된 정보를 줌.
 	}
 
 	/**
 	 * 고객정보수정
 	 */
-	public static void updateMember(MemberDTO memberDTO, String memberName, String memberBirth, String memberPassword, String confirmPassword) {
+	public static void updateMember(String memberName, String memberBirth, String memberPassword, String confirmPassword) {
 		try {
-			if (!memberDTO.getMemberPass().equals(confirmPassword)) {
+			System.out.println("???????????????????????????????");
+			if (memberService.checkPassword(confirmPassword) == 0) {
 				throw new Exception("현재 비밀번호가 일치하지 않습니다.");
 			}
 			MemberDTO updateMemberDTO = new MemberDTO(memberName, memberBirth, memberPassword); // 변경된 정보를 저장하는 dto
 			
-			int result = memberService.updateMember(memberDTO, updateMemberDTO);
+			int result = memberService.updateMember(confirmPassword, updateMemberDTO);
 			if (result == 0) {
 				throw new Exception("고객정보수정에 실패했습니다.");
 			}

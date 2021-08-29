@@ -157,8 +157,9 @@ public class MenuView {
 	 * 고객정보수정(이름, 생년월일 비밀번호만 변경가능)
 	 * */
 	public static void inputUpdateMember() {
-		MemberDTO memberDTO = MemberController.memberSelectReservation(); //로그인한 기존 정보
-		System.out.println(memberDTO.toString());
+//		MemberDTO memberDTO = MemberController.memberSelectReservation(); //로그인한 기존 정보
+//		System.out.println(memberDTO.toString());
+		
 		
 		System.out.println("********* 수정할 정보 *********");
 		System.out.print("이름 :");
@@ -171,7 +172,7 @@ public class MenuView {
 		System.out.print("현재 Password를 입력하세요 : ");
 		String confirmPassword = sc.next();
 		
-		MemberController.updateMember(memberDTO, memberName, memberBirth, memberPassword, confirmPassword);
+		MemberController.updateMember(memberName, memberBirth, memberPassword, confirmPassword);
 	}
 
 	/**

@@ -23,11 +23,16 @@ public interface MemberDAO {
 		/**
 		 * 고객정보수정
 		 */
-		public int updateMember(MemberDTO memberDTO, MemberDTO updatememDto);
+		public int updateMember(int sessionNo, MemberDTO updatememDto);
 		
 		/**
 		 * 고객정보조회
 		 */
 		public MemberDTO selectMemberInformation(int memberNo, String memberID);
+
+		/**
+		 * 기존 비밀번호 체크 
+		 */
+		public int checkPassword(int sessionNo, String confirmPassword);
 		
 }
