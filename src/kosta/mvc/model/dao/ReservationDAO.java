@@ -13,13 +13,12 @@ public interface ReservationDAO {
 	 * 	2) reservation_line테이블에 insert
 	 * */
 	int reservationInsert(ReservationDTO Reservation) throws SQLException;
-	
+
 	/**
 	 * 예약내역보기
 	 * */
-	List<ReservationDTO> selctReservationByMemberId(String memberId) throws SQLException;
-	
-	
-	List<ReservationDTO> printReservationByNo(ReservationDTO reservationDTO) throws SQLException;
+	List<ReservationDTO> selectReservationByMemberId(String memberId) throws SQLException;
 			
 }
+	
+

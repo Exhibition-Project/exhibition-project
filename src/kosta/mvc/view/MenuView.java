@@ -2,6 +2,7 @@ package kosta.mvc.view;
 
 import java.util.Scanner;
 
+import kosta.mvc.controller.ExhibitionController;
 import kosta.mvc.controller.ReservationController;
 import kosta.mvc.model.dto.ReservationDTO;
 import kosta.mvc.model.dto.ReservationLineDTO;
@@ -204,33 +205,49 @@ public class MenuView {
 	
 	//전시회 예매
 	
+
 	/**
 	 * 전시회 예매(전시회 번호 입력)
 	 * (EndView에서 예매 가능 날짜 출력후 InputReservationOption 호출)
 	 * */
 	public static void InputInsertReservation(String memberId) {
-		System.out.print("예매할 전시회 번호를 입력해주세요 : ");
-		int exhibitionNo = Integer.parseInt(sc.nextLine());
-		
-		ReservationController.InputReservationOption(exhibitionNo);
+		try{
+			System.out.print("예매할 전시회 번호를 입력해주세요 : ");
+			int exhibitionNo = Integer.parseInt(sc.nextLine());
+
+//			ExhibitionController.selectByExhibitionxNo(exhibitionNo);
+		}catch (NumberFormatException e) {
+			System.out.println("전시회번호는 숫자만 입력해주세요.");
+			System.out.println("다시 입력하시겠습니까?  yes or no");
+			String choice = sc.nextLine();
+			if(choice.equals("yes")) {
+				InputInsertReservation(memberId);
+			}
+		}
 	}
-	
+
 	/**
 	 * 예매하기 (날짜, 관람 연령, 티켓 수량 입력)
 	 * */
 	public static void InputReservationOption(String memberId) {
-		 System.out.print("예매할 날짜를 입력하세요 : ");
-		 int reg_date = Integer.parseInt(sc.nextLine());
-		 
-		 System.out.print("관람 연령을 입력해주세요 : ");
-		 String visitAge = sc.nextLine();
-		 
-		 System.out.print("예매할 티켓 수량을 입력해주세요 : ");
-		 int ticket_qty = Integer.parseInt(sc.nextLine());
-		 
-		 ReservationController.insertReservation(reg_date, visitAge, ticket_qty);
+		System.out.print("예매할 날짜를 입력하세요 : ");
+		String regDate = sc.nextLine();
+
+		System.out.print("관람 연령을 입력해주세요 : ");
+		String visitAge = sc.nextLine();
+
+		System.out.print("예매할 티켓 수량을 입력해주세요 : ");
+		int ticketQty = Integer.parseInt(sc.nextLine());
+
+		ReservationDTO reservation = new ReservationDTO(0, 0, 0, 0, regDate);
+		ReservationLineDTO reservationLine = new ReservationLineDTO(0, 0, visitAge, ticketQty, 0);//예매상세
+	
+		reservation.getReservationLineList().add(reservationLine);
 		
+		ReservationController.InputReservationOption(regDate, visitAge, ticketQty);
 	}
+
+
 	
 	
 	//후기 조회
