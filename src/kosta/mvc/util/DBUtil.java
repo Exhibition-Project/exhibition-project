@@ -40,7 +40,7 @@ public class DBUtil {
 	/**
 	 * ´Ý±â
 	 * */
-	public static void dbClose(Connection con, Statement st, ResultSet rs) {
+	public static void dbClose(Connection con, PreparedStatement st, ResultSet rs) {
 		try {
 			if(con != null) con.close();
 			if(st != null) st.close();
@@ -50,8 +50,14 @@ public class DBUtil {
 		}
 	}
 
-	public static void dbClose(Connection con, PreparedStatement ps) {
-		// TODO Auto-generated method stub
+	public static void dbClose(Connection con, PreparedStatement st) {
+		try {
+			if(con != null) con.close();
+			if(st != null) st.close();
+						
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 }
