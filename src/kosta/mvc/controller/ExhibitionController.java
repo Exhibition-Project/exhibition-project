@@ -54,6 +54,5 @@ public class ExhibitionController {
 //		   FailView.errorMessage(e.getMessage());
 //	   }
    }
-   
-   
+
 }   
