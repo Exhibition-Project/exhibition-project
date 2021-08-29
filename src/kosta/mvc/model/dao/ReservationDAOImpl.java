@@ -72,7 +72,6 @@ public class ReservationDAOImpl implements ReservationDAO{
 				ps.setString(1, reservationLine.getVisitAge());//관람연령
 				ps.setInt(2, reservationLine.getTicketQty());//티켓수량
 				ps.setInt(3, reservationLine.getAmount());//총가격 할인율이 적용된 가격 * 티켓수량
-				if(reservationLine==null)throw new SQLException("입력 오류입니다.... 예매 실패..");
 			}
 		
 		} finally {

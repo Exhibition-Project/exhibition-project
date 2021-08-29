@@ -34,6 +34,16 @@ public class ExhibitionService {
 //	   List<ExhibitionDTO> list = exhibitionDAO.exhibitionDelete(exhibitionNo);
 //   }
    
+	/**
+	 * 전시회번호에 해당하는 레코드 검색
+	 */
+	public ExhibitionDTO selectByExhibitionxNo(int exhibitionNo) throws SQLException{
+		ExhibitionDTO exhibitionDTO = exhibitionDAO.exhibitionSelectByNo(exhibitionNo);
+		if(exhibitionDTO == null) {
+			throw new SQLException(exhibitionNo+" 번호에 해당하는 전시회는 없습니다.");
+		}
+		return exhibitionDTO;
+	}
 
    
 }

@@ -32,6 +32,15 @@ public class EndView {
 		
 	}
 	
+	
+	/**
+	 * 전시회번호에 해당하는 전시회정보 출력 
+	 * */
+	public static void selectByExhibitionxNo(ExhibitionDTO exhibitionDTO) {
+//		System.out.println("selectByExhibitionxNo");
+		System.out.println(exhibitionDTO);
+	}
+	
 	/**
 	 * 예매 가능 날짜 출력
 	 * */

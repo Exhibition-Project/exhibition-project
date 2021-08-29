@@ -73,5 +73,33 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 //		int re3 = cs.executeDelete();
 		return 0;
 	}
+	
+	/**
+	 * 전시회번호에 해당하는 검색
+	 **/
+	@Override
+	public ExhibitionDTO exhibitionSelectByNo(int exhibitionNo) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ExhibitionDTO exhibitionDTO = null;
+		String sql = "select exhibition_no, exhibition_name, start_date, end_date, genre, price, exhibition_loc from exhibition where exhibition_no = ?";
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, exhibitionNo);
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				exhibitionDTO = new ExhibitionDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(6));
+			}
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				DBUtil.dbClose(con, ps, rs);
+			}
+		return exhibitionDTO;
+	}
+
 
 }

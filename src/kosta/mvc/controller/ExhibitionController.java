@@ -10,7 +10,7 @@ import kosta.mvc.view.FailView;
 
 public class ExhibitionController {
    //객체 생성
-   ExhibitionService exhibitionService = new ExhibitionService();
+   private static ExhibitionService exhibitionService = new ExhibitionService();
 
    //전시회 전체 검색
 //   public void exhibitionSelectAll() {
@@ -54,5 +54,18 @@ public class ExhibitionController {
 //		   FailView.errorMessage(e.getMessage());
 //	   }
    }
+   
+   /**
+	 * 전시회번호에 해당하는 레코드 검색
+	 */
+	public static void selectByExhibitionxNo(int exhibitionNo) {
+		try {
+			ExhibitionDTO exhibitionDTO = exhibitionService.selectByExhibitionxNo(exhibitionNo);
+			EndView.selectByExhibitionxNo(exhibitionDTO);
+		}catch (Exception e) {
+			e.printStackTrace();
+			FailView.errorMessage(e.getMessage());
+		}
+	}
 
 }   
