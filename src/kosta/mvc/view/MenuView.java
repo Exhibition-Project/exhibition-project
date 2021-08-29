@@ -60,11 +60,11 @@ public class MenuView {
 	
 	/**
 	 * 회원 메인메뉴
-	 * 마이페이지, 전시회조회, 전시회 예매, 후기 조회, 로그아웃
+	 * 마이페이지, 전시회 예매, 후기 조회, 로그아웃
 	 * */
 	public static void printMemberMenu(String memberId) {
 		while(true) {
-			System.out.println("1. 마이페이지  2. 전시회조회  3. 전시회예매  4. 후기조회  9. 로그아웃");
+			System.out.println("1. 마이페이지 2. 전시회예매  3. 후기조회  9. 로그아웃");
 			try {
 				int choice = Integer.parseInt(sc.nextLine());
 				switch(choice) {
@@ -73,12 +73,9 @@ public class MenuView {
 					printMyPage(memberId);
 					break;
 				case 2:
-					printExhibitionMenu();
-					break;
-				case 3:
 					InputInsertReservation(memberId);
 					break;
-				case 4:
+				case 3:
 					InputReViewByNo();
 					break;
 				case 9:
