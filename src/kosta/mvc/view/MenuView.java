@@ -2,7 +2,6 @@ package kosta.mvc.view;
 
 import java.util.Scanner;
 
-import kosta.mvc.controller.ExhibitionController;
 import kosta.mvc.controller.ReservationController;
 import kosta.mvc.model.dto.ReservationDTO;
 import kosta.mvc.model.dto.ReservationLineDTO;

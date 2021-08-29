@@ -3,11 +3,11 @@ package kosta.mvc.view;
 import java.util.List;
 
 import kosta.mvc.model.dto.ExhibitionDTO;
+import kosta.mvc.model.dto.MemberDTO;
 import kosta.mvc.model.dto.ReservationDTO;
 import kosta.mvc.model.dto.ReservationLineDTO;
 import kosta.mvc.model.dto.ReviewDTO;
 import kosta.mvc.model.dto.StatisticsDTO;
-import kosta.mvc.model.service.ExhibitionService;
 
 public class EndView {
 	
@@ -16,6 +16,13 @@ public class EndView {
 	 * */
 	public static void printMessage(String message) {
 		System.out.println(message);
+	}
+	
+	/**
+	 * 회원정보 출력
+	 */
+	public static void printMemberInformation(MemberDTO memberDTO) {
+		System.out.println(memberDTO.toString());
 	}
 	
 	/**
