@@ -1,4 +1,4 @@
-package kosta.mvc.Session;
+package kosta.mvc.session;
 /**
  * 로그인 된 사용자 저장
  * */

@@ -1,7 +1,7 @@
 package kosta.mvc.controller;
 
-import kosta.mvc.Service.MemberService;
 import kosta.mvc.model.dto.MemberDTO;
+import kosta.mvc.model.service.MemberService;
 
 public class MemberController {
 	MemberService memberService = new MemberService();

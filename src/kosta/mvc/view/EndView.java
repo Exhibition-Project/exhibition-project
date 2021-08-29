@@ -2,12 +2,12 @@ package kosta.mvc.view;
 
 import java.util.List;
 
-import kosta.mvc.Service.ExhibitionService;
 import kosta.mvc.model.dto.ExhibitionDTO;
 import kosta.mvc.model.dto.ReservationDTO;
 import kosta.mvc.model.dto.ReservationLineDTO;
 import kosta.mvc.model.dto.ReviewDTO;
 import kosta.mvc.model.dto.StatisticsDTO;
+import kosta.mvc.model.service.ExhibitionService;
 
 public class EndView {
 	

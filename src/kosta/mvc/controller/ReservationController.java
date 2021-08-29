@@ -3,8 +3,8 @@ package kosta.mvc.controller;
 import java.util.Calendar;
 import java.util.List;
 
-import kosta.mvc.Service.ReservationService;
 import kosta.mvc.model.dto.ReservationDTO;
+import kosta.mvc.model.service.ReservationService;
 import kosta.mvc.view.EndView;
 import kosta.mvc.view.FailView;
 

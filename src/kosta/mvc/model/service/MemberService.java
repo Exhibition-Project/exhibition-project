@@ -1,4 +1,4 @@
-package kosta.mvc.Service;
+package kosta.mvc.model.service;
 
 import kosta.mvc.model.dao.MemberDAO;
 import kosta.mvc.model.dao.MemberDAOImpl;

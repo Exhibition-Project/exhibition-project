@@ -3,10 +3,10 @@ package kosta.mvc.controller;
 import java.sql.SQLException;
 import java.util.List;
 
-import kosta.mvc.Service.ExhibitionService;
-import kosta.mvc.Service.ReviewService;
 import kosta.mvc.model.dto.ExhibitionDTO;
 import kosta.mvc.model.dto.ReviewDTO;
+import kosta.mvc.model.service.ExhibitionService;
+import kosta.mvc.model.service.ReviewService;
 import kosta.mvc.view.EndView;
 import kosta.mvc.view.FailView;
 

@@ -1,4 +1,4 @@
-package kosta.mvc.Service;
+package kosta.mvc.model.service;
 
 import java.sql.SQLException;
 import java.util.List;
