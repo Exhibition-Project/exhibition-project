@@ -3,43 +3,35 @@ package kosta.mvc.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Set;
 
 import kosta.mvc.model.dto.MemberDTO;
 import kosta.mvc.model.service.MemberService;
-import kosta.mvc.session.Session;
-import kosta.mvc.session.SessionSet;
 import kosta.mvc.view.EndView;
 import kosta.mvc.view.FailView;
 
 public class MemberController {
-	static MemberService memberService = new MemberService(); // static쓸지 말지 고민..
+	static MemberService memberService = new MemberService();
+	
 
 	/**
 	 * 로그인
 	 */
-	public static boolean login(String id, String password) {
+	public static void login(String id, String password) {
+		
 		try {
-			MemberDTO memberDTO = memberService.login(id, password);
-			if (memberDTO == null) {
-//				throw new Exception("등록되지 않은 사용자입니다.");
-				return false;
-			}
-			Session session = new Session(memberDTO.getMemberNo(), memberDTO.getMemberId());
-			SessionSet sessionSet = SessionSet.getInstance();
-			Set<Session> set = sessionSet.getSessionSet();
-			set.add(session);
-
+			memberService.login(id, password);
+			EndView.printMessage("로그인이 완료되었습니다.");
 		} catch (Exception e) {
 			FailView.errorMessage(e.getMessage());
 		}
-		return true;
 	}
 
 	/**
 	 * 로그아웃
 	 */
 	public static void logout() {
+		memberService.logout();
+		EndView.printMessage("로그아웃이 완료되었습니다.");
 	}
 
 	/**

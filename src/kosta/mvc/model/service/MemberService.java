@@ -15,10 +15,17 @@ public class MemberService {
 	/**
 	 * id, password 받아서 맞는 MemberDTO를 가져온다.
 	 */
-	public MemberDTO login(String id, String password) {
-		MemberDTO memberDTO= memberDAO.login(id, password);
-		return memberDTO;
-
+	public void login(String id, String password) throws Exception{
+		
+		MemberDTO memberDTO = memberDAO.login(id, password);
+		if (memberDTO == null) {
+			throw new Exception();
+		}
+		
+		Session session = new Session(memberDTO.getMemberNo(), memberDTO.getMemberId());
+		
+		SessionSet sessionSet = SessionSet.getInstance();
+		sessionSet.addSession(session);
 	}
 	
 	/**
@@ -57,5 +64,12 @@ public class MemberService {
 		String memberID = session.getSessionId();
 		MemberDTO memberDTO = memberDAO.selectMemberInformation(memberNo, memberID);
 		return memberDTO;
+	}
+
+	public void logout() {
+		SessionSet ss = SessionSet.getInstance();
+		for (Session s : ss.getSessionSet()) {
+			ss.removeSession(s);
+		}
 	}
 }

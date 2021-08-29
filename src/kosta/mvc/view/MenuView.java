@@ -2,9 +2,13 @@ package kosta.mvc.view;
 
 import java.util.Scanner;
 
+import kosta.mvc.controller.MemberController;
 import kosta.mvc.controller.ReservationController;
+import kosta.mvc.model.dto.MemberDTO;
 import kosta.mvc.model.dto.ReservationDTO;
 import kosta.mvc.model.dto.ReservationLineDTO;
+import kosta.mvc.session.Session;
+import kosta.mvc.session.SessionSet;
 
 public class MenuView {
 	
@@ -15,7 +19,11 @@ public class MenuView {
 	 * 로그인, 회원가입
 	 * */
 	public static void menu() {
+		
 		while(true) {
+			SessionSet ss = SessionSet.getInstance();
+			System.out.println("세션 값 확인 테스트 : " + ss.getSessionSet());
+			
 			System.out.println("1. 로그인  2. 회원가입  9. 나가기");
 			try {
 				int choice = Integer.parseInt(sc.nextLine());
@@ -24,9 +32,9 @@ public class MenuView {
 					login();
 					break;
 				case 2:
-					logout();
+					InputInsertMember();
 					break;
-				case 3:
+				case 9:
 					System.exit(1);
 				}
 			}catch (NumberFormatException e) {
@@ -39,7 +47,16 @@ public class MenuView {
 	 * 회원가입
 	 * */
 	public static void InputInsertMember() {
-		
+		System.out.println();
+		System.out.print("ID :");
+		String memberId = sc.next();
+		System.out.print("Password : ");
+		String memberPassword = sc.next();
+		System.out.print("이름 :");
+		String memberName = sc.next();
+		System.out.print("생년월일 : ");
+		String memberBirth = sc.next();
+		MemberController.inputInsertMember(memberId, memberPassword, memberName, memberBirth);
 	}
 	
 	/**
@@ -47,13 +64,19 @@ public class MenuView {
 	 * */
 	public static void login() {
 		
+		System.out.print("ID :");
+		String id = sc.next();
+		System.out.print("Password : ");
+		String password = sc.next();
+		
+		MemberController.login(id, password);
 	}
 	
 	/**
 	 * 로그아웃
 	 * */
 	public static void logout() {
-		
+		MemberController.logout();
 	}
 	
 	//회원 메뉴/////////////////////////////////////////////////////////////////////////
@@ -62,7 +85,9 @@ public class MenuView {
 	 * 회원 메인메뉴
 	 * 마이페이지, 전시회 예매, 후기 조회, 로그아웃
 	 * */
-	public static void printMemberMenu(String memberId) {
+	public static void printMemberMenu() {
+		SessionSet ss = SessionSet.getInstance();
+		System.out.println("세션 값 확인 테스트 : " + ss.getSessionSet());
 		while(true) {
 			System.out.println("1. 마이페이지 2. 전시회예매  3. 후기조회  9. 로그아웃");
 			try {
@@ -70,10 +95,10 @@ public class MenuView {
 				switch(choice) {
 				
 				case 1:
-					printMyPage(memberId);
+					printMyPage();
 					break;
 				case 2:
-					InputInsertReservation(memberId);
+					InputInsertReservation();
 					break;
 				case 3:
 					InputReViewByNo();
@@ -93,20 +118,23 @@ public class MenuView {
 	 * 마이페이지 메뉴
 	 * 고객정보수정, 내 예매내역 조회(따로 함수 X), 내 후기관리
 	 * */
-	public static void printMyPage(String memberId) {
+	public static void printMyPage() {
 		while(true) {
-			System.out.println("1. 고객정보수정  2. 내 예매내역 조회  3. 내 후기관리  9. 상위메뉴로 이동");
+			System.out.println("1. 고객정보조회 2.고객정보 수정  3. 내 예매내역 조회  4. 내 후기관리  9. 상위메뉴로 이동");
 			try {
 				int choice = Integer.parseInt(sc.nextLine());
 				switch(choice) {			
 					case 1:
-						inputUpdateMember(memberId);
+						selectMemberInformation();
 						break;
 					case 2:
-						//은솔님 이 자리에서 예내내역 조회 컨트롤러 바로 호출하시면 됩니다.
+						inputUpdateMember();
 						break;
 					case 3:
-						printMemberReviewMenu(memberId);
+						//은솔님 이 자리에서 예내내역 조회 컨트롤러 바로 호출하시면 됩니다.
+						break;
+					case 4:
+						printMemberReviewMenu();
 						break;
 					case 9:
 						return;
@@ -118,17 +146,39 @@ public class MenuView {
 	}
 	
 	/**
-	 * 고객정보수정
+	 * 고객정보조회
+	 */
+	public static void selectMemberInformation() {
+		MemberDTO memberDTO = MemberController.memberSelectReservation();
+		System.out.println(memberDTO.toString());
+	}
+	
+	/**
+	 * 고객정보수정(이름, 생년월일 비밀번호만 변경가능)
 	 * */
-	public static void inputUpdateMember(String memberId) {
+	public static void inputUpdateMember() {
+		MemberDTO memberDTO = MemberController.memberSelectReservation(); //로그인한 기존 정보
+		System.out.println(memberDTO.toString());
 		
+		System.out.println("********* 수정할 정보 *********");
+		System.out.print("이름 :");
+		String memberName = sc.next();
+		System.out.print("생년월일 : ");
+		String memberBirth = sc.next();
+		System.out.print("Password : ");
+		String memberPassword = sc.next();
+		System.out.println("**************************");
+		System.out.print("현재 Password를 입력하세요 : ");
+		String confirmPassword = sc.next();
+		
+		MemberController.updateMember(memberDTO, memberName, memberBirth, memberPassword, confirmPassword);
 	}
 
 	/**
 	 * 마이페이지 내 후기관리 메뉴
 	 * 내 후기 조회(따로 함수 X), 등록, 삭제
 	 * */
-	public static void printMemberReviewMenu(String memberId) {
+	public static void printMemberReviewMenu() {
 		while(true) {
 			System.out.println("1. 내 후기 조회  2. 후기 등록  3.후기 삭제  9. 상위 메뉴로 이동");
 			try {
@@ -138,10 +188,10 @@ public class MenuView {
 						//여기서 바로 후기 조회하는 컨트롤러 호출
 						break;
 					case 2:
-						InputInsertReview(memberId);
+						InputInsertReview();
 						break;
 					case 3:
-						InputDeleteReview(memberId);
+						InputDeleteReview();
 						break;
 					case 9:
 						return;
@@ -155,14 +205,14 @@ public class MenuView {
 	/**
 	 * 후기 등록
 	 * */
-	public static void InputInsertReview(String memberId) {
+	public static void InputInsertReview() {
 		
 	}
 	
 	/**
 	 * 후기 삭제
 	 * */
-	public static void InputDeleteReview(String memberId) {
+	public static void InputDeleteReview() {
 		
 	}
 	
@@ -209,7 +259,7 @@ public class MenuView {
 	 * 전시회 예매(전시회 번호 입력)
 	 * (EndView에서 예매 가능 날짜 출력후 InputReservationOption 호출)
 	 * */
-	public static void InputInsertReservation(String memberId) {
+	public static void InputInsertReservation() {
 		try{
 			System.out.print("예매할 전시회 번호를 입력해주세요 : ");
 			int exhibitionNo = Integer.parseInt(sc.nextLine());
@@ -220,7 +270,7 @@ public class MenuView {
 			System.out.println("다시 입력하시겠습니까?  yes or no");
 			String choice = sc.nextLine();
 			if(choice.equals("yes")) {
-				InputInsertReservation(memberId);
+				InputInsertReservation();
 			}
 		}
 	}
@@ -366,7 +416,7 @@ public class MenuView {
 						InputReViewByNo();
 						break;
 					case 2:
-						InputDeleteReview("admin"); //관리자 후기삭제를 회원의 후기삭제와 아예 다르게 만들어서 구현하는건 어떨지?
+						InputDeleteReview(); //관리자 후기삭제를 회원의 후기삭제와 아예 다르게 만들어서 구현하는건 어떨지?
 						break;
 					case 9:
 						return;
