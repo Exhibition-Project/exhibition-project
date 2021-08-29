@@ -89,7 +89,7 @@ public class ReservationDAOImpl implements ReservationDAO{
 	 * @param Visitors 
 	 * */
 	public int getTotalAmount(ReservationDTO reservation) throws SQLException {              
-//		int result = 0;
+		int result = 0;
 //		
 //		if(visitAge.equals("adults")) {
 //			result = (int)(price * 0.90);
@@ -99,7 +99,7 @@ public class ReservationDAOImpl implements ReservationDAO{
 //			result = (int)(price * 0.50);
 //		}
 //	
-		return 0;
+		return result;
 	}
 	
 
