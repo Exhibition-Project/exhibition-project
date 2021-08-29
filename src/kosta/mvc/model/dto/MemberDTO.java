@@ -8,14 +8,21 @@ public class MemberDTO {
 	private String memberPass;
 	
 	public MemberDTO() {}
-
-	public MemberDTO(int memberNo, String memberId, String memberName, String memberBirth, String memberPass) {
-		super();
-		this.memberNo = memberNo;
-		this.memberId = memberId;
+	
+	public MemberDTO(String memberName, String memberBirth, String memberPass) {
 		this.memberName = memberName;
 		this.memberBirth = memberBirth;
 		this.memberPass = memberPass;
+	}
+
+	public MemberDTO(String memberId, String memberName, String memberBirth, String memberPass) {
+		this(memberName, memberBirth, memberPass);
+		this.memberId = memberId;
+	}
+	
+	public MemberDTO(int memberNo, String memberId, String memberName, String memberBirth, String memberPass) {
+		this(memberId, memberName, memberBirth, memberPass);
+		this.memberNo = memberNo;
 	}
 
 	public int getMemberNo() {
@@ -57,5 +64,19 @@ public class MemberDTO {
 	public void setMemberPass(String memberPass) {
 		this.memberPass = memberPass;
 	}
-	
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("********** 회원 정보 **********");
+		builder.append("\nID : ");
+		builder.append(memberId);
+		builder.append("\nmemberPass : ");
+		builder.append(memberPass);
+		builder.append("\nmemberName : ");
+		builder.append(memberName);
+		builder.append("\nmemberBirth : ");
+		builder.append(memberBirth);
+		return builder.toString();
+	}
 }
