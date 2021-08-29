@@ -18,17 +18,9 @@ public interface ExhibitionDAO {
    int exhibitionInsert(ExhibitionDTO dto) throws SQLException;
    
    //전시회 수정
-   int exhibitionUpdate(int exhibitionNo) throws SQLException;
+   int exhibitionUpdate(ExhibitionDTO dto) throws SQLException;
    
    //전시회 삭제
    int exhibitionDelete(int exhibitionNo) throws SQLException;
-   
-
-	/**
-	 * 전시회번호에 해당하는 레코드 검색
-	 * select exhibition_no, exhibition_name, start_date, end_date, genre, price, exhibition_loc from exhibition where exhibition_no = ?	 
-	 * */
-	ExhibitionDTO exhibitionSelectByNo(int exhibitionNo)throws SQLException;
-
    
 }
