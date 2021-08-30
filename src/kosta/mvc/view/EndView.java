@@ -30,7 +30,9 @@ public class EndView {
 	 * 전시회 리스트 출력
 	 * */
 	public static void printExhibitionList(List<ExhibitionDTO> exhibitionList) {
-		
+		for(ExhibitionDTO exhibitionDTO : exhibitionList) {
+			System.out.println(exhibitionDTO);
+		}
 	}
 	
 	

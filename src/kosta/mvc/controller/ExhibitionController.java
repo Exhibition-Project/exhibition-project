@@ -17,7 +17,7 @@ public class ExhibitionController {
    public static void exhibitionSelectAll() {
 	   	try {
 	   		List<ExhibitionDTO> exhibitionList = exhibitionService.exhibitionSelectAll();
-	   		EndView.printExhibition(exhibitionList);
+	   		EndView.printExhibitionList(exhibitionList);
 	   	}catch (SQLException e) {
 	   		FailView.errorMessage(e.getMessage());
 	   	}

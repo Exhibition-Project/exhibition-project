@@ -231,7 +231,7 @@ public class MenuView {
 				int choice = Integer.parseInt(sc.nextLine());
 				switch(choice) {			
 					case 1:
-						//여기서 바로 전체조회하는 컨트롤러 호출
+						ExhibitionController.exhibitionSelectAll();
 						break;
 					case 2:
 						InputExhibitionByDate();
