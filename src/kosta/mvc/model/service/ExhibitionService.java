@@ -12,11 +12,11 @@ public class ExhibitionService {
    //객체 생성
    ExhibitionDAO exhibitionDAO = new ExhibitionDAOImpl();
    //전체 검색
-//   public List<Exhibition> exhibitionSelectAll() throws NotFoundException, SQLException{
-//      List<Exhibition> exhibitionList = exhibitionDAO.exhibitionSelectAll();
-//      if(list.size()==0) throw new NotFoundException("현재 찾으시는 전시회가 존재하지 않습니다.");
-//      return exhibitionList;
-//   }
+   public List<ExhibitionDTO> exhibitionSelectAll() throws SQLException{
+      List<ExhibitionDTO> exhibitionList = exhibitionDAO.exhibitionSelectAll();
+      if(exhibitionList.size()==0) throw new SQLException("현재 찾으시는 전시회가 존재하지 않습니다.");
+      return exhibitionList;
+   }
    //날짜별 검색
 //   public void exhibitionSelectByDate(String startDate, String endDate) throws SQLException{
 //      List<ExhibitionDTO> exhibitionList = exhibitionDAO.exhibitionSelectByDate(startDate, endDate);
