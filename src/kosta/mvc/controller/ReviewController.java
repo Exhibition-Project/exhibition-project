@@ -33,9 +33,9 @@ public class ReviewController {
 	/**
 	 * 사용자 번호로 검색 (내 후기 보기)
 	 * */
-	public static void reviewSelectByReviewNo(int memberNo) {
+	public static void reviewSelectByReviewNo() {
 		try {
-			List<ReviewDTO> list = reviewService.selectByMemberNo(memberNo);
+			List<ReviewDTO> list = reviewService.selectByMemberNo();
 			EndView.printReviewList(list);
 		}catch(SQLException e) {
 			FailView.errorMessage(e.getMessage());
