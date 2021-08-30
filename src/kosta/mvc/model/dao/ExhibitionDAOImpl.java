@@ -102,13 +102,12 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			
-			ps.setInt(1, dto.getExhibitioNo());
-			ps.setString(2, dto.getExhibitionName());
-			ps.setString(3, dto.getStartDate());
-			ps.setString(4, dto.getEndDate());
-			ps.setString(5, dto.getGenre());
-			ps.setInt(6, dto.getPrice());
-			ps.setString(7, dto.getExhibitionLocation());
+			ps.setString(1, dto.getExhibitionName());
+			ps.setString(2, dto.getStartDate());
+			ps.setString(3, dto.getEndDate());
+			ps.setString(4, dto.getGenre());
+			ps.setInt(5, dto.getPrice());
+			ps.setString(6, dto.getExhibitionLocation());
 			
 			result = ps.executeUpdate();
 		}finally {
@@ -135,10 +134,12 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 			ps.setString(4, dto.getExhibitionLocation());
 			ps.setInt(5, dto.getExhibitioNo());
 			result = ps.executeUpdate();
-			
+			System.out.println(result);
+
 		}finally {
 				DBUtil.dbClose(con, ps);
 		}
+
 		return result;
 	}
 

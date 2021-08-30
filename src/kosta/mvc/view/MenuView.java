@@ -462,7 +462,7 @@ public class MenuView {
 			System.out.print("전시회 장소 : ");
 			String exhibitionLocation = sc.nextLine();
 			ExhibitionDTO exhibitionDTO = new ExhibitionDTO(exhibitionNo, exhibitionName, null, null, genre, price, exhibitionLocation);
-			ExhibitionController.exhibitionInsert(exhibitionDTO);
+			ExhibitionController.exhibitionUpdate(exhibitionDTO);
 			
 		}catch(NumberFormatException e) {
 			System.out.println("전시회 번호 또는 가격은 숫자만 입력해 주세요.");

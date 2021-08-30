@@ -38,6 +38,7 @@ public class ExhibitionService {
    //전시회 수정
    public void exhibitionUpdate(ExhibitionDTO dto) throws SQLException{
 	   int result = exhibitionDAO.exhibitionUpdate(dto);
+	   System.out.println("서비스에 리턴됨");
 	   if(result == 0) throw new SQLException("전시회 수정에 실패했습니다.");
    }
    //전시회 삭제
