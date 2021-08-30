@@ -97,7 +97,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		List<ReviewDTO> reviewList = null;
+		List<ReviewDTO> reviewList = new ArrayList<ReviewDTO>();
 		String sql = proFile.getProperty("review.selectAllbyMemberNo");
 		
 		try {
@@ -108,7 +108,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 			
 			rs = ps.executeQuery();
 			while(rs.next()) {
-			reviewList = new ArrayList<ReviewDTO>(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getInt(5));
+			reviewList.add(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getInt(5));
 			}
 			
 		}finally {
@@ -150,7 +150,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		List<ReviewDTO> reviewList = null;
+		List<ReviewDTO> reviewList = new ArrayList<ReviewDTO>();
 		String sql = proFile.getProperty("review.selectAllbyExhibitionNo");
 		
 		try {
@@ -161,7 +161,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 			
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				reviewList = new ArrayList<ReviewDTO>(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getInt(5));
+				reviewList.add(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getInt(5));
 			}
 			
 		}finally {
