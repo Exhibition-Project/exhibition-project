@@ -27,7 +27,7 @@ public class ExhibitionService {
    }
    //별점별 검색
    public List<ExhibitionDTO> exhibitionSelectByStars(int stars) throws SQLException{
-	   List<ExhibitionDTO> exhibitionList = exhibitionDAO.exhibitionSelectByStars(stars);
+	   List<ExhibitionDTO> exhibitionList = exhibitionDAO.exhibitionSelectByStars();
 	   if(exhibitionList.size()==0 || exhibitionList == null || stars == 0) throw new SQLException("해당 별점에 해당하는 전시회가 없습니다.");
 	   return exhibitionList;
    }
