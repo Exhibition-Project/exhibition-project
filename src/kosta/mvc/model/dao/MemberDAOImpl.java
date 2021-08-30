@@ -4,12 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Properties;
 
 import kosta.mvc.model.dto.MemberDTO;
 import kosta.mvc.util.DBUtil;
 
 public class MemberDAOImpl implements MemberDAO {
-
+	private Properties proFile = DBUtil.getProFile();
+	
 	Connection con = null;
 	PreparedStatement st = null;
 	ResultSet rs = null;
@@ -21,12 +23,12 @@ public class MemberDAOImpl implements MemberDAO {
 	public MemberDTO login(String id, String password) {
 
 		MemberDTO memberDTO = null;
-
+		String sql = proFile.getProperty("member.login");
+		//SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, TO_CHAR(MEMBER_BIRTH, 'YYYYMMDD'), MEMBER_PASS FROM MEMBER WHERE MEMBER_ID = ? AND MEMBER_PASS = ?
+		
 		try {
 			con = DBUtil.getConnection();
-			st = con.prepareStatement(
-					"SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, TO_CHAR(MEMBER_BIRTH, 'YYYYMMDD'), MEMBER_PASS FROM MEMBER"
-							+ " WHERE MEMBER_ID = ? AND MEMBER_PASS = ?");
+			st = con.prepareStatement(sql);
 			st.setString(1, id);
 			st.setString(2, password);
 
@@ -51,9 +53,12 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public int getMemberId(String id) {
 		int count = 0;
+		String sql = proFile.getProperty("member.getMemberID");
+		//SELECT COUNT(1) FROM MEMBER WHERE MEMBER_ID = ?
+		
 		try {
 			con = DBUtil.getConnection();
-			st = con.prepareStatement("SELECT COUNT(1) FROM MEMBER WHERE MEMBER_ID = ?");
+			st = con.prepareStatement(sql);
 			st.setString(1, id);
 
 			rs = st.executeQuery();
@@ -77,10 +82,12 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public int insertMembership(MemberDTO memberDTO) {
 		int result = 0;
+		String sql = proFile.getProperty("member.insertMembership");
+		//INSERT INTO MEMBER(MEMBER_NO, MEMBER_ID, MEMBER_NAME, MEMBER_BIRTH, MEMBER_PASS) VALUES(MEMBER_NO_SEQ.NEXTVAL, ?, ?, TO_DATE(?, 'YYYYMMDD'), ?)
+		
 		try {
 			con = DBUtil.getConnection();
-			st = con.prepareStatement("INSERT INTO MEMBER(MEMBER_NO, MEMBER_ID, MEMBER_NAME, MEMBER_BIRTH, MEMBER_PASS)"
-					+ " VALUES(MEMBER_NO_SEQ.NEXTVAL, ?, ?, TO_DATE(?, 'YYYYMMDD'), ?)");
+			st = con.prepareStatement(sql);
 			st.setString(1, memberDTO.getMemberId());
 			st.setString(2, memberDTO.getMemberName());
 			st.setString(3, memberDTO.getMemberBirth());
@@ -104,11 +111,12 @@ public class MemberDAOImpl implements MemberDAO {
 	public int updateMember(int sessionNo, MemberDTO updateMemberDTO) {
 
 		int result = 0;
+		String sql = proFile.getProperty("member.updateMember");
+		//UPDATE MEMBER SET MEMBER_NAME=?, MEMBER_BIRTH = TO_DATE(?,'YYYYMMDD'), MEMBER_PASS = ? WHERE MEMBER_NO=?
+		
 		try {
 			con = DBUtil.getConnection();
-			st = con.prepareStatement(
-					"UPDATE MEMBER SET MEMBER_NAME=?, MEMBER_BIRTH = TO_DATE(?,'YYYYMMDD'), MEMBER_PASS = ? "
-							+ "WHERE MEMBER_NO=?");
+			st = con.prepareStatement(sql);
 
 			st.setString(1, updateMemberDTO.getMemberName());
 			st.setString(2, updateMemberDTO.getMemberBirth());
@@ -133,11 +141,12 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public MemberDTO selectMemberInformation(int memberNo, String memberID) {
 		MemberDTO memberDTO = null;
-
+		String sql = proFile.getProperty("member.selectMemberInformation");
+		//SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, MEMBER_BIRTH, MEMBER_PASS FROM MEMBER WHERE MEMBER_NO=? AND MEMBER_ID=?
+		
 		try {
 			con = DBUtil.getConnection();
-			st = con.prepareStatement("SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, MEMBER_BIRTH, MEMBER_PASS FROM MEMBER"
-					+ " WHERE MEMBER_NO=? AND MEMBER_ID=?");
+			st = con.prepareStatement(sql);
 			st.setInt(1, memberNo);
 			st.setString(2, memberID);
 
@@ -163,9 +172,12 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public int checkPassword(int memberNo, String confirmPassword) {
 		int count = 0;
+		String sql = proFile.getProperty("member.checkPassword");
+		//SELECT COUNT(1) FROM MEMBER WHERE MEMBER_NO = ? AND MEMBER_PASS = ?
+		
 		try {
 			con = DBUtil.getConnection();
-			st = con.prepareStatement("SELECT COUNT(1) FROM MEMBER WHERE MEMBER_NO = ? AND MEMBER_PASS = ?");
+			st = con.prepareStatement(sql);
 			st.setInt(1, memberNo);
 			st.setString(2, confirmPassword);
 
