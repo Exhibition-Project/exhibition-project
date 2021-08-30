@@ -5,10 +5,12 @@ import java.util.Scanner;
 import kosta.mvc.controller.ExhibitionController;
 import kosta.mvc.controller.MemberController;
 import kosta.mvc.controller.ReservationController;
+import kosta.mvc.controller.ReviewController;
+import kosta.mvc.model.dto.ExhibitionDTO;
 import kosta.mvc.model.dto.MemberDTO;
 import kosta.mvc.model.dto.ReservationDTO;
 import kosta.mvc.model.dto.ReservationLineDTO;
-import kosta.mvc.session.Session;
+import kosta.mvc.model.dto.ReviewDTO;
 import kosta.mvc.session.SessionSet;
 
 public class MenuView {
@@ -206,24 +208,24 @@ public class MenuView {
 	/**
 	 * 후기 등록
 	 * */
-	public static void InputInsertReview(String memberId) {
+	public static void InputInsertReview() {
 		 System.out.print("\n 등록할 전시회 번호를 입력해주세요. >");
 		 int exihibitionNo = sc.nextInt();
 		 
 		 System.out.print("\n 후기 내용 입력 >");
-		 Stirng reviewContnet = sc.nextLine();
+		 String reviewContnet = sc.nextLine();
 		 
 		 System.out.print("\n 별점을 입력해주세요. 별점은 5점 만점입니다. >");
 		 int stars = sc.nextInt();
 		 
-		 ReviewDTO reviewDTO = new ReviewDTO(0, memberId, exihibitionNo, reviewContnet, stars);
+		 ReviewDTO reviewDTO = new ReviewDTO(0, 0, exihibitionNo, reviewContnet, stars);
 		 ReviewController.reviewInsert(reviewDTO);
 	}
 	
 	/**
 	 * 후기 삭제
 	 * */
-	public static void InputDeleteReview(String memberId) {
+	public static void InputDeleteReview() {
 		System.out.println("삭제할 후기 번호를 입력해주세요. >");
 		int no = sc.nextInt();
 		ReviewController.reviewDelete(no);
@@ -262,7 +264,9 @@ public class MenuView {
 	 * 날짜별 전시회 조회(날짜 입력)
 	 * */
 	public static void InputExhibitionByDate() {
-		
+		System.out.println("날짜를 입력해주세요");
+		String date = sc.nextLine();
+		ExhibitionController.exhibitionSelectByDate(date);
 	}
 	
 	
@@ -395,21 +399,61 @@ public class MenuView {
 	 * 전시회 등록
 	 * */
 	public static void InputInsertExhibition() {
-		
+		try {
+			System.out.print("전시회 이름 : ");
+			String exhibitionName = sc.nextLine();
+			System.out.print("전시회 시작일 : ");
+			String startDate = sc.nextLine();
+			System.out.print("전시회 종료일 : ");
+			String endDate = sc.nextLine();
+			System.out.print("전시회 장르 : ");
+			String genre = sc.nextLine();
+			System.out.print("전시회 가격 : ");
+			int price = Integer.parseInt(sc.nextLine());
+			System.out.print("전시회 장소 : ");
+			String exhibitionLocation = sc.nextLine();
+			ExhibitionDTO exhibitionDTO = new ExhibitionDTO(0, exhibitionName, startDate, endDate, genre, price, exhibitionLocation);
+			ExhibitionController.exhibitionInsert(exhibitionDTO);
+			
+		}catch(NumberFormatException e) {
+			System.out.println("전시회 가격은 숫자만 입력해 주세요.");
+		}
 	}
 	
 	/**
 	 * 전시회 수정
 	 * */
 	public static void InputUpdateExhibition() {
-		
+		try {
+			System.out.print("전시회 번호 : ");
+			int exhibitionNo = Integer.parseInt(sc.nextLine());
+			System.out.print("전시회 이름 : ");
+			String exhibitionName = sc.nextLine();
+			System.out.print("전시회 장르 : ");
+			String genre = sc.nextLine();
+			System.out.print("전시회 가격 : ");
+			int price = Integer.parseInt(sc.nextLine());
+			System.out.print("전시회 장소 : ");
+			String exhibitionLocation = sc.nextLine();
+			ExhibitionDTO exhibitionDTO = new ExhibitionDTO(exhibitionNo, exhibitionName, null, null, genre, price, exhibitionLocation);
+			ExhibitionController.exhibitionInsert(exhibitionDTO);
+			
+		}catch(NumberFormatException e) {
+			System.out.println("전시회 번호 또는 가격은 숫자만 입력해 주세요.");
+		}
 	}
 	
 	/**
 	 * 전시회 삭제
 	 * */
 	public static void InputDeleteExhibition() {
-		
+		try {
+			System.out.print("전시회 번호 : ");
+			int exhibitionNo = Integer.parseInt(sc.nextLine());
+			ExhibitionController.exhibitionDelete(exhibitionNo);
+		}catch(NumberFormatException e) {
+			System.out.println("전시회 번호는 숫자만 입력해 주세요.");
+		}
 	}
 	
 	

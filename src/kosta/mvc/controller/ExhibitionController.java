@@ -11,7 +11,7 @@ import kosta.mvc.view.FailView;
 
 public class ExhibitionController {
    //객체 생성
-   static ExhibitionService exhibitionService = new ExhibitionService();
+   private static ExhibitionService exhibitionService = new ExhibitionService();
 
    //전시회 전체 검색
    public static void exhibitionSelectAll() {
