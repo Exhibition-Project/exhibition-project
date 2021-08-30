@@ -87,7 +87,7 @@ public class ReviewController {
 	public static void reviewDelete(int reviewNo) {
 		try {
 			reviewService.reviewDelete(reviewNo);
-			EndView.printMessage("후기가 삭제");
+			EndView.printMessage("후기가 삭제되었습니다.");
 		}catch(SQLException e) {
 			FailView.errorMessage(e.getMessage());
 		}

@@ -324,6 +324,10 @@ public class MenuView {
 	 * 후기 조회(전시회 번호 입력)
 	 * */
 	public static void InputReViewByNo() {
+		System.out.print("후기를 보고 싶은 전시회 번호를 입력하세요. >");
+		int exihibitionNo = Integer.parseInt(sc.nextLine());
+		ReviewController reCon = new ReviewController();
+		reCon.selectAllbyExhibitionNo(exihibitionNo);
 		
 	}
 	
