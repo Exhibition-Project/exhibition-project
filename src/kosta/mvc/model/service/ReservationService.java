@@ -27,9 +27,11 @@ public class ReservationService {
 	/**
 	 * 예약내역보기
 	 * */
-	public List<ReservationDTO> selctReservationByMemberId(String memberId) throws SQLException{
-		List<ReservationDTO> list = reservationDao.selectReservationByMemberId(memberId);
-		if(list==null || list.size()==0) throw new SQLException(memberId+"의 예약내역이 없습니다.");
+	public List<ReservationDTO> selctReservationByMemberNo() throws SQLException{
+		int memberNo =memberService.getSessionNo();
+		
+		List<ReservationDTO> list = reservationDao.selectReservationByMemberNo(memberNo);
+		if(list==null || list.size()==0) throw new SQLException(memberNo+"의 예약내역이 없습니다.");
 		return list;
 	}
 

@@ -17,8 +17,9 @@ public interface ReservationDAO {
 	/**
 	 * 예약내역보기
 	 * */
-	List<ReservationDTO> selectReservationByMemberId(String memberId) throws SQLException;
+	List<ReservationDTO> selectReservationByMemberNo(int memberNo) throws SQLException;
 			
+	
 }
 	
 

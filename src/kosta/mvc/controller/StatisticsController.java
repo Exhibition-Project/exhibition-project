@@ -14,7 +14,7 @@ public class StatisticsController {
 	public static void selectStatisticsByNo(int no, String firstDate, String lastDate) {
 		try {
 			ExhibitionDTO exhibitionDTO =  statisticsService.selectStatisticsByNo(no, firstDate, lastDate);
-			EndView.printStatistics(exhibitionDTO); //endview ÂÊ ¼öÁ¤ÇØ¾ßÇÔ.
+			EndView.printStatistics(exhibitionDTO); //endview ìª½ ìˆ˜ì •í•´ì•¼í•¨.
 		}catch (SQLException e) {
 			FailView.errorMessage(e.getMessage());
 		}
