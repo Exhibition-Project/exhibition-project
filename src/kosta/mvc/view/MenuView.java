@@ -206,14 +206,27 @@ public class MenuView {
 	/**
 	 * 후기 등록
 	 * */
-	public static void InputInsertReview() {
-		
+	public static void InputInsertReview(String memberId) {
+		 System.out.print("\n 등록할 전시회 번호를 입력해주세요. >");
+		 int exihibitionNo = sc.nextInt();
+		 
+		 System.out.print("\n 후기 내용 입력 >");
+		 Stirng reviewContnet = sc.nextLine();
+		 
+		 System.out.print("\n 별점을 입력해주세요. 별점은 5점 만점입니다. >");
+		 int stars = sc.nextInt();
+		 
+		 ReviewDTO reviewDTO = new ReviewDTO(0, memberId, exihibitionNo, reviewContnet, stars);
+		 ReviewController.reviewInsert(reviewDTO);
 	}
 	
 	/**
 	 * 후기 삭제
 	 * */
-	public static void InputDeleteReview() {
+	public static void InputDeleteReview(String memberId) {
+		System.out.println("삭제할 후기 번호를 입력해주세요. >");
+		int no = sc.nextInt();
+		ReviewController.reviewDelete(no);
 		
 	}
 	
