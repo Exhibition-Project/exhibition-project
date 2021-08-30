@@ -134,7 +134,7 @@ public class MenuView {
 	public static void printMyPage() {
 		while(true) {
 			System.out.println("-------------------------------------------------------------------------");
-			System.out.println("1. 고객정보조회 2.고객정보 수정  3. 내 예매내역 조회  4. 내 후기관리  9. 상위메뉴로 이동");
+			System.out.println("1. 고객정보조회 2. 고객정보 수정  3. 내 예매내역 조회  4. 내 후기관리  9. 상위메뉴로 이동");
 			System.out.println("-------------------------------------------------------------------------");
 			try {
 				int choice = Integer.parseInt(sc.nextLine());
