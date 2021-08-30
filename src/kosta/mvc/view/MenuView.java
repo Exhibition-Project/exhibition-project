@@ -281,7 +281,7 @@ public class MenuView {
 		try{
 			System.out.print("예매할 전시회 번호를 입력해주세요 : ");
 			int exhibitionNo = Integer.parseInt(sc.nextLine());
-			ReservationController.InputinsertReservation(exhibitionNo);
+			ReservationController.InputinsertReservation(exhibitionNo );
 		
 		}catch (NumberFormatException e) {
 			
@@ -297,8 +297,8 @@ public class MenuView {
 	/**
 	 * 예매하기 (날짜, 관람 연령, 티켓 수량 입력)
 	 * */
-	public static void InputReservationOption(String memberId) {
-		System.out.print("예매할 날짜를 입력하세요 : ");
+	public static void InputReservationOption(int exhibitionNo ) {
+		System.out.print(" 날짜를 입력하세요 : ");
 		String regDate = sc.nextLine();
 
 		System.out.print("관람 연령을 입력해주세요 : ");
@@ -307,12 +307,12 @@ public class MenuView {
 		System.out.print("예매할 티켓 수량을 입력해주세요 : ");
 		int ticketQty = Integer.parseInt(sc.nextLine());
 
-		ReservationDTO reservation = new ReservationDTO(0, 0, 0, 0, regDate);
+		ReservationDTO reservation = new ReservationDTO(0, 0, exhibitionNo , 0, regDate); //서비스에 가서 memberNo 넣기 
 		ReservationLineDTO reservationLine = new ReservationLineDTO(0, 0, visitAge, ticketQty, 0);//예매상세
 	
 		reservation.getReservationLineList().add(reservationLine);
 		
-		ReservationController.InputReservationOption(regDate, visitAge, ticketQty);
+		ReservationController.InputReservationOption(reservation);
 	}
 
 
@@ -472,7 +472,7 @@ public class MenuView {
 				int choice = Integer.parseInt(sc.nextLine());
 				switch(choice) {			
 					case 1:
-						InputReViewByNo();
+						InputReViewByNo(choice);
 						break;
 					case 2:
 						InputDeleteReview(); //관리자 후기삭제를 회원의 후기삭제와 아예 다르게 만들어서 구현하는건 어떨지?

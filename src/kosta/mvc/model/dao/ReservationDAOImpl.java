@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import kosta.mvc.model.dto.DiscountDTO;
 import kosta.mvc.model.dto.ExhibitionDTO;
 import kosta.mvc.model.dto.ReservationDTO;
 import kosta.mvc.model.dto.ReservationLineDTO;
@@ -74,7 +75,12 @@ public class ReservationDAOImpl implements ReservationDAO{
 				ps.setString(1, reservationLine.getVisitAge());//관람연령
 				ps.setInt(2, reservationLine.getTicketQty());//티켓수량
 				ps.setInt(3, reservationLine.getAmount());//총가격 할인율이 적용된 가격 * 티켓수량
+				
+				ps.addBatch();
+				ps.clearParameters();
 			}
+			
+			result = ps.executeBatch();
 		
 		} finally {
 			DBUtil.dbClose(null, ps , null);
@@ -89,24 +95,46 @@ public class ReservationDAOImpl implements ReservationDAO{
 	 * */
 	public int getTotalAmount(ReservationDTO reservation) throws SQLException {          
 		List<ReservationLineDTO> reservationLineList = reservation.getReservationLineList();
-		int result = 0;
+		
+		ExhibitionDTO exhibition = exhibitionDao.exhibitionSelectByNo(reservation.getExhibitionNo());
+		int price = exhibition.getPrice();//전시회가격
+		int total = 0;
 		for(ReservationLineDTO line : reservationLineList) {
-			ExhibitionDTO exhibition = exhibitionDao.exhibitionSelectByNo(line.getReservationNo());
-			int price = exhibition.getPrice();
 			
 			// 연령에 해당하는 할인율 검색하기 select visit_age, discount_rate from discount where visit_age = ?;
 			String visitAge = line.getVisitAge();
+			// 관람연령에 해당하는 할인율 가져와서 계산
+			int discountRate = this.getDiscount(visitAge);
+			System.out.println(line.getTicketQty() +" | " +discountRate + " | "  + price );
 			
-			
-			if(exhibition==null)throw new SQLException("전시회번호 오류입니다. 예매 실패");
-
+			total += (price * discountRate)* line.getTicketQty();
 		}
-		return result;
+		System.out.println("total = " + total);
+		return total;
 	}
 	
-	 
-	public int getDiscount(String visitAge) {
-		return 0;
+	/**
+	 * 관람연령에 해당하는 할인율 가져오기
+	 * */ 
+	public int getDiscount(String visitAge)throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = "select discount_rate from discount where visit_age = ?";
+		int discountRate = 0;
+		try {
+			con = DBUtil.getConnection();
+			ps= con.prepareStatement(sql);
+			ps.setString(1, visitAge);
+			rs = ps.executeQuery(); 
+		     if(rs.next()) {
+		    	 discountRate = rs.getInt(1);
+		     }
+			
+		} finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return discountRate;
 	}
 	
 
@@ -118,10 +146,11 @@ public class ReservationDAOImpl implements ReservationDAO{
 		Connection con=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
+		String sql = "select reservation_line_no, reservation_no, visit_age, ticket_qty, amount from reservation_line where reservation_no = ?";
 		List<ReservationDTO> list = new ArrayList<>();
 		try {
 			con = DBUtil.getConnection();
-			ps= con.prepareStatement("select reservation_line_no, reservation_no, visit_age, ticket_qty, amount from reservation_line where reservation_no = ?");
+			ps= con.prepareStatement(sql);
 			ps.setString(1, memberId);
 			rs = ps.executeQuery(); 
 			

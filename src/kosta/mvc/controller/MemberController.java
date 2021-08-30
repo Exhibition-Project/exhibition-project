@@ -23,7 +23,7 @@ public class MemberController {
 			MemberDTO memberDTO = memberService.login(id, password);
 			EndView.printMessage("로그인이 완료되었습니다.");
 			if (memberDTO.getMemberNo() == 0) {
-				MenuView.printAdminMenu();
+				MenuView.printAdminMenu(); 
 			} else {
 				MenuView.printMemberMenu();
 			}

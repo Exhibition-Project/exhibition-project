@@ -9,11 +9,17 @@ import kosta.mvc.model.dto.ReservationDTO;
 
 public class ReservationService {
 	ReservationDAO reservationDao = new ReservationDAOImpl();
+	MemberService memberService = new MemberService();
 	
 	/**
 	 * 예약하기
 	 * */
 	public void insertReservation(ReservationDTO reservaton) throws SQLException{
+		int memberNo =memberService.getSessionNo();
+		System.out.println("memberNo = " + memberNo);
+		
+		reservaton.setMemberNo(memberNo);
+		
 		int result = reservationDao.reservationInsert(reservaton);
 		if(result==0) throw new SQLException("예약하기가 실패했습니다.");
 	}
