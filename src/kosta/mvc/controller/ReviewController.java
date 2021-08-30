@@ -18,7 +18,7 @@ public class ReviewController {
 	/**
 	 * 전시회 번호로 검색
 	 * */
-	public void selectAllbyExhibitionNo(int exNo) {
+	public static void selectAllbyExhibitionNo(int exNo) {
 		ExhibitionService exhibitionSevice = new ExhibitionService();
 		try {
 			List<ReviewDTO> redto = reviewService.selectAllbyExhibitionNo(exNo);
@@ -33,7 +33,7 @@ public class ReviewController {
 	/**
 	 * 사용자 번호로 검색 (내 후기 보기)
 	 * */
-	public void reviewSelectByReviewNo(int memberNo) {
+	public static void reviewSelectByReviewNo(int memberNo) {
 		try {
 			List<ReviewDTO> list = reviewService.selectByMemberNo(memberNo);
 			EndView.printReviewList(list);
@@ -46,7 +46,7 @@ public class ReviewController {
 	/**
 	 * 후기 번호로 검색
 	 * */
-	public void selectByReviewNo(int reviewNo) {
+	public static void selectByReviewNo(int reviewNo) {
 		try {
 			ReviewDTO dto = reviewService.selectByReviewNo(reviewNo);
 			EndView.printReviewByNo(dto);
@@ -58,7 +58,7 @@ public class ReviewController {
 	/**
 	 * 후기 등록
 	 * */
-	public void reviewInsert(ReviewDTO dto) {
+	public static void reviewInsert(ReviewDTO dto) {
 		try{
 			reviewService.reviewInsert(dto);
 			EndView.printMessage("후기 등록에 성공하였습니다.");
@@ -70,7 +70,7 @@ public class ReviewController {
 	/**
 	 * 후기 수정
 	 * */
-	public void reviewUpdate(ReviewDTO dto) {
+	public static void reviewUpdate(ReviewDTO dto) {
 		try {
 			reviewService.reviewUpdate(dto);
 			EndView.printMessage("후기가 수정되었습니다.");
@@ -83,7 +83,7 @@ public class ReviewController {
 	/**
 	 * 삭제
 	 * */
-	public void reviewDelete(int reviewNo) {
+	public static void reviewDelete(int reviewNo) {
 		try {
 			reviewService.reviewDelete(reviewNo);
 			EndView.printMessage("후기가 삭제");
