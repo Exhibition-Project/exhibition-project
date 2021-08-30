@@ -54,6 +54,7 @@ public class ReviewService {
 	 * 등록
 	 * */
 	public void reviewInsert(ReviewDTO dto) throws SQLException{
+		dto.setMemberNo(memberS.getSessionNo());
 		int result = reviewDAO.reviewInsert(dto);
 		if(result == 0)throw new SQLException("후기를 등록할 수 없습니다.");
 		
@@ -63,6 +64,7 @@ public class ReviewService {
 	 * 수정
 	 * */
 	public void reviewUpdate(ReviewDTO dto) throws SQLException{
+		dto.setMemberNo(memberS.getSessionNo());
 		int result = reviewDAO.ReviewUpdate(dto);
 		if(result == 0)throw new SQLException("후기를 수정할 수 없습니다.");
 	}

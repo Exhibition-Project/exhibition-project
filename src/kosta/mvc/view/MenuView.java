@@ -251,7 +251,6 @@ public class MenuView {
 		 ReviewDTO reviewDTO = new ReviewDTO(no, 0, 0, content, stars);
 		 ReviewController.reviewUpdate(reviewDTO);
 		 
-		 
 	}
 	
 	
