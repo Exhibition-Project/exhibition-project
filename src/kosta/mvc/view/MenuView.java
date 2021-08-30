@@ -2,6 +2,7 @@ package kosta.mvc.view;
 
 import java.util.Scanner;
 
+import kosta.mvc.controller.ExhibitionController;
 import kosta.mvc.controller.MemberController;
 import kosta.mvc.controller.ReservationController;
 import kosta.mvc.model.dto.MemberDTO;
@@ -261,7 +262,7 @@ public class MenuView {
 			System.out.print("예매할 전시회 번호를 입력해주세요 : ");
 			int exhibitionNo = Integer.parseInt(sc.nextLine());
 
-//			ExhibitionController.selectByExhibitionxNo(exhibitionNo);
+			ExhibitionController.selectByExhibitionxNo(exhibitionNo);
 		}catch (NumberFormatException e) {
 			System.out.println("전시회번호는 숫자만 입력해주세요.");
 			System.out.println("다시 입력하시겠습니까?  yes or no");

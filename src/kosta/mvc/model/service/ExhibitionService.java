@@ -10,7 +10,7 @@ import kosta.mvc.model.dto.ExhibitionDTO;
 
 public class ExhibitionService {
    //객체 생성
-//   ExhibitionDAO exhibitionDAO = new ExhibitionDAOImpl();
+   ExhibitionDAO exhibitionDAO = new ExhibitionDAOImpl();
    //전체 검색
 //   public List<Exhibition> exhibitionSelectAll() throws NotFoundException, SQLException{
 //      List<Exhibition> exhibitionList = exhibitionDAO.exhibitionSelectAll();
