@@ -10,6 +10,7 @@ import kosta.mvc.model.dto.MemberDTO;
 import kosta.mvc.util.DBUtil;
 
 public class MemberDAOImpl implements MemberDAO {
+	
 	private Properties proFile = DBUtil.getProFile();
 	
 	Connection con = null;
