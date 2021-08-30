@@ -88,7 +88,7 @@ public class MemberService {
 	/**
 	 * 세션에서 로그인된 사용자번호 가져오기
 	 */
-	private int getSessionNo() {
+	public int getSessionNo() {
 		Iterator<Session> iterator = set.iterator();
 		Session session = null;
 		if (iterator.hasNext()) {
@@ -101,7 +101,7 @@ public class MemberService {
 	/**
 	 * 세션에서 로그인된 사용자아이디 가져오기
 	 */
-	private String getSessionId() {
+	public String getSessionId() {
 
 		Iterator<Session> iterator = set.iterator();
 		Session session = null;
