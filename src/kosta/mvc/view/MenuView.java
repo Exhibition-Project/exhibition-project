@@ -248,9 +248,8 @@ public class MenuView {
 		 System.out.println("수정할 별점을 입력하세요. >");
 		 int stars = Integer.parseInt(sc.nextLine());
 		 
-		 ReviewDTO reviewDTO = new ReviewDTO(0, 0, no, content, stars);
+		 ReviewDTO reviewDTO = new ReviewDTO(no, 0, 0, content, stars);
 		 ReviewController.reviewUpdate(reviewDTO);
-		 
 		 
 	}
 	
