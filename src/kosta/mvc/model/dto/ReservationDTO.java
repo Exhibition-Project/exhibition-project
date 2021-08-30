@@ -1,5 +1,6 @@
 package kosta.mvc.model.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //예매 정보 저장
@@ -10,7 +11,7 @@ public class ReservationDTO {
 	private int totalAmount;
 	private String regDate; //예매할 날짜 
 	
-	private List<ReservationLineDTO> reservationLineList;
+	private List<ReservationLineDTO> reservationLineList = new ArrayList<ReservationLineDTO>();
 	
 	public ReservationDTO() {}
 	

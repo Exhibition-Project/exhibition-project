@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import kosta.mvc.model.dto.ExhibitionDTO;
 import kosta.mvc.model.dto.ReservationDTO;
 import kosta.mvc.model.dto.ReservationLineDTO;
 import kosta.mvc.util.DBUtil;
@@ -60,7 +61,7 @@ public class ReservationDAOImpl implements ReservationDAO{
 
 
 	/**
-	 * 예약 상세등록하기
+	 * 예약상세 등록하기
 	 * */
 	private int[] reservationLineInsert(Connection con, ReservationDTO reservation) throws SQLException{
 		PreparedStatement ps = null;
@@ -69,6 +70,8 @@ public class ReservationDAOImpl implements ReservationDAO{
 		try {
 			ps = con.prepareStatement(sql);
 			for(ReservationLineDTO reservationLine : reservation.getReservationLineList()) {
+				
+				
 				ps.setString(1, reservationLine.getVisitAge());//관람연령
 				ps.setInt(2, reservationLine.getTicketQty());//티켓수량
 				ps.setInt(3, reservationLine.getAmount());//총가격 할인율이 적용된 가격 * 티켓수량
@@ -87,17 +90,23 @@ public class ReservationDAOImpl implements ReservationDAO{
 	 * @param reservation 
 	 * @param Visitors 
 	 * */
-	public int getTotalAmount(ReservationDTO reservation) throws SQLException {              
+	public int getTotalAmount(ReservationDTO reservation) throws SQLException {          
+		List<ReservationLineDTO> reservationLineList = reservation.getReservationLineList();
 		int result = 0;
-//		
-//		if(visitAge.equals("adults")) {
-//			result = (int)(price * 0.90);
-//		}else if(visitAge.equals("youth")) {
-//			result = (int)(price * 0.70);
-//		}else if(visitAge.equals("kids")) {
-//			result = (int)(price * 0.50);
-//		}
-//	
+		for(ReservationLineDTO line : reservationLineList) {
+			ExhibitionDTO exhibition = exhibitionDao.exhibitionSelectByNo(line.getReservationNo());
+			if(exhibition==null)throw new SQLException("전시회번호 오류입니다. 예매 실패");
+			
+//			if(visitAge.equals("adults")) {
+//				result = (int)(exhibition.getPrice() * 0.90);
+//			}else if(visitAge.equals("youth")) {
+//				result = (int)(exhibition.getPrice() * 0.70);
+//			}else if(visitAge.equals("kids")) {
+//				result = (int)(exhibition.getPrice()  * 0.50);
+//			}
+
+
+		}
 		return result;
 	}
 	
