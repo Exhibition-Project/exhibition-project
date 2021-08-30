@@ -156,7 +156,6 @@ public class MenuView {
 	 */
 	public static void selectMemberInformation() {
 		MemberDTO memberDTO = MemberController.memberSelectReservation();
-		System.out.println(memberDTO.toString());
 	}
 	
 	/**
