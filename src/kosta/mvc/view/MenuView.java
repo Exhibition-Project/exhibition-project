@@ -183,18 +183,21 @@ public class MenuView {
 	 * */
 	public static void printMemberReviewMenu() {
 		while(true) {
-			System.out.println("1. 내 후기 조회  2. 후기 등록  3.후기 삭제  9. 상위 메뉴로 이동");
+			System.out.println("1. 내 후기 조회  2. 후기 등록  3.후기 삭제  4. 후기 수정  9. 상위 메뉴로 이동");
 			try {
 				int choice = Integer.parseInt(sc.nextLine());
 				switch(choice) {			
 					case 1:
-						//여기서 바로 후기 조회하는 컨트롤러 호출
+						ReviewController.reviewSelectByReviewNo();
 						break;
 					case 2:
 						InputInsertReview();
 						break;
 					case 3:
 						InputDeleteReview();
+						break;
+					case 4:
+						InputUpdateReview();
 						break;
 					case 9:
 						return;
@@ -210,13 +213,13 @@ public class MenuView {
 	 * */
 	public static void InputInsertReview() {
 		 System.out.print("\n 등록할 전시회 번호를 입력해주세요. >");
-		 int exihibitionNo = sc.nextInt();
+		 int exihibitionNo = Integer.parseInt(sc.nextLine());
 		 
 		 System.out.print("\n 후기 내용 입력 >");
 		 String reviewContnet = sc.nextLine();
 		 
 		 System.out.print("\n 별점을 입력해주세요. 별점은 5점 만점입니다. >");
-		 int stars = sc.nextInt();
+		 int stars = Integer.parseInt(sc.nextLine());
 		 
 		 ReviewDTO reviewDTO = new ReviewDTO(0, 0, exihibitionNo, reviewContnet, stars);
 		 ReviewController.reviewInsert(reviewDTO);
@@ -230,6 +233,25 @@ public class MenuView {
 		int no = sc.nextInt();
 		ReviewController.reviewDelete(no);
 		
+	}
+	
+	/**
+	 * 후기 수정
+	 * */
+	public static void InputUpdateReview() {
+		System.out.println("수정 할 후기 번호를 입력하세요. >");
+		 int no = Integer.parseInt(sc.nextLine());
+		 
+		 System.out.println("수정할 내용을 입력하세요. >");
+		 String content = sc.nextLine();
+		 
+		 System.out.println("수정할 별점을 입력하세요. >");
+		 int stars = Integer.parseInt(sc.nextLine());
+		 
+		 ReviewDTO reviewDTO = new ReviewDTO(0, 0, no, content, stars);
+		 ReviewController.reviewUpdate(reviewDTO);
+		 
+		 
 	}
 	
 	
@@ -324,6 +346,10 @@ public class MenuView {
 	 * 후기 조회(전시회 번호 입력)
 	 * */
 	public static void InputReViewByNo() {
+		System.out.print("후기를 보고 싶은 전시회 번호를 입력하세요. >");
+		int exihibitionNo = Integer.parseInt(sc.nextLine());
+		ReviewController reCon = new ReviewController();
+		reCon.selectAllbyExhibitionNo(exihibitionNo);
 		
 	}
 	

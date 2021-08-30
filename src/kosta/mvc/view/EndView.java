@@ -82,7 +82,12 @@ public class EndView {
 	 * 후기 리스트 출력(순수하게 후기 리스트만 출력할지, 전시회 리스트를 받아서 전시회랑 후기 같이 출력할지?)
 	 * */
 	public static void printReviewList(List<ReviewDTO> reviewList) {
-		
+		System.out.println("후기 게시물이" + reviewList.size() + "개 검색되었습니다.");
+		System.out.println("------------------------");
+		for(ReviewDTO dto : reviewList) {
+			System.out.println("전시회 번호 : "+ dto.getExhibitionNo() + "| 후기 내용:" + dto.getReviewContnet() + "| 별점" + dto.getStars());
+		}
+		System.out.println();
 	}
 	
 	/**

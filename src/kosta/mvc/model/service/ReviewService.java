@@ -25,7 +25,7 @@ public class ReviewService {
 	}
 	
 	/**
-	 * 사용자 번호로 조회 (내 후기 보기)
+	 * 사용자 번호로 조회 (내 후기 보기) 
 	 * */
 	public List<ReviewDTO> selectByMemberNo()throws SQLException{
 		MemberService memberS = new MemberService();
