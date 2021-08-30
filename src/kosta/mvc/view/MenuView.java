@@ -90,7 +90,7 @@ public class MenuView {
 		SessionSet ss = SessionSet.getInstance();
 		System.out.println("세션 값 확인 테스트 : " + ss.getSessionSet());
 		while(true) {
-			System.out.println("1. 마이페이지 2. 전시회예매  3. 후기조회  9. 로그아웃");
+			System.out.println("1. 마이페이지 2. 전시회조회 3. 전시회예매  4. 후기조회  9. 로그아웃");
 			try {
 				int choice = Integer.parseInt(sc.nextLine());
 				switch(choice) {
@@ -98,9 +98,12 @@ public class MenuView {
 					printMyPage();
 					break;
 				case 2:
-					InputInsertReservation();
+					printExhibitionMenu();
 					break;
 				case 3:
+					InputInsertReservation();
+					break;
+				case 4:
 					InputReViewByNo();
 					break;
 				case 9:
