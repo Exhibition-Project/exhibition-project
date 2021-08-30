@@ -498,7 +498,7 @@ public class MenuView {
 				int choice = Integer.parseInt(sc.nextLine());
 				switch(choice) {			
 					case 1:
-						InputReViewByNo(choice);
+						InputReViewByNo();
 						break;
 					case 2:
 						InputDeleteReview(); //관리자 후기삭제를 회원의 후기삭제와 아예 다르게 만들어서 구현하는건 어떨지?
