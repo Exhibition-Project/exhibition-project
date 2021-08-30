@@ -144,7 +144,7 @@ public class ReservationDAOImpl implements ReservationDAO{
 	 * 로그인 한 멤버에 맞는 예매내역 출력
 	 * */
 	@Override
-	public List<ReservationDTO> selectReservationByMemberId(int memberNo) throws SQLException {
+	public List<ReservationDTO> selectReservationByMemberNo(int memberNo) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
