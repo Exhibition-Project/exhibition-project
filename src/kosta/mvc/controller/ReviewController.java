@@ -12,7 +12,7 @@ import kosta.mvc.view.FailView;
 
 
 public class ReviewController {
-	private ReviewService reviewService = new ReviewService();
+	private static ReviewService reviewService = new ReviewService();
 	
 	
 	/**
