@@ -8,6 +8,7 @@ import kosta.mvc.model.dto.ReservationDTO;
 import kosta.mvc.model.dto.ReservationLineDTO;
 import kosta.mvc.model.dto.ReviewDTO;
 import kosta.mvc.model.dto.StatisticsDTO;
+import kosta.mvc.model.service.ExhibitionService;
 
 public class EndView {
 	
@@ -45,9 +46,7 @@ public class EndView {
 	 * 예매 가능 날짜 출력
 	 * */
 	public static void printAvailableDate(String startDate, String EndDate) {
-		//전시회 번호에 해당하는 전시회찾기
-//		ExhibitionDTO exhibition = ExhibitionService.exhibitionSelectByexhibitionNo(exhibitionNo);
-		// 1 전시회이름 2021-06-10 
+	
 	}
 	
 	/**
