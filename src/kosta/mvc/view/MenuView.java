@@ -104,7 +104,7 @@ public class MenuView {
 					printExhibitionMenu();
 					break;
 				case 3:
-					InputInsertReservation();
+					inputInsertReservation();
 					break;
 				case 4:
 					InputReViewByNo();
@@ -270,7 +270,7 @@ public class MenuView {
 						ExhibitionController.exhibitionSelectAll();
 						break;
 					case 2:
-						InputExhibitionByDate();
+						inputExhibitionByDate();
 						break;
 					case 3:
 						ExhibitionController.exhibitionSelectByStars();
@@ -287,7 +287,7 @@ public class MenuView {
 	/**
 	 * 날짜별 전시회 조회(날짜 입력)
 	 * */
-	public static void InputExhibitionByDate() {
+	public static void inputExhibitionByDate() {
 		System.out.println("날짜를 입력해주세요");
 		String date = sc.nextLine();
 		ExhibitionController.exhibitionSelectByDate(date);
@@ -295,25 +295,21 @@ public class MenuView {
 	
 	
 	//전시회 예매
-	
-
 	/**
 	 * 전시회 예매(전시회 번호 입력)
 	 * (EndView에서 예매 가능 날짜 출력후 InputReservationOption 호출)
 	 * */
-	public static void InputInsertReservation() {
+	public static void inputInsertReservation() {
 		try{
 			System.out.print("예매할 전시회 번호를 입력해주세요 : ");
 			int exhibitionNo = Integer.parseInt(sc.nextLine());
-			ReservationController.InputinsertReservation(exhibitionNo );
-		
+			ReservationController.inputinsertReservation(exhibitionNo );
 		}catch (NumberFormatException e) {
-			
 			System.out.println("전시회번호는 숫자만 입력해주세요.");
 			System.out.println("다시 입력하시겠습니까?  yes or no");
 			String choice = sc.nextLine();
 			if(choice.equals("yes")) {
-				InputInsertReservation();
+				inputInsertReservation();
 			}
 		}
 	}
@@ -321,7 +317,7 @@ public class MenuView {
 	/**
 	 * 예매하기 (날짜, 관람 연령, 티켓 수량 입력)
 	 * */
-	public static void InputReservationOption(int exhibitionNo ) {
+	public static void inputReservationOption(int exhibitionNo ) {
 		System.out.print(" 날짜를 입력하세요 : ");
 		String regDate = sc.nextLine();
 
@@ -336,7 +332,7 @@ public class MenuView {
 	
 		reservation.getReservationLineList().add(reservationLine);
 		
-		ReservationController.InputReservationOption(reservation);
+		ReservationController.inputReservationOption(reservation);
 	}
 
 
@@ -547,14 +543,14 @@ public class MenuView {
 			try {
 				int choice = Integer.parseInt(sc.nextLine());
 				switch(choice) {			
-					case 1:
-						//여기서 바로 예매 내역 조회 컨트롤러 호출.(이부분도 유저의 예매 내역 조회와 구분해야할지?)
-						break;
-					case 2:
-						 InputReservationByNo();
-						break;
-					case 9:
-						return;
+				case 1:
+					ReservationController.reservationSelectAll();//예매 내역 조회 컨트롤러 호출.
+					break;
+				case 2:
+					inputReservationByNo();
+					break;
+				case 9:
+					return;
 				}
 			}catch (NumberFormatException e) {
 				System.out.println("메뉴는 숫자만 입력해주세요.");
@@ -565,8 +561,12 @@ public class MenuView {
 	/**
 	 * 예매번호로 조회
 	 * */
-	public static void InputReservationByNo() {
-		
+	public static void inputReservationByNo() {
+		System.out.println("예매번호를 입력하세요 >");
+		int reservationNo = Integer.parseInt(sc.nextLine());
+		ReservationController controller = new ReservationController();
+		controller.selectByReservationNo(reservationNo);
 	}
-	
+
+
 }

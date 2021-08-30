@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import kosta.mvc.model.dto.ReservationDTO;
+import kosta.mvc.model.dto.ReservationLineDTO;
 
 public interface ReservationDAO {
 
@@ -15,13 +16,20 @@ public interface ReservationDAO {
 	int reservationInsert(ReservationDTO Reservation) throws SQLException;
 
 	/**
-	 * 예약내역보기
+	 * 로그인 한 멤버에 맞는 예매내역보기
 	 * */
-
 	List<ReservationDTO> selectReservationByMemberNo(int memberNo) throws SQLException;
 
-			
-	
+	/**
+	 * 예매내역 전체 보기 
+	 * */		
+	List<ReservationDTO> reservationSelectAll() throws SQLException;
+
+	/**
+	 * 예매내역으로 조회
+	 * */
+	List<ReservationLineDTO> selectByReservationNo(int reservationNo) throws SQLException;
+
 }
 	
 

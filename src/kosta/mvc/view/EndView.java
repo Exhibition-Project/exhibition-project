@@ -55,7 +55,6 @@ public class EndView {
 	 * 전시회번호에 해당하는 전시회정보 출력 
 	 * */
 	public static void selectByExhibitionxNo(ExhibitionDTO exhibitionDTO) {
-//		System.out.println("selectByExhibitionxNo");
 		System.out.println(exhibitionDTO);
 	}
 	
@@ -63,14 +62,33 @@ public class EndView {
 	 * 예매 가능 날짜 출력
 	 * */
 	public static void printAvailableDate(String startDate, String endDate) {
-		System.out.println("예매가능한 날짜는" + startDate + "부터" + endDate + "까지입니다.");
+		System.out.println("예매가능한 날짜는" + startDate + " 부터 " + endDate + "까지입니다.");//깔끔하게 보여주기 필요함
 	}
 	
 	/**
-	 * 예매 내역 출력
+	 * 전체 예매 내역 리스트 출력
 	 * */
-	public static void printReservationByNo(ReservationDTO reservationDTO) {
-		
+	public static void printReservationList(List<ReservationDTO> reservationList) {
+		System.out.println("예매내역 총 " + reservationList.size() + " 건 검색되었습니다.");
+		System.out.println("------------------------");
+		for(ReservationDTO reservation : reservationList) {
+			System.out.println("예매번호"+ reservation.getReservationNo() + " | 회원번호 : "+ reservation.getMemberNo()+ "| 전시회번호 : " + reservation.getExhibitionNo() + 
+					"| 총구매금액 : " + reservation.getTotalAmount() + "| 예매날짜 : " + reservation.getRegDate());
+		}
+		System.out.println();
+	}
+
+	/**
+	 * 예매번호로 조회 
+	 * */
+	public static void printReservationByNo(List<ReservationLineDTO> reservationLineList) {
+		System.out.println("예매내역 총 " + reservationLineList.size() + " 건 검색되었습니다.");
+		System.out.println("------------------------");
+		for(ReservationLineDTO reservationLine : reservationLineList) {
+			System.out.println("예매상세코드 : "+ reservationLine.getReservationNo() + " | 예매번호 : "+ reservationLine.getReservationNo()+ " | 관람연령 : " + reservationLine.getVisitAge() + 
+					" | 티켓수량 : " + reservationLine.getTicketQty() + " | 총금액 : " + reservationLine.getAmount());
+		}
+		System.out.println();
 	}
 	
 	/**
@@ -80,7 +98,7 @@ public class EndView {
 		for(ReservationDTO reservaion : reservationList) {
 			System.out.println(reservaion.getReservationNo()+ " | " + reservaion.getMemberNo()+ " | " + reservaion.getTotalAmount()+ " | " + reservaion.getRegDate());
 			for(ReservationLineDTO reservationLine : reservaion.getReservationLineList()) {
-				System.out.println("  ▶ "+reservationLine);
+				System.out.println("  ▶예매상세내역 "+reservationLine);
 			}
 			System.out.println();
 		}

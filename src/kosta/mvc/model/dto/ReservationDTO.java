@@ -89,8 +89,7 @@ public class ReservationDTO {
 		builder.append(reservationLineList);
 		builder.append("]");
 		return builder.toString();
-	}
-	
+	}	
 	
 	
 }
