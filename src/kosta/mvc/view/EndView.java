@@ -87,14 +87,21 @@ public class EndView {
 	 * 후기 출력
 	 * */
 	public static void printReviewByNo(ReviewDTO reviewDTO) {
-		
+		System.out.println(reviewDTO + "\n");
 	}
 	
 	/**
 	 * 후기와 전시회 리스트 동시 출력
 	 * */
-	public static void printReAndEx(List<ReviewDTO> reviewDTO, ExhibitionDTO exhibitionDTO) {
+	public static void printReAndEx(List<ReviewDTO> reviewList, ExhibitionDTO exhibitionDTO) {
+		System.out.println("후기 게시물이" + reviewList.size() + "개 검색되었습니다.");
+		System.out.println("------------------------");
+		for(ReviewDTO dto : reviewList) {
+			System.out.println(dto);
+		}
 		
+		System.out.println("\n 후기에 해당하는 전시회 정보------------↓");
+		System.out.println(exhibitionDTO + "\n");
 	}
 	
 	/**
