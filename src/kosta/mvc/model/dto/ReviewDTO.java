@@ -81,17 +81,17 @@ public class ReviewDTO {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("ReviewDTO [reviewNo=");
+		builder.append("후기정보 |후기번호: ");
 		builder.append(reviewNo);
-		builder.append(", memberNo=");
+		builder.append("| 작성자 정보: ");
 		builder.append(memberNo);
-		builder.append(", exhibitionNo=");
+		builder.append("| 전시회 번호: ");
 		builder.append(exhibitionNo);
-		builder.append(", reviewContnet=");
+		builder.append("| 후기 내용: ");
 		builder.append(reviewContnet);
-		builder.append(", stars=");
+		builder.append("| 별점: ");
 		builder.append(stars);
-		builder.append("]");
+		builder.append("***");
 		return builder.toString();
 	}
 	

@@ -118,23 +118,23 @@ public class ExhibitionDTO {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("ExhibitionDTO [exhibitioNo=");
+		builder.append("전시회 정보 | 전시회 번호: ");
 		builder.append(exhibitioNo);
-		builder.append(", exhibitionName=");
+		builder.append("| 전시회 이름: ");
 		builder.append(exhibitionName);
-		builder.append(", startDate=");
+		builder.append("| 시작날짜: ");
 		builder.append(startDate);
-		builder.append(", endDate=");
+		builder.append("| 종료날짜: ");
 		builder.append(endDate);
-		builder.append(", genre=");
+		builder.append("| 장르구분: ");
 		builder.append(genre);
-		builder.append(", price=");
+		builder.append("| 티켓요금: ");
 		builder.append(price);
-		builder.append(", exhibitionLocation=");
+		builder.append("| 전시회 장소: ");
 		builder.append(exhibitionLocation);
-		builder.append(", reviewList=");
+		builder.append("| 후기 리스트: ");
 		builder.append(reviewList);
-		builder.append("]");
+		builder.append("***");
 		return builder.toString();
 	}
 	

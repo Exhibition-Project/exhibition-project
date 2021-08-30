@@ -17,6 +17,7 @@ public class EndView {
 	 * 메시지 출력
 	 * */
 	public static void printMessage(String message) {
+		System.out.println("**************************");
 		System.out.println(message);
 	}
 	
@@ -32,7 +33,7 @@ public class EndView {
 	 * */
 	public static void printExhibitionList(List<ExhibitionDTO> exhibitionList) {
 		for(ExhibitionDTO exhibitionDTO : exhibitionList) {
-			System.out.println(exhibitionDTO);
+			System.out.println(exhibitionDTO.toString());
 		}
 	}
 	

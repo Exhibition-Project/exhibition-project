@@ -45,13 +45,13 @@ public class StatisticsDTO {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("StatisticsDTO [date=");
+		builder.append("예매통계 내역 |날짜: ");
 		builder.append(date);
-		builder.append(", totalVisitors=");
+		builder.append("| 총 방문자 수: ");
 		builder.append(totalVisitors);
-		builder.append(", totalProfits=");
+		builder.append("| 총 수익금: ");
 		builder.append(totalProfits);
-		builder.append("]");
+		builder.append("***");
 		return builder.toString();
 	}
 }
