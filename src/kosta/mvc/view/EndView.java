@@ -93,7 +93,7 @@ public class EndView {
 	/**
 	 * 후기와 전시회 리스트 동시 출력
 	 * */
-	public static void printReAndEx(List<ExhibitionDTO> exhibitionDTO, List<ReviewDTO> reviewDTO) {
+	public static void printReAndEx(List<ReviewDTO> reviewDTO, ExhibitionDTO exhibitionDTO) {
 		
 	}
 	
