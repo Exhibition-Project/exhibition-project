@@ -151,9 +151,11 @@ select visit_age, discount_rate from discount where visit_age = 'youth';
 
 --statistics
 select sum(ticket_qty) totalVisitors, sum(amount) totalProfits from reservation_line;
-select *
+
+select sum(ticket_qty) ÃÑÆ¼ÄÏ¼ö, sum(amount) ÃÑÆÇ¸Å¾×, to_char(reg_date, 'YY-MM-DD') ³¯Â¥
 from reservation join reservation_line using(reservation_no)
-where exhibition_no = 5;
+where exhibition_no = 5 and reg_date between '211001' and '211005'
+group by reg_date;
 
 
 commit;
