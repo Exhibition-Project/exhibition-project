@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import kosta.mvc.model.dto.DiscountDTO;
 import kosta.mvc.model.dto.ExhibitionDTO;
@@ -14,6 +15,7 @@ import kosta.mvc.model.dto.ReservationLineDTO;
 import kosta.mvc.util.DBUtil;
 
 public class ReservationDAOImpl implements ReservationDAO{
+	private Properties proFile = DBUtil.getProFile();
 	
 	ExhibitionDAO exhibitionDao = new ExhibitionDAOImpl();
 	 
@@ -139,27 +141,27 @@ public class ReservationDAOImpl implements ReservationDAO{
 	
 
 	/**
-	 * 예매내역 출력
+	 * 로그인 한 멤버에 맞는 예매내역 출력
 	 * */
 	@Override
-	public List<ReservationDTO> selectReservationByMemberId(String memberId) throws SQLException {
+	public List<ReservationDTO> selectReservationByMemberId(int memberNo) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
-		String sql = "select reservation_line_no, reservation_no, visit_age, ticket_qty, amount from reservation_line where reservation_no = ?";
+		String sql = proFile.getProperty("reservation.selectByMemberNo");
 		List<ReservationDTO> list = new ArrayList<>();
 		try {
 			con = DBUtil.getConnection();
 			ps= con.prepareStatement(sql);
-			ps.setString(1, memberId);
+			ps.setInt(1, memberNo);
 			rs = ps.executeQuery(); 
 			
 			while(rs.next()) {
 				ReservationDTO reservation  = new ReservationDTO(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5));
 
 				//예매번호에 해당하는 상세정보 가져오기
-				List<ReservationLineDTO> reservationLineList = selectReservationLine(reservation.getReservationNo());
-
+				List<ReservationLineDTO> reservationLineList = selectReservationLine(con, reservation.getReservationNo());
+				
 				reservation.setReservationLineList(reservationLineList);
 				list.add(reservation);
 			}
@@ -172,14 +174,12 @@ public class ReservationDAOImpl implements ReservationDAO{
 	/**
 	 * 예약번호에 해당하는 예매상세 가져오기
 	 * */
-	private List<ReservationLineDTO> selectReservationLine(int reservationNo) throws SQLException {
-		Connection con = null;
+	private List<ReservationLineDTO> selectReservationLine(Connection con, int reservationNo) throws SQLException {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		String sql = "select reservation_line_no, reservation_no, visit_age, ticket_qty, amount from reservation_line where reservation_no = ?";
+		String sql = proFile.getProperty("reservation_line.selectByReservationNo");
 		List<ReservationLineDTO> list = new ArrayList<>();
 		try {
-			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, reservationNo);
 			rs = ps.executeQuery(); 
@@ -188,8 +188,8 @@ public class ReservationDAOImpl implements ReservationDAO{
 				list.add(reservationLine);
 			}
 		} finally {
-			DBUtil.dbClose(con, ps, rs);
+			DBUtil.dbClose(null, ps, rs);
 		}
-		return null;
+		return list;
 	}
 }
