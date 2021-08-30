@@ -22,6 +22,7 @@ public class ExhibitionController {
 	   		FailView.errorMessage(e.getMessage());
 	   	}
    }
+   
    //전시회 날짜별 검색
    public static void exhibitionSelectByDate(String date) {
 	   try {
@@ -31,32 +32,34 @@ public class ExhibitionController {
 		   FailView.errorMessage(e.getMessage());
 	   }
    }
+   
+   
    //전시회 등록
    public static void exhibitionInsert(ExhibitionDTO dto) {
-//	   try {
-//		   exhibitionService.exhibitionInsert(dto);
-//	   	   EndView.printMessage("전시회가 등록되었습니다.");
-//	   }catch (SQLException e) {
-//		   FailView.errorMessage(e.getMessage());
-//	   }
+	   try {
+		   exhibitionService.exhibitionInsert(dto);
+	   	   EndView.printMessage("전시회가 등록되었습니다.");
+	   }catch (SQLException e) {
+		   FailView.errorMessage(e.getMessage());
+	   }
    }
    //전시회 수정
-   public static void exhibitionUpdate(int exhibitionNo) {
-//	   try {
-//		   exhibitionService.exhibitionUpdate(exhibitionNo);
-//	       EndView.printMessage("전시회가 수정되었습니다.");
-//	   }catch (SQLException e) {
-//		   FailView.errorMessage(e.getMessage());
-//	   }
+   public static void exhibitionUpdate(ExhibitionDTO dto) {
+	   try {
+		   exhibitionService.exhibitionUpdate(dto);
+	       EndView.printMessage("전시회가 수정되었습니다.");
+	   }catch (SQLException e) {
+		   FailView.errorMessage(e.getMessage());
+	   }
    }
    //전시회 삭제
    public static void exhibitionDelete(int exhibitionNo) {
-//	   try {
-//		   exhibitionService.exhibitionDelete(exhibitionNo);
-//	       EndView.printMessage("전시회가 삭제되었습니다.");
-//	   }catch(SQLException e) {
-//		   FailView.errorMessage(e.getMessage());
-//	   }
+	   try {
+		   exhibitionService.exhibitionDelete(exhibitionNo);
+	       EndView.printMessage("전시회가 삭제되었습니다.");
+	   }catch(SQLException e) {
+		   FailView.errorMessage(e.getMessage());
+	   }
    }
    
    /**

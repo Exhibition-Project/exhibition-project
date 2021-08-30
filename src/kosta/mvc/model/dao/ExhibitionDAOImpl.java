@@ -65,27 +65,27 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 	}
 
 	//전시회 등록
-//	@Override
-//	public int exhibitionInsert(ExhibitionDTO dto) throws SQLException{
-//		Connection con=null;
-//		PreparedStatement ps = null;
+	@Override
+	public int exhibitionInsert(ExhibitionDTO dto) throws SQLException{
+		Connection con=null;
+		PreparedStatement ps = null;
 		
-//		int result = cs.executeInsert();
-/*		String sql = proFile.getProperty("exhibition.insert");
+		int result = 0;
+		String sql = proFile.getProperty("exhibition.insert");
 		
 		try {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			
-			ps.setInt(1, getexhibitionNo());
-			ps.setString(2, getexhibitionName());
-			ps.setString(3, getstartDate());
-			ps.setString(4, getendDate());
-			ps.setString(5, getGenre());
-			ps.setString(6, getPrice());
-			ps.setString(7, getExhibitionLocation());
+			ps.setInt(1, dto.getExhibitioNo());
+			ps.setString(2, dto.getExhibitionName());
+			ps.setString(3, dto.getStartDate());
+			ps.setString(4, dto.getEndDate());
+			ps.setString(5, dto.getGenre());
+			ps.setInt(6, dto.getPrice());
+			ps.setString(7, dto.getExhibitionLocation());
 			
-			result = ps.executeInsert();
+			result = ps.executeUpdate();
 		}finally {
 			DBUtil.dbClose(con, ps);
 		}
@@ -95,19 +95,22 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 	//전시회 수정
 	@Override
 	public int exhibitionUpdate(ExhibitionDTO dto) throws SQLException{
-//		
+	
 		Connection con = null;
 		PreparedStatement ps = null;
-		
-		int result = cs.executeUpdate();
-		String sql = profile.getProperty("exhibition.update");
-		
+		int result = 0;
+		String sql = proFile.getProperty("exhibition.update");
+		/*name = ?, genre = ?, price = ?, exhibition_loc = ? where exhibition_no = ?*/
 		try {
-				con = DBUtil.getConnection();
-				ps = con.preparedStatement(sql);
-				
-				ps.setInt(1, dto.getExhibitionNo());
-				result = ps.executeUpdate();
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, dto.getExhibitionName());
+			ps.setString(2, dto.getGenre());
+			ps.setInt(3, dto.getPrice());
+			ps.setString(4, dto.getExhibitionLocation());
+			ps.setInt(5, dto.getExhibitioNo());
+			result = ps.executeUpdate();
+			
 		}finally {
 				DBUtil.dbClose(con, ps);
 		}
@@ -117,22 +120,20 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 	//전시회 삭제
 	@Override
 	public int exhibitionDelete(int exhibitionNo) throws SQLException{
-//		Connection con = null;
+		Connection con = null;
 		PreparedStatement ps = null;
-		
-		int result = cs.executeDelete();
+		int result = 0;
 		String sql = proFile.getProperty("exhibition.delete");
-		
 		try {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			
 			ps.setInt(1, exhibitionNo);
+			result = ps.executeUpdate();
 			
-			result = ps.executeDelete();
 		}finally {
-				DBUtil.dbClose(con, ps);
+			DBUtil.dbClose(con, ps);
 		}
+		
 		return result;
 	}
 	
@@ -162,25 +163,5 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 			}
 		return exhibitionDTO;
 	}
-
-
-	@Override
-	public int exhibitionInsert(ExhibitionDTO dto) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int exhibitionUpdate(ExhibitionDTO dto) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int exhibitionDelete(int exhibitionNo) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 
 }

@@ -24,18 +24,20 @@ public class ExhibitionService {
       return exhibitionList;
    }
    //전시회 등록
-//   public void exhibitionInsert(ExhibitionDTO dto) throws SQLException{
-//	  List<ExhibitionDTO> list = exhibitionDAO.exhibitionInsert(dto);
-	  
-//   }
+   public void exhibitionInsert(ExhibitionDTO dto) throws SQLException{
+	  int result = exhibitionDAO.exhibitionInsert(dto);
+	  if(result == 0) throw new SQLException("전시회 등록에 실패했습니다.");
+   }
    //전시회 수정
-//   public void exhibitionUpdate(int exhibitionNo) throws SQLException{
-//	   List<ExhibitionDTO> list = exhibitionDAO.exhibitionUpdate(exhibitionNo);
-//   }
+   public void exhibitionUpdate(ExhibitionDTO dto) throws SQLException{
+	   int result = exhibitionDAO.exhibitionUpdate(dto);
+	   if(result == 0) throw new SQLException("전시회 수정에 실패했습니다.");
+   }
    //전시회 삭제
-//   public void exhibitionDelete(int exhibitionNo) throws SQLException {
-//	   List<ExhibitionDTO> list = exhibitionDAO.exhibitionDelete(exhibitionNo);
-//   }
+   public void exhibitionDelete(int exhibitionNo) throws SQLException {
+	   int result = exhibitionDAO.exhibitionDelete(exhibitionNo);
+	   if(result == 0) throw new SQLException("전시회 삭제에 실패했습니다.");
+   }
    
 	/**
 	 * 전시회번호에 해당하는 레코드 검색
