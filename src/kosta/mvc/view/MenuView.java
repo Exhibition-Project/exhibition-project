@@ -183,7 +183,7 @@ public class MenuView {
 	 * */
 	public static void printMemberReviewMenu() {
 		while(true) {
-			System.out.println("1. 내 후기 조회  2. 후기 등록  3.후기 삭제  9. 상위 메뉴로 이동");
+			System.out.println("1. 내 후기 조회  2. 후기 등록  3.후기 삭제  4. 후기 수정  9. 상위 메뉴로 이동");
 			try {
 				int choice = Integer.parseInt(sc.nextLine());
 				switch(choice) {			
@@ -195,6 +195,9 @@ public class MenuView {
 						break;
 					case 3:
 						InputDeleteReview();
+						break;
+					case 4:
+						InputUpdateReview();
 						break;
 					case 9:
 						return;
@@ -230,6 +233,25 @@ public class MenuView {
 		int no = sc.nextInt();
 		ReviewController.reviewDelete(no);
 		
+	}
+	
+	/**
+	 * 후기 수정
+	 * */
+	public static void InputUpdateReview() {
+		System.out.println("수정 할 후기 번호를 입력하세요. >");
+		 int no = Integer.parseInt(sc.nextLine());
+		 
+		 System.out.println("수정할 내용을 입력하세요. >");
+		 String content = sc.nextLine();
+		 
+		 System.out.println("수정할 별점을 입력하세요. >");
+		 int stars = Integer.parseInt(sc.nextLine());
+		 
+		 ReviewDTO reviewDTO = new ReviewDTO(0, 0, no, content, stars);
+		 ReviewController.reviewUpdate(reviewDTO);
+		 
+		 
 	}
 	
 	
