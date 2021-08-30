@@ -12,6 +12,7 @@ import kosta.mvc.model.dto.ExhibitionDTO;
 import kosta.mvc.util.DBUtil;
 
 public class ExhibitionDAOImpl implements ExhibitionDAO {
+	Properties proFile = DBUtil.getProFile();
 
 	//전체 검색
 	@Override
@@ -20,7 +21,6 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<ExhibitionDTO> exhibitionList = new ArrayList<>();
-		Properties proFile = DBUtil.getProFile();
 		try {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement(proFile.getProperty("exhibition.selectAll"));
@@ -41,26 +41,28 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 	
 	
 	//날짜별 검색
-//	@Override
-//	public List<ExhibitionDTO> exhibitionSelectByDate(String startDate, String endDate) throws SQLException{
-//		Connection con=null;
-//		PreparedStatement ps = null;
-//		ResultSet rs = null;
-//		ExhibitionDTO exhitionDTO = null;
-//		try {
-//			con = DbUtil.getConnection();
-//			ps= con.prepareStatement("select * from exhibition");
-//			ps.setString(1, userId);
-//		    rs = ps.executeQuery();
-//		    
-//		    if(rs.next()) {
-//		    	exhibitionDTO = new exhibitionDTO(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getString(5));
-//		    } finally {
-//		    	DBUtil.dbClose(con, ps, rs);
-//		    }
-//		}
-//		return exhibitonDTO;
-//	}
+	@Override
+	public List<ExhibitionDTO> exhibitionSelectByDate(String date) throws SQLException{
+		Connection con=null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ExhibitionDTO exhitionDTO = null;
+		List<ExhibitionDTO> exhibitionList = new ArrayList<ExhibitionDTO>();
+		try {
+			con = DBUtil.getConnection();
+			ps= con.prepareStatement(proFile.getProperty("exhibition.selectByDate"));
+			ps.setString(1, date);
+		    rs = ps.executeQuery();		    
+		    while(rs.next()) {
+		    	ExhibitionDTO exhibitionDTO = new ExhibitionDTO(rs.getInt(1), rs.getString(2), rs.getString(3),
+						 rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7));
+				exhibitionList.add(exhibitionDTO);
+		    }
+		}finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return exhibitionList;
+	}
 
 	//전시회 등록
 //	@Override
@@ -161,12 +163,6 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 		return exhibitionDTO;
 	}
 
-
-	@Override
-	public List<ExhibitionDTO> exhibitionSelectByDate(String startDate, String endDate) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public int exhibitionInsert(ExhibitionDTO dto) throws SQLException {

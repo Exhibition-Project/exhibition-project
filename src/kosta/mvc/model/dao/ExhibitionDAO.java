@@ -12,7 +12,7 @@ public interface ExhibitionDAO {
    List<ExhibitionDTO> exhibitionSelectAll() throws SQLException;
    
    //전시회 날짜별 보기
-   List<ExhibitionDTO> exhibitionSelectByDate(String startDate, String endDate) throws SQLException;
+   List<ExhibitionDTO> exhibitionSelectByDate(String date) throws SQLException;
    
    //전시회 등록
    int exhibitionInsert(ExhibitionDTO dto) throws SQLException;

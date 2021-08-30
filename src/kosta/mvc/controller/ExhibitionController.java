@@ -23,14 +23,14 @@ public class ExhibitionController {
 	   	}
    }
    //전시회 날짜별 검색
-//   public static void exhibitionSelectByDate(String startDate, String endDate) {
-//	   try {
-//		   List<ExhibitionDTO> exhibitionList = exhibitionService.exhibitionSelectByDate(startDate, endDate);
-//		   EndView.printAvailableDate(startDate, endDate);
-//	   }catch (SQLException e) {
-//		   FailView.errorMessage(e.getMessage());
-//	   }
-//   }
+   public static void exhibitionSelectByDate(String date) {
+	   try {
+		   List<ExhibitionDTO> exhibitionList = exhibitionService.exhibitionSelectByDate(date);
+		   EndView.printExhibitionList(exhibitionList);
+	   }catch (SQLException e) {
+		   FailView.errorMessage(e.getMessage());
+	   }
+   }
    //전시회 등록
    public static void exhibitionInsert(ExhibitionDTO dto) {
 //	   try {

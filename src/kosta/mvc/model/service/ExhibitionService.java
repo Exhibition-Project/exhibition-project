@@ -14,14 +14,15 @@ public class ExhibitionService {
    //전체 검색
    public List<ExhibitionDTO> exhibitionSelectAll() throws SQLException{
       List<ExhibitionDTO> exhibitionList = exhibitionDAO.exhibitionSelectAll();
-      if(exhibitionList.size()==0) throw new SQLException("현재 찾으시는 전시회가 존재하지 않습니다.");
+      if(exhibitionList.size()==0 || exhibitionList == null) throw new SQLException("현재 찾으시는 전시회가 존재하지 않습니다.");
       return exhibitionList;
    }
    //날짜별 검색
-//   public void exhibitionSelectByDate(String startDate, String endDate) throws SQLException{
-//      List<ExhibitionDTO> exhibitionList = exhibitionDAO.exhibitionSelectByDate(startDate, endDate);
-//		if
-//   }
+   public List<ExhibitionDTO> exhibitionSelectByDate(String date) throws SQLException{
+      List<ExhibitionDTO> exhibitionList = exhibitionDAO.exhibitionSelectByDate(date);
+      if(exhibitionList.size()==0 || exhibitionList == null) throw new SQLException("찾으시는 날짜에 열리는 전시회가 없습니다.");
+      return exhibitionList;
+   }
    //전시회 등록
 //   public void exhibitionInsert(ExhibitionDTO dto) throws SQLException{
 //	  List<ExhibitionDTO> list = exhibitionDAO.exhibitionInsert(dto);
