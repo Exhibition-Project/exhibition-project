@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import kosta.mvc.model.dto.ExhibitionDTO;
 import kosta.mvc.util.DBUtil;
@@ -19,21 +20,26 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<ExhibitionDTO> exhibitionList = new ArrayList<>();
+		Properties proFile = DBUtil.getProFile();
 		try {
 			con = DBUtil.getConnection();
-			ps = con.preparedStatement("select * from exhibition reserve");
+			ps = con.prepareStatement(proFile.getProperty("exhibition.selectAll"));
 			rs = ps.executeQuery();
 			
 			 while(rs.next()) {
-				 ExhibitionDTO exhibitionDTO = new ExhibitionDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
-				 list.add(exhibitionDTO);
+				 ExhibitionDTO exhibitionDTO = new ExhibitionDTO(rs.getInt(1), rs.getString(2), rs.getString(3),
+						 rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7));
+				 exhibitionList.add(exhibitionDTO);
 			 }
 		}finally {
 			DBUtil.dbClose(con, ps, rs);
 		}
-		return list;
+		return exhibitionList;
 	}
 
+
+	
+	
 	//날짜별 검색
 //	@Override
 //	public List<ExhibitionDTO> exhibitionSelectByDate(String startDate, String endDate) throws SQLException{
@@ -155,11 +161,6 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 		return exhibitionDTO;
 	}
 
-	@Override
-	public List<ExhibitionDTO> exhibitionSelectAll() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<ExhibitionDTO> exhibitionSelectByDate(String startDate, String endDate) throws SQLException {
