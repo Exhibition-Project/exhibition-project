@@ -27,10 +27,5 @@ public class ReservationService {
 		return list;
 	}
 
-	/**
-	 * 예약하기
-	 * */
-	public void InputReservationOption(String regDate, String visitAge, int ticketQty)throws SQLException {
-	}
 		
 }

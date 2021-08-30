@@ -113,4 +113,27 @@ public class ExhibitionDTO {
 		builder.append("]");
 		return builder.toString();
 	}
+	
+	/**
+	 *  객체가 다르더라도 전시회번호가 같으면 무조건 같다라고 이해하기 위해 오버라이드
+	 */
+//	 @Override
+//		public int hashCode() { 	
+//			return exhibitioNo.hashCode();
+//		}
+	 
+	 @Override
+		public boolean equals(Object obj) {
+		
+			ExhibitionDTO other = (ExhibitionDTO) obj;
+			if(exhibitioNo==(other.exhibitioNo)) {
+				return true;
+			}else {
+				return false;
+			}
+			
+		}
+	
+	
+	
 }

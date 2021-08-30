@@ -1,6 +1,7 @@
 package kosta.mvc.view;
 
 import java.util.List;
+import java.util.Map;
 
 import kosta.mvc.model.dto.ExhibitionDTO;
 import kosta.mvc.model.dto.MemberDTO;
@@ -47,8 +48,8 @@ public class EndView {
 	/**
 	 * 예매 가능 날짜 출력
 	 * */
-	public static void printAvailableDate(String startDate, String EndDate) {
-	
+	public static void printAvailableDate(String startDate, String endDate) {
+		System.out.println("예매가능한 날짜는" + startDate + "부터" + endDate + "까지입니다.");
 	}
 	
 	/**

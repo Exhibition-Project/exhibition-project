@@ -24,6 +24,19 @@ public class SessionSet {
 	}
 	
 	/**
+	 * 사용자 찾기
+	 * */
+	public Session get(String sessionId) {//로그인된 아이디를 들고와서 객체 찾기
+		for(Session session : set) {
+			if(session.getSessionId().equals(sessionId)) {
+				return session;
+			}
+		}
+		return null;
+	}
+	
+	
+	/**
 	 * 세션 목록 집합 얻는 메소드 
 	 * */
 	public Set<Session> getSessionSet() {

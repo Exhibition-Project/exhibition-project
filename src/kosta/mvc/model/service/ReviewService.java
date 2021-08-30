@@ -6,6 +6,7 @@ import java.util.List;
 import kosta.mvc.model.dao.ReviewDAO;
 import kosta.mvc.model.dao.ReviewDAOImpl;
 import kosta.mvc.model.dto.ReviewDTO;
+import kosta.mvc.model.service.MemberService;
 import kosta.mvc.session.Session;
 
 public class ReviewService {
@@ -27,8 +28,8 @@ public class ReviewService {
 	 * 사용자 번호로 조회 (내 후기 보기)
 	 * */
 	public List<ReviewDTO> selectByMemberNo()throws SQLException{
-		Session session = new Session();
-		int memberNo = session.getSessionNo(); 
+		MemberService memberS = new MemberService();
+		int memberNo = memberS.getSessionNo();
 		
 		List<ReviewDTO> dto = reviewDAO.selectByMemberNo(memberNo);
 		if(dto == null) {
