@@ -36,7 +36,6 @@ public class ReviewController {
 	public static void reviewSelectByReviewNo() {
 		try {
 			List<ReviewDTO> list = reviewService.selectByMemberNo();
-			ExhibitionDTO dto = new ExhibitionDTO
 			EndView.printReviewList(list);
 		}catch(SQLException e) {
 			FailView.errorMessage(e.getMessage());
