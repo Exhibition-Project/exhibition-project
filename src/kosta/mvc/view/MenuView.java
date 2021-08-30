@@ -210,13 +210,13 @@ public class MenuView {
 	 * */
 	public static void InputInsertReview() {
 		 System.out.print("\n 등록할 전시회 번호를 입력해주세요. >");
-		 int exihibitionNo = sc.nextInt();
+		 int exihibitionNo = Integer.parseInt(sc.nextLine());
 		 
 		 System.out.print("\n 후기 내용 입력 >");
 		 String reviewContnet = sc.nextLine();
 		 
 		 System.out.print("\n 별점을 입력해주세요. 별점은 5점 만점입니다. >");
-		 int stars = sc.nextInt();
+		 int stars = Integer.parseInt(sc.nextLine());
 		 
 		 ReviewDTO reviewDTO = new ReviewDTO(0, 0, exihibitionNo, reviewContnet, stars);
 		 ReviewController.reviewInsert(reviewDTO);
