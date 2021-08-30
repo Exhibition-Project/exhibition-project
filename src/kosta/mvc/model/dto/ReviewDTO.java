@@ -7,6 +7,8 @@ public class ReviewDTO {
 	private String reviewContnet;
 	private int stars;
 	
+	private String exhibitionName;
+	
 	public ReviewDTO() {}
 	
 	public ReviewDTO(int reviewNo, int memberNo, int exhibitionNo, String reviewContnet, int stars) {
@@ -16,6 +18,16 @@ public class ReviewDTO {
 		this.exhibitionNo = exhibitionNo;
 		this.reviewContnet = reviewContnet;
 		this.stars = stars;
+	}
+
+	public ReviewDTO(int reviewNo, int exhibitionNo, String exhibitionName, String reviewContnet, int stars) {
+		this.reviewNo = reviewNo;
+		this.memberNo = memberNo;
+		this.exhibitionNo = exhibitionNo;
+		this.reviewContnet = reviewContnet;
+		this.stars = stars;
+		
+		this.exhibitionName = exhibitionName;
 	}
 
 	public int getReviewNo() {
@@ -56,6 +68,14 @@ public class ReviewDTO {
 
 	public void setStars(int stars) {
 		this.stars = stars;
+	}
+
+	public String getExhibitionName() {
+		return exhibitionName;
+	}
+
+	public void setExhibitionName(String exhibitionName) {
+		this.exhibitionName = exhibitionName;
 	}
 
 	@Override

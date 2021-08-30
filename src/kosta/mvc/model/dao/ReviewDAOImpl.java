@@ -98,8 +98,10 @@ public class ReviewDAOImpl implements ReviewDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<ReviewDTO> reviewList = new ArrayList<ReviewDTO>();
-		String sql = proFile.getProperty("review.selectAllbyMemberNo");
 		
+		String sql = proFile.getProperty("review.selectByReviewNo");
+		//SELECT R.REVIEW_NO, R.EXHIBITION_NO, E.EXHIBITION_NAME, R.REVIEW_CONTENT, R.STARS FROM REVIEW R, EXHIBITION E 
+		//WHERE R.MEMBER_NO = ? AND R.EXHIBITION_NO = E.EXHIBITION_NO
 		try {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
@@ -108,7 +110,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 			
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				ReviewDTO reviewDTO = new ReviewDTO(rs.getInt(1), memberNo, rs.getInt(2), rs.getString(3), rs.getInt(4));
+				ReviewDTO reviewDTO = new ReviewDTO(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getInt(5));
 				reviewList.add(reviewDTO);
 			}
 			
