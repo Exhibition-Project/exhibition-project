@@ -49,13 +49,13 @@ public class MenuView {
 	public static void InputInsertMember() {
 		System.out.println();
 		System.out.print("ID :");
-		String memberId = sc.next();
+		String memberId = sc.nextLine();
 		System.out.print("Password : ");
-		String memberPassword = sc.next();
+		String memberPassword = sc.nextLine();
 		System.out.print("이름 :");
-		String memberName = sc.next();
+		String memberName = sc.nextLine();
 		System.out.print("생년월일 : ");
-		String memberBirth = sc.next();
+		String memberBirth = sc.nextLine();
 		MemberController.inputInsertMember(memberId, memberPassword, memberName, memberBirth);
 	}
 	
@@ -65,9 +65,9 @@ public class MenuView {
 	public static void login() {
 		
 		System.out.print("ID :");
-		String id = sc.next();
+		String id = sc.nextLine();
 		System.out.print("Password : ");
-		String password = sc.next();
+		String password = sc.nextLine();
 		
 		MemberController.login(id, password);
 	}
@@ -93,7 +93,6 @@ public class MenuView {
 			try {
 				int choice = Integer.parseInt(sc.nextLine());
 				switch(choice) {
-				
 				case 1:
 					printMyPage();
 					break;
@@ -157,20 +156,17 @@ public class MenuView {
 	 * 고객정보수정(이름, 생년월일 비밀번호만 변경가능)
 	 * */
 	public static void inputUpdateMember() {
-//		MemberDTO memberDTO = MemberController.memberSelectReservation(); //로그인한 기존 정보
-//		System.out.println(memberDTO.toString());
-		
 		
 		System.out.println("********* 수정할 정보 *********");
 		System.out.print("이름 :");
-		String memberName = sc.next();
+		String memberName = sc.nextLine();
 		System.out.print("생년월일 : ");
-		String memberBirth = sc.next();
+		String memberBirth = sc.nextLine();
 		System.out.print("Password : ");
-		String memberPassword = sc.next();
+		String memberPassword = sc.nextLine();
 		System.out.println("**************************");
 		System.out.print("현재 Password를 입력하세요 : ");
-		String confirmPassword = sc.next();
+		String confirmPassword = sc.nextLine();
 		
 		MemberController.updateMember(memberName, memberBirth, memberPassword, confirmPassword);
 	}

@@ -73,9 +73,8 @@ public class MemberController {
 	 */
 	public static MemberDTO memberSelectReservation() {
 		MemberDTO memberDTO = memberService.memberSelectReservation();
-		// EndView에 고객정보 출력할 창이 필요함.
 		EndView.printMemberInformation(memberDTO);
-		return memberDTO; // 뷰에 로그인된 정보를 줌.
+		return memberDTO;
 	}
 
 	/**
@@ -83,7 +82,6 @@ public class MemberController {
 	 */
 	public static void updateMember(String memberName, String memberBirth, String memberPassword, String confirmPassword) {
 		try {
-			System.out.println("???????????????????????????????");
 			if (memberService.checkPassword(confirmPassword) == 0) {
 				throw new Exception("현재 비밀번호가 일치하지 않습니다.");
 			}
