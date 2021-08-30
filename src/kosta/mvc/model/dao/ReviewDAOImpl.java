@@ -108,7 +108,8 @@ public class ReviewDAOImpl implements ReviewDAO {
 			
 			rs = ps.executeQuery();
 			while(rs.next()) {
-			reviewList.add(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getInt(5));
+				ReviewDTO reviewDTO = new ReviewDTO(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getInt(5));
+				reviewList.add(reviewDTO);
 			}
 			
 		}finally {

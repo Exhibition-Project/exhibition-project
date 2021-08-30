@@ -14,14 +14,14 @@ public class ExhibitionController {
    static ExhibitionService exhibitionService = new ExhibitionService();
 
    //전시회 전체 검색
-//   public static void exhibitionSelectAll() {
-//	   	try {
-//	   		List<ExhibitionDTO> exhibitionList = exhibitionService.exhibitionSelectAll();
-//	   		EndView.printExhibition(exhibitionList);
-//	   	}catch (SQLException e) {
-//	   		FailView.errorMessage(e.getMessage());
-//	   	}
-//   }
+   public static void exhibitionSelectAll() {
+	   	try {
+	   		List<ExhibitionDTO> exhibitionList = exhibitionService.exhibitionSelectAll();
+	   		EndView.printExhibition(exhibitionList);
+	   	}catch (SQLException e) {
+	   		FailView.errorMessage(e.getMessage());
+	   	}
+   }
    //전시회 날짜별 검색
 //   public static void exhibitionSelectByDate(String startDate, String endDate) {
 //	   try {

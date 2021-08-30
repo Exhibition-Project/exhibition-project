@@ -13,26 +13,26 @@ import kosta.mvc.util.DBUtil;
 public class ExhibitionDAOImpl implements ExhibitionDAO {
 
 	//전체 검색
-//	@Override
-//	public List<ExhibitionDTO> exhibitionSelectAll() throws SQLException{
-//		Connection con=null;
-//		PreparedStatement ps = null;
-//		ResultSet rs = null;
-//		List<ExhibitionDTO> exhibitionList = new ArrayList<>();
-//		try {
-//			con = DBUtil.getConnection();
-//			ps = con.preparedStatement("select * from exhibition reserve");
-//			rs = ps.executeQuery();
-//			
-//			 while(rs.next()) {
-//				 ExhibitionDTO exhibitionDTO = new ExhibitionDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
-//				 list.add(exhibitionDTO);
-//			 }
-//		}finally {
-//			DBUtil.dbClose(con, ps, rs);
-//		}
-//		return list;
-//	}
+	@Override
+	public List<ExhibitionDTO> exhibitionSelectAll() throws SQLException{
+		Connection con=null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<ExhibitionDTO> exhibitionList = new ArrayList<>();
+		try {
+			con = DBUtil.getConnection();
+			ps = con.preparedStatement("select * from exhibition reserve");
+			rs = ps.executeQuery();
+			
+			 while(rs.next()) {
+				 ExhibitionDTO exhibitionDTO = new ExhibitionDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+				 list.add(exhibitionDTO);
+			 }
+		}finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return list;
+	}
 
 	//날짜별 검색
 //	@Override
