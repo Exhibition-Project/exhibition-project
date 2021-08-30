@@ -7,7 +7,6 @@ import java.util.List;
 import kosta.mvc.model.dao.ExhibitionDAO;
 import kosta.mvc.model.dao.ExhibitionDAOImpl;
 import kosta.mvc.model.dto.ExhibitionDTO;
-import kosta.mvc.model.dto.ReviewDTO;
 
 public class ExhibitionService {
    //객체 생성
@@ -25,10 +24,10 @@ public class ExhibitionService {
       if(exhibitionList.size()==0 || exhibitionList == null) throw new SQLException("찾으시는 날짜에 열리는 전시회가 없습니다.");
       return exhibitionList;
    }
-   //별점별 검색
-   public List<ExhibitionDTO> exhibitionSelectByStars(int stars) throws SQLException{
+   //별점순 검색
+   public List<ExhibitionDTO> exhibitionSelectByStars() throws SQLException{
 	   List<ExhibitionDTO> exhibitionList = exhibitionDAO.exhibitionSelectByStars();
-	   if(exhibitionList.size()==0 || exhibitionList == null || stars == 0) throw new SQLException("해당 별점에 해당하는 전시회가 없습니다.");
+	   if(exhibitionList.size()==0 || exhibitionList == null) throw new SQLException("찾으시는 전시회가 존재하지 않습니다.");
 	   return exhibitionList;
    }
    //전시회 등록

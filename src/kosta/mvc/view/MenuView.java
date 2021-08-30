@@ -6,6 +6,7 @@ import kosta.mvc.controller.ExhibitionController;
 import kosta.mvc.controller.MemberController;
 import kosta.mvc.controller.ReservationController;
 import kosta.mvc.controller.ReviewController;
+import kosta.mvc.controller.StatisticsController;
 import kosta.mvc.model.dto.ExhibitionDTO;
 import kosta.mvc.model.dto.MemberDTO;
 import kosta.mvc.model.dto.ReservationDTO;
@@ -263,7 +264,7 @@ public class MenuView {
 	 * */
 	public static void printExhibitionMenu() {
 		while(true) {
-			System.out.println("1. 전체조회  2. 날짜별조회 9. 상위메뉴로 이동");
+			System.out.println("1. 전체조회  2. 날짜별조회  3. 별점 순으로 조회 9. 상위메뉴로 이동");
 			try {
 				int choice = Integer.parseInt(sc.nextLine());
 				switch(choice) {			
@@ -272,6 +273,9 @@ public class MenuView {
 						break;
 					case 2:
 						InputExhibitionByDate();
+						break;
+					case 3:
+						ExhibitionController.exhibitionSelectByStars();
 						break;
 					case 9:
 						return;
@@ -519,7 +523,18 @@ public class MenuView {
 	 * 예매 통계(전시회 번호 입력)
 	 * */
 	public static void InputStatisticsByNo() {
+		try {
+			System.out.print("조회할 전시회 번호를 입력해주세요 : ");
+			int exhibitionNo = Integer.parseInt(sc.nextLine());
+			System.out.print("시작일을 입력해주세요 : ");
+			String firstDate = sc.nextLine();
+			System.out.print("종료일을 입력해주세요 : ");
+			String lastDate = sc.nextLine();
+			StatisticsController.selectStatisticsByNo(exhibitionNo, firstDate, lastDate);
 		
+		}catch (NumberFormatException e) {
+			System.out.println("전시회 번호는 숫자만 입력해주세요.");
+		}
 	}
 	
 	

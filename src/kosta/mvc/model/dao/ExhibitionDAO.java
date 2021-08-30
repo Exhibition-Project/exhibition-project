@@ -14,7 +14,7 @@ public interface ExhibitionDAO {
    //전시회 날짜별 보기
    List<ExhibitionDTO> exhibitionSelectByDate(String date) throws SQLException;
    
-   //전시회 별점별 보기
+   //전시회 별점순으로 보기
    List<ExhibitionDTO> exhibitionSelectByStars() throws SQLException;
    
    //전시회 등록

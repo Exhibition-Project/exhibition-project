@@ -41,5 +41,17 @@ public class StatisticsDTO {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("StatisticsDTO [date=");
+		builder.append(date);
+		builder.append(", totalVisitors=");
+		builder.append(totalVisitors);
+		builder.append(", totalProfits=");
+		builder.append(totalProfits);
+		builder.append("]");
+		return builder.toString();
+	}
 }

@@ -34,14 +34,14 @@ public class ExhibitionController {
    }
    
    //전시회 별점순 조회
-//   public static void exhibitionSelectByStars() {
-//	   try {
-//		   List<ExhibitionDTO> exhibitionList = exhibitionService.exhibitionSelectByStars();
-//		   EndView.printExhibitionList(exhibitionList);
-//	   }catch(SQLException e) {
-//		   FailView.errorMessage(e.getMessage());
-//	   }
-//   }
+   public static void exhibitionSelectByStars() {
+	   try {
+		   List<ExhibitionDTO> exhibitionList = exhibitionService.exhibitionSelectByStars();
+		   EndView.printExhibitionListbyStars(exhibitionList);
+	   }catch(SQLException e) {
+		   FailView.errorMessage(e.getMessage());
+	   }
+   }
    
    //전시회 등록
    public static void exhibitionInsert(ExhibitionDTO dto) {

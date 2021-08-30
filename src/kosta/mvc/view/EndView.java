@@ -36,6 +36,19 @@ public class EndView {
 		}
 	}
 	
+	/**
+	 * 전시회 리스트 별점순 출력
+	 * */
+	public static void printExhibitionListbyStars(List<ExhibitionDTO> exhibitionList) {
+		for(ExhibitionDTO exhibitionDTO : exhibitionList) {
+			System.out.print(exhibitionDTO);
+			if(exhibitionDTO.getAvgStars() >= 0) {
+				System.out.print(", 평균 별점 : " + exhibitionDTO.getAvgStars());				
+			}
+			System.out.println();
+		}
+		
+	}
 	
 	/**
 	 * 전시회번호에 해당하는 전시회정보 출력 
@@ -114,9 +127,11 @@ public class EndView {
 	/**
 	 * 예매 통계 출력
 	 * */
-	public static void printStatistics(StatisticsDTO statisticsDTO) {
-		
+	public static void printStatistics(ExhibitionDTO exhibitionDTO) {
+		System.out.println(exhibitionDTO);
+		for(StatisticsDTO statisticsDTO : exhibitionDTO.getStatisticsList()) {
+			System.out.println(statisticsDTO);
+		}
 	}
-
 
 }

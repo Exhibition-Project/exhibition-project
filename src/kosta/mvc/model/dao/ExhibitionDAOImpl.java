@@ -64,22 +64,22 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 		return exhibitionList;
 	}
 
-	//전시회 별점별 검색
+	//전시회 별점순으로 검색
 	@Override
 	public List<ExhibitionDTO> exhibitionSelectByStars() throws SQLException{
 		Connection con=null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		ExhibitionDTO exhitionDTO = null;
 		List<ExhibitionDTO> exhibitionList = new ArrayList<ExhibitionDTO>();
-//		String sql = proFile.getProperty("exhibition.selectByStars")
+		String sql = proFile.getProperty("exhibition.selectByStars");
 		try {
 			con = DBUtil.getConnection();
-			ps= con.prepareStatement(proFile.getProperty("exhibition.selectByStars"));
+			ps= con.prepareStatement(sql);
 		    rs = ps.executeQuery();		    
 		    while(rs.next()) {
 		    	ExhibitionDTO exhibitionDTO = new ExhibitionDTO(rs.getInt(1), rs.getString(2), rs.getString(3),
 						 rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7));
+		    	exhibitionDTO.setAvgStars(rs.getDouble(8));
 				exhibitionList.add(exhibitionDTO);
 		    }
 		}finally {
@@ -179,7 +179,7 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 			rs = ps.executeQuery();
 			
 			if(rs.next()) {
-				exhibitionDTO = new ExhibitionDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(6));
+				exhibitionDTO = new ExhibitionDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7));
 			}
 			}catch (SQLException e) {
 				e.printStackTrace();

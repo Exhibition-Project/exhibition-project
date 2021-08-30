@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import kosta.mvc.model.dto.ExhibitionDTO;
 import kosta.mvc.model.dto.StatisticsDTO;
 import kosta.mvc.util.DBUtil;
 
@@ -15,10 +16,12 @@ public class StatisticsDAOImpl implements StatisticsDAO{
 	private Properties proFile = DBUtil.getProFile();
 
 	@Override
-	public List<StatisticsDTO> selectStatisticsByNo(int no, String firstDate, String lastDate) throws SQLException{
+	public ExhibitionDTO selectStatisticsByNo(int no, String firstDate, String lastDate) throws SQLException{
+		ExhibitionDAO exhibitionDAO = new ExhibitionDAOImpl();
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
+		ExhibitionDTO exhibitionDTO = null;
 		List<StatisticsDTO> statisticsList = new ArrayList<StatisticsDTO>();
 		String sql = proFile.getProperty("statistics.selectStatisticsByNo");
 		try {
@@ -28,15 +31,22 @@ public class StatisticsDAOImpl implements StatisticsDAO{
 			ps.setString(2, firstDate);
 			ps.setString(3, lastDate);
 			rs = ps.executeQuery();
+			
+			exhibitionDTO = exhibitionDAO.exhibitionSelectByNo(no);
 			while(rs.next()) {
 				StatisticsDTO statisticsDTO = new StatisticsDTO(rs.getInt(1), rs.getInt(2), rs.getString(3));
 				statisticsList.add(statisticsDTO);
 			}
+			if(exhibitionDTO != null) {
+				exhibitionDTO.setStatisticsList(statisticsList);				
+			}
+			
 		}finally {
 			DBUtil.dbClose(con, ps, rs);
 		}
 		
-		return statisticsList;
+		return exhibitionDTO;
 	}
+	
 
 }
