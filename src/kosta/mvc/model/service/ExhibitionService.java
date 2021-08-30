@@ -10,20 +10,22 @@ import kosta.mvc.model.dto.ExhibitionDTO;
 
 public class ExhibitionService {
    //객체 생성
-   ExhibitionDAO exhibitionDAO = new ExhibitionDAOImpl();
+//   ExhibitionDAO exhibitionDAO = new ExhibitionDAOImpl();
    //전체 검색
 //   public List<Exhibition> exhibitionSelectAll() throws NotFoundException, SQLException{
-//      List<Exhibition> list = exhibitionDAO.exhibitionSelectAll();
+//      List<Exhibition> exhibitionList = exhibitionDAO.exhibitionSelectAll();
 //      if(list.size()==0) throw new NotFoundException("현재 찾으시는 전시회가 존재하지 않습니다.");
-//      return list;
+//      return exhibitionList;
 //   }
    //날짜별 검색
-   public void exhibitionSelectByDate(String startDate, String endDate) throws SQLException{
-      List<ExhibitionDTO> list = exhibitionDAO.exhibitionSelectByDate(startDate, endDate);
-   }
+//   public void exhibitionSelectByDate(String startDate, String endDate) throws SQLException{
+//      List<ExhibitionDTO> exhibitionList = exhibitionDAO.exhibitionSelectByDate(startDate, endDate);
+//		if
+//   }
    //전시회 등록
 //   public void exhibitionInsert(ExhibitionDTO dto) throws SQLException{
-//	  List<ExhibitionDTO> list = exhibitionDAO.exhibitionInsert(dto); 
+//	  List<ExhibitionDTO> list = exhibitionDAO.exhibitionInsert(dto);
+	  
 //   }
    //전시회 수정
 //   public void exhibitionUpdate(int exhibitionNo) throws SQLException{
@@ -34,6 +36,16 @@ public class ExhibitionService {
 //	   List<ExhibitionDTO> list = exhibitionDAO.exhibitionDelete(exhibitionNo);
 //   }
    
+	/**
+	 * 전시회번호에 해당하는 레코드 검색
+	 */
+	public ExhibitionDTO selectByExhibitionxNo(int exhibitionNo) throws SQLException{
+		ExhibitionDTO exhibitionDTO = exhibitionDAO.exhibitionSelectByNo(exhibitionNo);
+		if(exhibitionDTO == null) {
+			throw new SQLException(exhibitionNo+" 번호에 해당하는 전시회는 없습니다.");
+		}
+		return exhibitionDTO;
+	}
 
    
 }

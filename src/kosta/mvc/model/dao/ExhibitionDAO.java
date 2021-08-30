@@ -18,10 +18,9 @@ public interface ExhibitionDAO {
    int exhibitionInsert(ExhibitionDTO dto) throws SQLException;
    
    //전시회 수정
-   int exhibitionUpdate(int exhibitionNo) throws SQLException;
+   int exhibitionUpdate(ExhibitionDTO dto) throws SQLException;
    
    //전시회 삭제
    int exhibitionDelete(int exhibitionNo) throws SQLException;
-   
    
 }

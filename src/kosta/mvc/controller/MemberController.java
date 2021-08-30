@@ -3,43 +3,41 @@ package kosta.mvc.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Set;
 
 import kosta.mvc.model.dto.MemberDTO;
 import kosta.mvc.model.service.MemberService;
-import kosta.mvc.session.Session;
-import kosta.mvc.session.SessionSet;
 import kosta.mvc.view.EndView;
 import kosta.mvc.view.FailView;
+import kosta.mvc.view.MenuView;
 
 public class MemberController {
-	static MemberService memberService = new MemberService(); // static쓸지 말지 고민..
+	static MemberService memberService = new MemberService();
+	
 
 	/**
 	 * 로그인
 	 */
-	public static boolean login(String id, String password) {
+	public static void login(String id, String password) {
+		
 		try {
 			MemberDTO memberDTO = memberService.login(id, password);
-			if (memberDTO == null) {
-//				throw new Exception("등록되지 않은 사용자입니다.");
-				return false;
+			EndView.printMessage("로그인이 완료되었습니다.");
+			if (memberDTO.getMemberNo() == 0) {
+				MenuView.printAdminMenu();
+			} else {
+				MenuView.printMemberMenu();
 			}
-			Session session = new Session(memberDTO.getMemberNo(), memberDTO.getMemberId());
-			SessionSet sessionSet = SessionSet.getInstance();
-			Set<Session> set = sessionSet.getSessionSet();
-			set.add(session);
-
 		} catch (Exception e) {
 			FailView.errorMessage(e.getMessage());
 		}
-		return true;
 	}
 
 	/**
 	 * 로그아웃
 	 */
 	public static void logout() {
+		memberService.logout();
+		EndView.printMessage("로그아웃이 완료되었습니다.");
 	}
 
 	/**
@@ -76,21 +74,22 @@ public class MemberController {
 	public static MemberDTO memberSelectReservation() {
 		MemberDTO memberDTO = memberService.memberSelectReservation();
 		// EndView에 고객정보 출력할 창이 필요함.
-//		EndView.printMemberInformation(memberDTO);
+		EndView.printMemberInformation(memberDTO);
 		return memberDTO; // 뷰에 로그인된 정보를 줌.
 	}
 
 	/**
 	 * 고객정보수정
 	 */
-	public static void updateMember(MemberDTO memberDTO, String memberName, String memberBirth, String memberPassword, String confirmPassword) {
+	public static void updateMember(String memberName, String memberBirth, String memberPassword, String confirmPassword) {
 		try {
-			if (!memberDTO.getMemberPass().equals(confirmPassword)) {
+			System.out.println("???????????????????????????????");
+			if (memberService.checkPassword(confirmPassword) == 0) {
 				throw new Exception("현재 비밀번호가 일치하지 않습니다.");
 			}
 			MemberDTO updateMemberDTO = new MemberDTO(memberName, memberBirth, memberPassword); // 변경된 정보를 저장하는 dto
 			
-			int result = memberService.updateMember(memberDTO, updateMemberDTO);
+			int result = memberService.updateMember(confirmPassword, updateMemberDTO);
 			if (result == 0) {
 				throw new Exception("고객정보수정에 실패했습니다.");
 			}

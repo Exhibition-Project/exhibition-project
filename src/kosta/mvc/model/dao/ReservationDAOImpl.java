@@ -72,7 +72,6 @@ public class ReservationDAOImpl implements ReservationDAO{
 				ps.setString(1, reservationLine.getVisitAge());//관람연령
 				ps.setInt(2, reservationLine.getTicketQty());//티켓수량
 				ps.setInt(3, reservationLine.getAmount());//총가격 할인율이 적용된 가격 * 티켓수량
-				if(reservationLine==null)throw new SQLException("입력 오류입니다.... 예매 실패..");
 			}
 		
 		} finally {
@@ -89,7 +88,7 @@ public class ReservationDAOImpl implements ReservationDAO{
 	 * @param Visitors 
 	 * */
 	public int getTotalAmount(ReservationDTO reservation) throws SQLException {              
-//		int result = 0;
+		int result = 0;
 //		
 //		if(visitAge.equals("adults")) {
 //			result = (int)(price * 0.90);
@@ -99,7 +98,7 @@ public class ReservationDAOImpl implements ReservationDAO{
 //			result = (int)(price * 0.50);
 //		}
 //	
-		return 0;
+		return result;
 	}
 	
 

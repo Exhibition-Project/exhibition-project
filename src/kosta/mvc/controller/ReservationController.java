@@ -37,6 +37,8 @@ public class ReservationController {
 			//3	제 55회 한국미술협회전	21/09/09	21/09/17	회화	1000	한가람미술관
 			System.out.println(exhibitionNo);
 //			EndView.printAvailableDate(exDto.getStartDate(), exDto.getEndDate());//예매가능한 날짜 출력
+//			gitignore 테스트
+			
 		} catch (Exception e) {
 			FailView.errorMessage(e.getMessage());
 		}

@@ -24,8 +24,9 @@ public class MemberDAOImpl implements MemberDAO {
 
 		try {
 			con = DBUtil.getConnection();
-			st = con.prepareStatement("SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, TO_CHAR(MEMBER_BIRTH, 'YYYYMMDD'), MEMBER_PASS FROM MEMBER"
-					+ " WHERE MEMBER_ID = ? AND MEMBER_PASS = ?");
+			st = con.prepareStatement(
+					"SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, TO_CHAR(MEMBER_BIRTH, 'YYYYMMDD'), MEMBER_PASS FROM MEMBER"
+							+ " WHERE MEMBER_ID = ? AND MEMBER_PASS = ?");
 			st.setString(1, id);
 			st.setString(2, password);
 
@@ -100,23 +101,23 @@ public class MemberDAOImpl implements MemberDAO {
 	 * 회원수정
 	 */
 	@Override
-	public int updateMember(MemberDTO memberDTO, MemberDTO updateMemberDTO) {
-		
+	public int updateMember(int sessionNo, MemberDTO updateMemberDTO) {
+
 		int result = 0;
 		try {
 			con = DBUtil.getConnection();
-			st = con.prepareStatement("UPDATE MEMBER SET MEMBER_NAME=?, MEMBER_BIRTH = TO_DATE(?,'YYYYMMDD'), MEMBER_PASS = ? "
-					+ "WHERE MEMBER_NO=? AND MEMBER_PASS=?");
-			
+			st = con.prepareStatement(
+					"UPDATE MEMBER SET MEMBER_NAME=?, MEMBER_BIRTH = TO_DATE(?,'YYYYMMDD'), MEMBER_PASS = ? "
+							+ "WHERE MEMBER_NO=?");
+
 			st.setString(1, updateMemberDTO.getMemberName());
 			st.setString(2, updateMemberDTO.getMemberBirth());
 			st.setString(3, updateMemberDTO.getMemberPass());
-			st.setInt(4, memberDTO.getMemberNo());
-			st.setString(5, memberDTO.getMemberPass());
-			
+			st.setInt(4, sessionNo);
+
 			result = st.executeUpdate();
 
-		} catch (SQLException e) { //여기서 에러남..
+		} catch (SQLException e) { // 여기서 에러남..
 			e.printStackTrace();
 		} finally {
 			DBUtil.dbClose(con, st);
@@ -143,7 +144,8 @@ public class MemberDAOImpl implements MemberDAO {
 			rs = st.executeQuery();
 
 			if (rs.next()) {
-				memberDTO = new MemberDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+				memberDTO = new MemberDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+						rs.getString(5));
 			}
 
 		} catch (SQLException e) {
@@ -153,6 +155,32 @@ public class MemberDAOImpl implements MemberDAO {
 		}
 
 		return memberDTO;
+	}
+
+	/**
+	 * 기존 비밀번호 확인
+	 */
+	@Override
+	public int checkPassword(int memberNo, String confirmPassword) {
+		int count = 0;
+		try {
+			con = DBUtil.getConnection();
+			st = con.prepareStatement("SELECT COUNT(1) FROM MEMBER WHERE MEMBER_NO = ? AND MEMBER_PASS = ?");
+			st.setInt(1, memberNo);
+			st.setString(2, confirmPassword);
+
+			rs = st.executeQuery();
+
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(con, st, rs);
+		}
+		return count;
 	}
 
 }

@@ -15,10 +15,18 @@ public class MemberService {
 	/**
 	 * id, password 받아서 맞는 MemberDTO를 가져온다.
 	 */
-	public MemberDTO login(String id, String password) {
-		MemberDTO memberDTO= memberDAO.login(id, password);
+	public MemberDTO login(String id, String password) throws Exception{
+		
+		MemberDTO memberDTO = memberDAO.login(id, password);
+		if (memberDTO == null) {
+			throw new Exception("ID와 비밀번호가 틀렸습니다.");
+		}
+		
+		Session session = new Session(memberDTO.getMemberNo(), memberDTO.getMemberId());
+		
+		SessionSet sessionSet = SessionSet.getInstance();
+		sessionSet.addSession(session);
 		return memberDTO;
-
 	}
 	
 	/**
@@ -36,10 +44,34 @@ public class MemberService {
 	}
 
 	/**
+	 * 기존비밀번호와 일치하는지 체크 
+	 */
+	public int checkPassword(String confirmPassword) {
+		SessionSet sessionSet = SessionSet.getInstance();
+		Set<Session> set = sessionSet.getSessionSet();
+		Iterator<Session> iterator = set.iterator();
+		Session session = null;
+		if (iterator.hasNext()) {
+			session = iterator.next();
+		}
+		int result = memberDAO.checkPassword(session.getSessionNo(), confirmPassword);
+		return result;
+	}
+	
+	/**
 	 * 고객정보수정
 	 */
-	public int updateMember( MemberDTO memberDTO, MemberDTO updateMemberDTO) {
-		return memberDAO.updateMember(memberDTO, updateMemberDTO);
+	public int updateMember(String confirmPassword, MemberDTO updateMemberDTO) {
+		SessionSet sessionSet = SessionSet.getInstance();
+		Set<Session> set = sessionSet.getSessionSet();
+		Iterator<Session> iterator = set.iterator();
+		Session session = null;
+		if (iterator.hasNext()) {
+			session = iterator.next();
+		}
+		int memberNo = session.getSessionNo();
+		String memberID = session.getSessionId();
+		return memberDAO.updateMember(memberNo, updateMemberDTO);
 	}
 
 	/**
@@ -57,5 +89,12 @@ public class MemberService {
 		String memberID = session.getSessionId();
 		MemberDTO memberDTO = memberDAO.selectMemberInformation(memberNo, memberID);
 		return memberDTO;
+	}
+
+	public void logout() {
+		SessionSet ss = SessionSet.getInstance();
+		for (Session s : ss.getSessionSet()) {
+			ss.removeSession(s);
+		}
 	}
 }
