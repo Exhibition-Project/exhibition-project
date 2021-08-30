@@ -14,19 +14,18 @@ import kosta.mvc.util.DBUtil;
 
 public class ReservationDAOImpl implements ReservationDAO{
 	
-	ReservationDAO reservationDao = new ReservationDAOImpl();
 	ExhibitionDAO exhibitionDao = new ExhibitionDAOImpl();
 	 
 	/**
 	 * 예약하기 
 	 * 	1) 테이블에 insert
-	 * 	2) order_line테이블에 insert
+	 * 	2) reservaion_line테이블에 insert
 	 * */
 	@Override
 	public int reservationInsert(ReservationDTO reservation) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
-		String sql="=insert into reservation values(RESERVATION_NO_SEQ.nextval, ?, ?, ?, ?)";
+		String sql="insert into reservation values(RESERVATION_NO_SEQ.nextval, ?, ?, ?, ?)";
 		int result = 0;
 		try {
 			con = DBUtil.getConnection();
@@ -87,27 +86,27 @@ public class ReservationDAOImpl implements ReservationDAO{
 	/**
 	 * 예약 총구매금액 구하기
 	 * 전시회의 가격 price가 관람연령 adults 에 따라 10% 할인된다
-	 * @param reservation 
-	 * @param Visitors 
 	 * */
 	public int getTotalAmount(ReservationDTO reservation) throws SQLException {          
 		List<ReservationLineDTO> reservationLineList = reservation.getReservationLineList();
 		int result = 0;
 		for(ReservationLineDTO line : reservationLineList) {
 			ExhibitionDTO exhibition = exhibitionDao.exhibitionSelectByNo(line.getReservationNo());
-			if(exhibition==null)throw new SQLException("전시회번호 오류입니다. 예매 실패");
+			int price = exhibition.getPrice();
 			
-//			if(visitAge.equals("adults")) {
-//				result = (int)(exhibition.getPrice() * 0.90);
-//			}else if(visitAge.equals("youth")) {
-//				result = (int)(exhibition.getPrice() * 0.70);
-//			}else if(visitAge.equals("kids")) {
-//				result = (int)(exhibition.getPrice()  * 0.50);
-//			}
-
+			// 연령에 해당하는 할인율 검색하기 select visit_age, discount_rate from discount where visit_age = ?;
+			String visitAge = line.getVisitAge();
+			
+			
+			if(exhibition==null)throw new SQLException("전시회번호 오류입니다. 예매 실패");
 
 		}
 		return result;
+	}
+	
+	 
+	public int getDiscount(String visitAge) {
+		return 0;
 	}
 	
 

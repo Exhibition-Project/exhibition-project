@@ -32,13 +32,13 @@ public class ReservationController {
 	 * */
 	public static void InputinsertReservation(int exhibitionNo) {
 		try {
-			//3번 전시회번호에 해당하는 전시회 레코드 찾기
-//			ExhibitionDTO exDto = exhibitionService.selectByExhibitionxNo(exhibitionNo);
-			//3	제 55회 한국미술협회전	21/09/09	21/09/17	회화	1000	한가람미술관
-			System.out.println(exhibitionNo);
-//			EndView.printAvailableDate(exDto.getStartDate(), exDto.getEndDate());//예매가능한 날짜 출력
-//			gitignore 테스트
+			//1번 전시회번호에 해당하는 전시회 레코드 찾기
+			ExhibitionDTO exDto = exhibitionService.selectByExhibitionxNo(exhibitionNo);
+			//1	카게에 거장 후지시로 세이지 빛과 그림자의 판타지 전	21/06/10	21/10/12	회화	1000	한가람미술관
 			
+//			System.out.println("exDto**** = "+exDto);
+			EndView.printAvailableDate(exDto.getStartDate(), exDto.getEndDate());//예매가능한 날짜 출력
+
 		} catch (Exception e) {
 			FailView.errorMessage(e.getMessage());
 		}

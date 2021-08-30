@@ -264,8 +264,10 @@ public class MenuView {
 		try{
 			System.out.print("예매할 전시회 번호를 입력해주세요 : ");
 			int exhibitionNo = Integer.parseInt(sc.nextLine());
-			ExhibitionController.selectByExhibitionxNo(exhibitionNo);
+			ReservationController.InputinsertReservation(exhibitionNo);
+		
 		}catch (NumberFormatException e) {
+			
 			System.out.println("전시회번호는 숫자만 입력해주세요.");
 			System.out.println("다시 입력하시겠습니까?  yes or no");
 			String choice = sc.nextLine();
