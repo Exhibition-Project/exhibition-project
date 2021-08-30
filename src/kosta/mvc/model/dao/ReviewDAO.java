@@ -25,7 +25,7 @@ public interface ReviewDAO {
 	 * 1) 현재 로그인 한 사용자 번호 가져옴
 	 * 2) 후기 검색
 	 * */
-	List<ReviewDTO> selectByMemberNo (int memberNo) throws SQLException; 
+	List<ReviewDTO> selectByMemberNo (int memberNo) throws SQLException;  
 	
 	/**
 	 * 후기 번호에 해당하는 후기 수정

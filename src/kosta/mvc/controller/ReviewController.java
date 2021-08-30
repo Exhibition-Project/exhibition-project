@@ -36,11 +36,13 @@ public class ReviewController {
 	public static void reviewSelectByReviewNo() {
 		try {
 			List<ReviewDTO> list = reviewService.selectByMemberNo();
+			if(list.isEmpty()) {
+				throw new SQLException("등록된 후기가 없습니다.");
+			}
 			EndView.printReviewList(list);
 		}catch(SQLException e) {
 			FailView.errorMessage(e.getMessage());
-		}
-		
+		}	
 	}
 	
 	/**

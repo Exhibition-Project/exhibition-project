@@ -11,6 +11,7 @@ import kosta.mvc.session.Session;
 
 public class ReviewService {
 	private ReviewDAO reviewDAO = new ReviewDAOImpl();
+	private MemberService memberS = new MemberService();
 	
 	/**
 	 * 전시회 번호로 조회
@@ -28,14 +29,9 @@ public class ReviewService {
 	 * 사용자 번호로 조회 (내 후기 보기) 
 	 * */
 	public List<ReviewDTO> selectByMemberNo()throws SQLException{
-		MemberService memberS = new MemberService();
 		int memberNo = memberS.getSessionNo();
-		
 		List<ReviewDTO> dto = reviewDAO.selectByMemberNo(memberNo);
-		if(dto == null) {
-			throw new SQLException("등록된 후기가 없습니다.");
-		}
-	
+
 		return dto;
 	}
 	
