@@ -188,7 +188,7 @@ public class MenuView {
 				int choice = Integer.parseInt(sc.nextLine());
 				switch(choice) {			
 					case 1:
-						//여기서 바로 후기 조회하는 컨트롤러 호출
+						ReviewController.reviewSelectByReviewNo();
 						break;
 					case 2:
 						InputInsertReview();

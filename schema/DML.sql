@@ -151,13 +151,16 @@ select visit_age, discount_rate from discount where visit_age = 'youth';
 
 --statistics
 select sum(ticket_qty) totalVisitors, sum(amount) totalProfits from reservation_line;
+select *
+from reservation join reservation_line using(reservation_no)
+where exhibition_no = 5;
 
-rollback;
+
 commit;
 select * from exhibition;
 insert into exhibition values (exhibition_NO_SEQ.NEXTVAL,'윌리엄 웨그만_비잉 휴먼','2021-07-08','2021-09-26','디자인',2500,'한가람미술관 제7전시실');
 
-
+rollback;
 
 delete from reservation;
 delete from reservation_line;
