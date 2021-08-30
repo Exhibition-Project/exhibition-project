@@ -1,7 +1,7 @@
 package kosta.mvc.model.dto;
 
 public class StatisticsDTO {
-	private int date;
+	private String date;
 	private int totalVisitors;
 	private int totalProfits;
 	
@@ -13,7 +13,7 @@ public class StatisticsDTO {
 		this.totalProfits = totalProfits;
 	}
 	
-	public StatisticsDTO(int date, int totalVisitors, int totalProfits) {
+	public StatisticsDTO(int totalVisitors, int totalProfits, String date) {
 		this(totalVisitors, totalProfits);
 		this.date = date;
 	}
@@ -34,11 +34,11 @@ public class StatisticsDTO {
 		this.totalProfits = totalProfits;
 	}
 
-	public int getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(int date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	

@@ -28,6 +28,10 @@ public class StatisticsDAOImpl implements StatisticsDAO{
 			ps.setString(2, firstDate);
 			ps.setString(3, lastDate);
 			rs = ps.executeQuery();
+			while(rs.next()) {
+				StatisticsDTO statisticsDTO = new StatisticsDTO(rs.getInt(1), rs.getInt(2), rs.getString(3));
+				statisticsList.add(statisticsDTO);
+			}
 		}finally {
 			DBUtil.dbClose(con, ps, rs);
 		}

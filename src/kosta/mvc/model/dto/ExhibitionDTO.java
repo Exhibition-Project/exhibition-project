@@ -11,6 +11,8 @@ public class ExhibitionDTO {
 	private int price;
 	private String exhibitionLocation;
 	
+	private double avgStars;
+	
 	private List<ReviewDTO> reviewList; //리뷰 리스트를 가지고 있을 수 있다.
 	
 	public ExhibitionDTO(int exhibitioNo, String exhibitionName, String startDate, String endDate, String genre,
@@ -88,6 +90,17 @@ public class ExhibitionDTO {
 
 	public void setReviewList(List<ReviewDTO> reviewList) {
 		this.reviewList = reviewList;
+	}
+
+	
+
+	public double getAvgStars() {
+		return avgStars;
+	}
+
+
+	public void setAvgStars(double avgStars) {
+		this.avgStars = avgStars;
 	}
 
 
