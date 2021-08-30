@@ -47,7 +47,7 @@ public class ExhibitionController {
    public static void exhibitionInsert(ExhibitionDTO dto) {
 	   try {
 		   exhibitionService.exhibitionInsert(dto);
-	   	   EndView.printMessage("전시회가 등록되었습니다.");
+	   	   EndView.printMessage("\n전시회가 등록되었습니다.");
 	   }catch (SQLException e) {
 		   FailView.errorMessage(e.getMessage());
 	   }
@@ -56,8 +56,8 @@ public class ExhibitionController {
    public static void exhibitionUpdate(ExhibitionDTO dto) {
 	   try {
 		   exhibitionService.exhibitionUpdate(dto);
-		   System.out.println("컨트롤러에 리턴됨");
-	       EndView.printMessage("전시회가 수정되었습니다.");
+//		   System.out.println("컨트롤러에 리턴됨");
+	       EndView.printMessage("\n전시회가 수정되었습니다.");
 	   }catch (SQLException e) {
 		   FailView.errorMessage(e.getMessage());
 	   }
@@ -66,7 +66,7 @@ public class ExhibitionController {
    public static void exhibitionDelete(int exhibitionNo) {
 	   try {
 		   exhibitionService.exhibitionDelete(exhibitionNo);
-	       EndView.printMessage("전시회가 삭제되었습니다.");
+	       EndView.printMessage("\n전시회가 삭제되었습니다.");
 	   }catch(SQLException e) {
 		   FailView.errorMessage(e.getMessage());
 	   }

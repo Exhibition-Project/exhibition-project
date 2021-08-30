@@ -37,7 +37,7 @@ public class ReviewController {
 		try {
 			List<ReviewDTO> list = reviewService.selectByMemberNo();
 			if(list.isEmpty()) {
-				throw new SQLException("등록된 후기가 없습니다.");
+				throw new SQLException("\n등록된 후기가 없습니다.");
 			}
 			EndView.printReviewList(list);
 		}catch(SQLException e) {
@@ -63,7 +63,7 @@ public class ReviewController {
 	public static void reviewInsert(ReviewDTO dto) {
 		try{
 			reviewService.reviewInsert(dto);
-			EndView.printMessage("후기 등록에 성공하였습니다.");
+			EndView.printMessage("\n후기 등록에 성공하였습니다.");
 		}catch(SQLException e) {
 			FailView.errorMessage(e.getMessage());
 		}
@@ -75,7 +75,7 @@ public class ReviewController {
 	public static void reviewUpdate(ReviewDTO dto) {
 		try {
 			reviewService.reviewUpdate(dto);
-			EndView.printMessage("후기가 수정되었습니다.");
+			EndView.printMessage("\n후기가 수정되었습니다.");
 		} catch(SQLException e) {
 			FailView.errorMessage(e.getMessage());
 		}
@@ -88,7 +88,7 @@ public class ReviewController {
 	public static void reviewDelete(int reviewNo) {
 		try {
 			reviewService.reviewDelete(reviewNo);
-			EndView.printMessage("후기가 삭제되었습니다.");
+			EndView.printMessage("\n후기가 삭제되었습니다.");
 		}catch(SQLException e) {
 			FailView.errorMessage(e.getMessage());
 		}

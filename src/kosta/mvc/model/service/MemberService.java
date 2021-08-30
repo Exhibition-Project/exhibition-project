@@ -22,7 +22,7 @@ public class MemberService {
 
 		MemberDTO memberDTO = memberDAO.login(id, password);
 		if (memberDTO == null) {
-			throw new Exception("ID와 비밀번호가 틀렸습니다.");
+			throw new Exception("\nID와 비밀번호에 맞는 회원이 없습니다.");
 		}
 
 		Session session = new Session(memberDTO.getMemberNo(), memberDTO.getMemberId());

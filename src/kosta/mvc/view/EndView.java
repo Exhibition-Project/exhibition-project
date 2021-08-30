@@ -17,7 +17,6 @@ public class EndView {
 	 * 메시지 출력
 	 * */
 	public static void printMessage(String message) {
-		System.out.println("**************************");
 		System.out.println(message);
 	}
 	
@@ -108,7 +107,7 @@ public class EndView {
 	 * */
 	public static void printReviewList(List<ReviewDTO> reviewList) {
 		System.out.println("후기 게시물이" + reviewList.size() + "개 검색되었습니다.");
-		System.out.println("------------------------");
+		System.out.println("-------------------------------------------------------------------------------");
 		for(ReviewDTO dto : reviewList) {
 			System.out.println("전시회 번호 : "+ dto.getExhibitionNo() + " | 전시회 이름 : "+ dto.getExhibitionName()+ "| 후기 내용:" + dto.getReviewContnet() + "| 별점" + dto.getStars());
 		}

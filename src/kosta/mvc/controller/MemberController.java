@@ -21,7 +21,7 @@ public class MemberController {
 		
 		try {
 			MemberDTO memberDTO = memberService.login(id, password);
-			EndView.printMessage("로그인이 완료되었습니다.");
+			EndView.printMessage("\n로그인이 완료되었습니다.");
 			if (memberDTO.getMemberNo() == 0) {
 				MenuView.printAdminMenu(); 
 			} else {
@@ -37,7 +37,7 @@ public class MemberController {
 	 */
 	public static void logout() {
 		memberService.logout();
-		EndView.printMessage("로그아웃이 완료되었습니다.");
+		EndView.printMessage("\n로그아웃이 완료되었습니다.");
 	}
 
 	/**
@@ -53,16 +53,16 @@ public class MemberController {
 
 			int count = memberService.getMemberId(memberId);
 			if (count > 0) {
-				throw new Exception("이미 등록된 회원ID입니다.");
+				throw new Exception("\n이미 등록된 회원ID입니다.");
 			}
 			MemberDTO memberDTO = new MemberDTO(memberId, memberName, memberBirth, memberPassword);
 			int result = memberService.insertMembership(memberDTO);
 			if (result == 0) {
-				throw new Exception("회원등록에 실패하였습니다.");
+				throw new Exception("\n회원등록에 실패하였습니다.");
 			}
-			EndView.printMessage("회원등록에 성공했습니다.");
+			EndView.printMessage("\n회원등록에 성공했습니다.");
 		} catch (ParseException pe) {
-			FailView.errorMessage("생년월일은 yyyymmdd 형식으로만 입력 가능합니다.");
+			FailView.errorMessage("\n생년월일은 yyyymmdd 형식으로만 입력 가능합니다.");
 		} catch (Exception e) {
 			FailView.errorMessage(e.getMessage());
 		}
@@ -83,15 +83,15 @@ public class MemberController {
 	public static void updateMember(String memberName, String memberBirth, String memberPassword, String confirmPassword) {
 		try {
 			if (memberService.checkPassword(confirmPassword) == 0) {
-				throw new Exception("현재 비밀번호가 일치하지 않습니다.");
+				throw new Exception("\n현재 비밀번호가 일치하지 않습니다.");
 			}
 			MemberDTO updateMemberDTO = new MemberDTO(memberName, memberBirth, memberPassword); // 변경된 정보를 저장하는 dto
 			
 			int result = memberService.updateMember(confirmPassword, updateMemberDTO);
 			if (result == 0) {
-				throw new Exception("고객정보수정에 실패했습니다.");
+				throw new Exception("\n고객정보수정에 실패했습니다.");
 			}
-			System.out.println("수정에 성공하였습니다.");
+			System.out.println("\n수정에 성공하였습니다.");
 		} catch (Exception e) {
 			FailView.errorMessage(e.getMessage());
 		}

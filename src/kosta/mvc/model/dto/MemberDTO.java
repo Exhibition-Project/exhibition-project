@@ -68,7 +68,7 @@ public class MemberDTO {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("********** 회원 정보 **********");
+		builder.append(">> 회원 정보");
 		builder.append("\nID : ");
 		builder.append(memberId);
 		builder.append("\nmemberPass : ");
