@@ -67,13 +67,6 @@ public class EndView {
 	}
 	
 	/**
-	 * 예매 내역 리스트 출력
-	 * */
-	public static void printReservationList(List<ReservationDTO> reservationList) {
-		
-	}
-	
-	/**
 	 * 예매 내역 출력
 	 * */
 	public static void printReservationByNo(ReservationDTO reservationDTO) {
@@ -81,7 +74,7 @@ public class EndView {
 	}
 	
 	/**
-	 * 예매내역 상세보기
+	 * 예매 내역 리스트 출력
 	 * */
 	public static void printReservaionByMemberId(List<ReservationDTO> reservationList) {
 		for(ReservationDTO reservaion : reservationList) {

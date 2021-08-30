@@ -137,7 +137,7 @@ public class MenuView {
 						inputUpdateMember();
 						break;
 					case 3:
-						//은솔님 이 자리에서 예내내역 조회 컨트롤러 바로 호출하시면 됩니다.
+						ReservationController.selectReservationByMemberId();
 						break;
 					case 4:
 						printMemberReviewMenu();

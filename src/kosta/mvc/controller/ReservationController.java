@@ -19,7 +19,7 @@ public class ReservationController {
 	 * */
 	public static void selectReservationByMemberId() {
 		try {
-			List<ReservationDTO> reservationList = reservationService.selctReservationByMemberNo();
+			List<ReservationDTO> reservationList = reservationService.selectReservationByMemberNo();
 			EndView.printReservaionByMemberId(reservationList);
 		} catch (Exception e) {
 			FailView.errorMessage(e.getMessage());

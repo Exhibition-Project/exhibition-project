@@ -27,7 +27,7 @@ public class ReservationService {
 	/**
 	 * 예약내역보기
 	 * */
-	public List<ReservationDTO> selctReservationByMemberNo() throws SQLException{
+	public List<ReservationDTO> selectReservationByMemberNo() throws SQLException{
 		int memberNo =memberService.getSessionNo();
 		
 		List<ReservationDTO> list = reservationDao.selectReservationByMemberNo(memberNo);
