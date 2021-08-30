@@ -64,6 +64,31 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 		return exhibitionList;
 	}
 
+	//전시회 별점별 검색
+	@Override
+	public List<ExhibitionDTO> exhibitionSelectByStars(int stars) throws SQLException{
+		Connection con=null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ExhibitionDTO exhitionDTO = null;
+		List<ExhibitionDTO> exhibitionList = new ArrayList<ExhibitionDTO>();
+		try {
+			con = DBUtil.getConnection();
+			ps= con.prepareStatement(proFile.getProperty("exhibition.selectByStars"));
+			ps.setInt(1, stars);
+		    rs = ps.executeQuery();		    
+		    while(rs.next()) {
+		    	ExhibitionDTO exhibitionDTO = new ExhibitionDTO(rs.getInt(1), rs.getString(2), rs.getString(3),
+						 rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7));
+				exhibitionList.add(exhibitionDTO);
+		    }
+		}finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return exhibitionList;
+	}
+	
+	
 	//전시회 등록
 	@Override
 	public int exhibitionInsert(ExhibitionDTO dto) throws SQLException{
