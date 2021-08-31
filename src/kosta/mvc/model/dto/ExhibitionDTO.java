@@ -132,8 +132,6 @@ public class ExhibitionDTO {
 		builder.append(price);
 		builder.append("| 전시회 장소: ");
 		builder.append(exhibitionLocation);
-		builder.append("| 후기 리스트: ");
-		builder.append(reviewList);
 		builder.append("***");
 		return builder.toString();
 	}
