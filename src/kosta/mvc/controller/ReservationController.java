@@ -1,6 +1,8 @@
 package kosta.mvc.controller;
 
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import kosta.mvc.model.dto.ExhibitionDTO;
@@ -38,7 +40,12 @@ public class ReservationController {
 	 * */
 	public static void inputReservationOption(ReservationDTO reservation) {
 		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			sdf.setLenient(false); // 입력한 값이 설정한 형식과 다르면 오류 
+			sdf.parse(reservation.getRegDate());
 			reservationService.insertReservation(reservation);
+		} catch (ParseException pe) {
+			FailView.errorMessage("\n 관람하실 날짜는 yyyy-MM-dd 형식으로만 입력 가능합니다.");
 		} catch (Exception e) {
 			e.printStackTrace();
 			FailView.errorMessage(e.getMessage());

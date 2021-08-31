@@ -1,5 +1,6 @@
 package kosta.mvc.view;
 
+import java.util.List;
 import java.util.Scanner;
 
 import kosta.mvc.controller.ExhibitionController;
@@ -354,20 +355,29 @@ public class MenuView {
 		try{
 			System.out.print("날짜를 입력하세요(yyyy-MM-dd) -> ");
 			String regDate = sc.nextLine();
-
 			System.out.print("관람 연령을 입력하세요 (adults, youth, kids) -> ");
 			String visitAge = sc.nextLine();
-
 			System.out.print("예매할 티켓 수량을 입력하세요 -> ");
 			int ticketQty = Integer.parseInt(sc.nextLine());
 
 			ReservationDTO reservation = new ReservationDTO(0, 0, exhibitionNo , 0, regDate); //서비스에 가서 memberNo 넣기 
+			List<ReservationLineDTO> reservationLineDTOList = reservation.getReservationLineList();
+
 			ReservationLineDTO reservationLine = new ReservationLineDTO(0, 0, visitAge, ticketQty, 0);//예매상세
+			reservationLineDTOList.add(reservationLine);
 
-			reservation.getReservationLineList().add(reservationLine);
-
+			//더 예매 추가하시겠습니까?
+			while(true) {
+				System.out.print("관람연령및 티켓수량을 더 추가하시겠습니까( yes | no )? ");
+				String input  = sc.nextLine();
+				if(input.equals("yes")) {
+					reservationLineDTOList.add(moreInputLine());	
+				}else {
+					break;
+				}
+			}
 			ReservationController.inputReservationOption(reservation);
-		}catch(Exception e){
+		}catch(NumberFormatException e){
 			System.out.print("다시 입력하시겠습니까?(yes|no) -> ");
 			String choice = sc.nextLine();
 			if(choice.equals("yes")) {
@@ -375,8 +385,15 @@ public class MenuView {
 			}
 		}
 	}
+	
+	public static ReservationLineDTO moreInputLine() {
+		System.out.print("관람 연령을 입력하세요 (adults, youth, kids) -> ");
+		String visitAge = sc.nextLine();
+		System.out.print("예매할 티켓 수량을 입력하세요 -> ");
+		int ticketQty = Integer.parseInt(sc.nextLine());
 
-
+		return new ReservationLineDTO(0, 0, visitAge, ticketQty, 0);//예매상세
+	}
 	
 	
 	//후기 조회
