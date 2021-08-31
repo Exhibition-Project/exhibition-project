@@ -353,7 +353,7 @@ public class MenuView {
 	 * */
 	public static void inputReservationOption(int exhibitionNo ) {
 		try{
-			System.out.print("날짜를 입력하세요(yyyy-MM-dd) -> ");
+			System.out.print("날짜를 입력하세요(yy-MM-dd) -> ");
 			String regDate = sc.nextLine();
 			System.out.print("관람 연령을 입력하세요 (adults, youth, kids) -> ");
 			String visitAge = sc.nextLine();
