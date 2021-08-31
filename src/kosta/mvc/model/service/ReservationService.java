@@ -3,6 +3,7 @@ package kosta.mvc.model.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import kosta.mvc.exception.DMLException;
 import kosta.mvc.model.dao.ReservationDAO;
 import kosta.mvc.model.dao.ReservationDAOImpl;
 import kosta.mvc.model.dto.ReservationDTO;
@@ -26,7 +27,7 @@ public class ReservationService {
 	}
 	
 	/**
-	 * 로그인 한 멤버에 맞는 예매내역보기
+	 * 예약내역보기
 	 * */
 	public List<ReservationDTO> selctReservationByMemberNo() throws SQLException{
 		int memberNo =memberService.getSessionNo();
@@ -56,6 +57,13 @@ public class ReservationService {
 		return reservationLine;
 	}
 
+	/**
+	 * 예매번호로 예매취소(삭제)
+	 * */
+	public void reservationDelete(int reservationNo)throws SQLException {
+		int result = reservationDao.reservationDelete(reservationNo);
+		if(result == 0) throw new DMLException("예매 취소에 실패했습니다.");
+	}
 
 
 }

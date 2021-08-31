@@ -48,12 +48,11 @@ public class ReservationController {
 	/**
 	 * 로그인 한 멤버에 맞는 예매내역보기
 	 * */
-	public static void selectReservationByMemberId() {
+	public static void selectReservationByMemberNo() {
 		try {
 			List<ReservationDTO> reservationList = reservationService.selctReservationByMemberNo();
-			EndView.printReservaionByMemberId(reservationList);
+			EndView.printReservaionByMemberNo(reservationList);
 		} catch (Exception e) {
-			e.printStackTrace();
 			FailView.errorMessage(e.getMessage());
 		}
 	}
@@ -85,6 +84,18 @@ public class ReservationController {
 		}
 	}
 	
+	/**
+	 * 예매번호로 예매취소(삭제)
+	 * */
+	public static void reservationDelete(int reservationNo) {
+		try {
+			reservationService.reservationDelete(reservationNo);
+			EndView.printMessage("예매가 취소되었습니다.");
+		}catch(SQLException e) {
+			FailView.errorMessage(e.getMessage());
+		}
+	}
+
 
 
 }

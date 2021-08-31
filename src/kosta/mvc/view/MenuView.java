@@ -134,7 +134,7 @@ public class MenuView {
 	public static void printMyPage() {
 		while(true) {
 			System.out.println("-------------------------------------------------------------------------");
-			System.out.println("1. 고객정보조회 2. 고객정보 수정  3. 내 예매내역 조회  4. 내 후기관리  9. 상위메뉴로 이동");
+			System.out.println("1. 고객정보조회 2. 고객정보 수정  3. 내 예매내역 조회  4. 예매취소 5.  내 후기관리  9. 상위메뉴로 이동");
 			System.out.println("-------------------------------------------------------------------------");
 			try {
 				int choice = Integer.parseInt(sc.nextLine());
@@ -146,9 +146,12 @@ public class MenuView {
 						inputUpdateMember();
 						break;
 					case 3:
-						ReservationController.selectReservationByMemberId();
+						ReservationController.selectReservationByMemberNo();
 						break;
 					case 4:
+						inputDeleteReservation();
+						break;
+					case 5:
 						printMemberReviewMenu();
 						break;
 					case 9:
@@ -188,6 +191,16 @@ public class MenuView {
 		
 		MemberController.updateMember(memberName, memberBirth, memberPassword, confirmPassword);
 	}
+	
+	/**
+	 * 예매취소(예매내역 삭제)
+	 * */
+	public static void inputDeleteReservation() {
+		System.out.print("취소하려는 예매 번호를 입력하세요. -> ");
+		int reservationNo = Integer.parseInt(sc.nextLine());
+		ReservationController.reservationDelete(reservationNo);
+	}
+	
 	/**
 	 * 마이페이지 내 후기관리 메뉴
 	 * 내 후기 조회(따로 함수 X), 등록, 삭제

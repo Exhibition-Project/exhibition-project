@@ -47,7 +47,6 @@ public class EndView {
 			}
 			System.out.println();
 		}
-		
 	}
 	
 	/**
@@ -93,7 +92,7 @@ public class EndView {
 	/**
 	 * 예매 내역 리스트 출력
 	 * */
-	public static void printReservaionByMemberId(List<ReservationDTO> reservationList) {
+	public static void printReservaionByMemberNo(List<ReservationDTO> reservationList) {
 		for(ReservationDTO reservaion : reservationList) {
 			System.out.println(reservaion.getReservationNo()+ " | " + reservaion.getMemberNo()+ " | " + reservaion.getTotalAmount()+ " | " + reservaion.getRegDate());
 			for(ReservationLineDTO reservationLine : reservaion.getReservationLineList()) {
@@ -143,6 +142,8 @@ public class EndView {
 		for(StatisticsDTO statisticsDTO : exhibitionDTO.getStatisticsList()) {
 			System.out.println(statisticsDTO);
 		}
+		System.out.println("기간 내 총 방문자 수 : " + exhibitionDTO.getStatisticsSummary().getTotalVisitors() + " 명");
+		System.out.println("기간 내 총 예매 수익금 : " + exhibitionDTO.getStatisticsSummary().getTotalProfits() + " 원");
 	}
 
 }
