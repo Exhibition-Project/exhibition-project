@@ -84,6 +84,18 @@ public class ReservationController {
 		}
 	}
 	
+	/**
+	 * 예매번호로 예매취소(삭제)
+	 * */
+	public static void reservationDelete(int reservationNo) {
+		try {
+			reservationService.reservationDelete(reservationNo);
+			EndView.printMessage("예매가 취소되었습니다.");
+		}catch(SQLException e) {
+			FailView.errorMessage(e.getMessage());
+		}
+	}
+
 
 
 }

@@ -29,7 +29,6 @@ public class ReservationDAOImpl implements ReservationDAO{
 	public int reservationInsert(ReservationDTO reservation) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
-//		String sql="insert into reservation values(RESERVATION_NO_SEQ.nextval, ?, ?, ?, ?)";
 		String sql = proFile.getProperty("reservation.insert");
 		int result = 0;
 		try {
@@ -69,7 +68,6 @@ public class ReservationDAOImpl implements ReservationDAO{
 	 * */
 	private int[] reservationLineInsert(Connection con, ReservationDTO reservation) throws SQLException{
 		PreparedStatement ps = null;
-//		String sql = "insert into reservation_line values(RESERVATION_LINE_NO_SEQ.nextval, reservation_no_seq.currval, ?, ?, ?)";
 		String sql = proFile.getProperty("reservation_line.insert");
 		int result [] = null;
 		try {
@@ -244,5 +242,66 @@ public class ReservationDAOImpl implements ReservationDAO{
 		}
 		return reservationLineList;
 	}
+
+
+
+	/**
+	 * 예매 취소(삭제)
+	 * 	1) 예매상세 reservation_line.delete
+	 * 	2) reservation.delete
+	 * */
+	@Override
+	public int reservationDelete(int reservationNo) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = proFile.getProperty("reservation.delete");
+		int result = 0;
+		try {
+			con = DBUtil.getConnection();
+			con.setAutoCommit(false);
+
+				int re = reservationLineDelete(con, reservationNo);//예매상세 삭제하기
+				 if(re==0) {
+						con.rollback();
+						throw new SQLException("예매를 취소할 수 없습니다.");
+				 }else {
+					ps = con.prepareStatement(sql);
+					ps.setInt(1, reservationNo);
+					result = ps.executeUpdate();
+					if(result==0) {
+						con.rollback();
+						throw new SQLException("예매취소가 실패했습니다");
+					}		
+				 }
+				
+				con.commit();
+			
+		}finally {
+			con.commit();
+			DBUtil.dbClose(con, ps, null);
+		}
+		
+		return result;
+	}
+
+	/**
+	 * 예약상세 삭제하기
+	 * */
+	private int reservationLineDelete(Connection con, int reservationNo) throws SQLException{
+		PreparedStatement ps = null;
+		String sql = proFile.getProperty("reservation_line.delete");
+		int result  = 0;
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, reservationNo);
+			
+			result = ps.executeUpdate();
+
+		} finally {
+			DBUtil.dbClose(null, ps , null);
+		}
+		return result;
+	}
+
 
 }
