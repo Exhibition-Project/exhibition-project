@@ -3,6 +3,7 @@ package kosta.mvc.model.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import kosta.mvc.exception.DMLException;
 import kosta.mvc.exception.SearchNotFoundException;
 import kosta.mvc.model.dao.ReviewDAO;
 import kosta.mvc.model.dao.ReviewDAOImpl;
