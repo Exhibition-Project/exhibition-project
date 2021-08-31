@@ -30,6 +30,13 @@ public interface ReservationDAO {
 	 * */
 	List<ReservationLineDTO> selectByReservationNo(int reservationNo) throws SQLException;
 
+
+	/**
+	 * 예매내역 삭제
+	 * reservation.delete
+	 * 	reservation_line.delete
+	 * */
+
 }
 	
 

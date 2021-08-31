@@ -338,21 +338,29 @@ public class MenuView {
 	 * 예매하기 (날짜, 관람 연령, 티켓 수량 입력)
 	 * */
 	public static void inputReservationOption(int exhibitionNo ) {
-		System.out.print("날짜를 입력하세요(yyyymmdd) -> ");
-		String regDate = sc.nextLine();
+		try{
+			System.out.print("날짜를 입력하세요(yyyy-MM-dd) -> ");
+			String regDate = sc.nextLine();
 
-		System.out.print("관람 연령을 입력하세요 -> ");
-		String visitAge = sc.nextLine();
+			System.out.print("관람 연령을 입력하세요 (adults, youth, kids) -> ");
+			String visitAge = sc.nextLine();
 
-		System.out.print("예매할 티켓 수량을 입력하세요 -> ");
-		int ticketQty = Integer.parseInt(sc.nextLine());
+			System.out.print("예매할 티켓 수량을 입력하세요 -> ");
+			int ticketQty = Integer.parseInt(sc.nextLine());
 
-		ReservationDTO reservation = new ReservationDTO(0, 0, exhibitionNo , 0, regDate); //서비스에 가서 memberNo 넣기 
-		ReservationLineDTO reservationLine = new ReservationLineDTO(0, 0, visitAge, ticketQty, 0);//예매상세
-	
-		reservation.getReservationLineList().add(reservationLine);
-		
-		ReservationController.inputReservationOption(reservation);
+			ReservationDTO reservation = new ReservationDTO(0, 0, exhibitionNo , 0, regDate); //서비스에 가서 memberNo 넣기 
+			ReservationLineDTO reservationLine = new ReservationLineDTO(0, 0, visitAge, ticketQty, 0);//예매상세
+
+			reservation.getReservationLineList().add(reservationLine);
+
+			ReservationController.inputReservationOption(reservation);
+		}catch(Exception e){
+			System.out.print("다시 입력하시겠습니까?(yes|no) -> ");
+			String choice = sc.nextLine();
+			if(choice.equals("yes")) {
+				inputReservationOption(exhibitionNo);
+			}
+		}
 	}
 
 

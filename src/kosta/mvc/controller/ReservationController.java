@@ -28,9 +28,9 @@ public class ReservationController {
 			EndView.printAvailableDate(exhibition.getStartDate(), exhibition.getEndDate());//예매가능한 날짜 출력
 			MenuView.inputReservationOption(exhibitionNo);
 		} catch (Exception e) {
+			e.printStackTrace();
 			FailView.errorMessage(e.getMessage());
 		}
-		
 	}
 	
 	/**
@@ -53,6 +53,7 @@ public class ReservationController {
 			List<ReservationDTO> reservationList = reservationService.selctReservationByMemberNo();
 			EndView.printReservaionByMemberId(reservationList);
 		} catch (Exception e) {
+			e.printStackTrace();
 			FailView.errorMessage(e.getMessage());
 		}
 	}
@@ -66,6 +67,7 @@ public class ReservationController {
 			List<ReservationDTO> reservationList = reservationService.reservationSelectAll();
 			EndView.printReservationList(reservationList);
 		} catch (SQLException e) {
+			e.printStackTrace();
 			FailView.errorMessage(e.getMessage());
 		}
 	}
