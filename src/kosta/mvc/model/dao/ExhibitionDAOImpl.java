@@ -172,7 +172,7 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		ExhibitionDTO exhibitionDTO = null;
-		String sql = "select exhibition_no, exhibition_name, start_date, end_date, genre, price, exhibition_loc from exhibition where exhibition_no = ?";
+		String sql = proFile.getProperty("exhibition.selectByNo");
 		try {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);

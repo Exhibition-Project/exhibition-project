@@ -10,10 +10,12 @@ public class ExhibitionDTO {
 	private String genre;
 	private int price;
 	private String exhibitionLocation;
-	
+
 	private double avgStars;
 	
 	private List<StatisticsDTO> statisticsList;
+	private StatisticsDTO statisticsSummary;
+	
 
 	private List<ReviewDTO> reviewList; //리뷰 리스트를 가지고 있을 수 있다.
 	
@@ -31,6 +33,13 @@ public class ExhibitionDTO {
 		this.exhibitionLocation = exhibitionLocation;
 	}
 
+	public StatisticsDTO getStatisticsSummary() {
+		return statisticsSummary;
+	}
+	
+	public void setStatisticsSummary(StatisticsDTO statisticsSummary) {
+		this.statisticsSummary = statisticsSummary;
+	}
 	
 	public int getExhibitioNo() {
 		return exhibitioNo;
@@ -120,17 +129,17 @@ public class ExhibitionDTO {
 		StringBuilder builder = new StringBuilder();
 		builder.append("전시회 정보 | 전시회 번호: ");
 		builder.append(exhibitioNo);
-		builder.append("| 전시회 이름: ");
+		builder.append(" | 전시회 이름: ");
 		builder.append(exhibitionName);
-		builder.append("| 시작날짜: ");
+		builder.append(" | 시작날짜: ");
 		builder.append(startDate);
-		builder.append("| 종료날짜: ");
+		builder.append(" | 종료날짜: ");
 		builder.append(endDate);
-		builder.append("| 장르구분: ");
+		builder.append(" | 장르구분: ");
 		builder.append(genre);
-		builder.append("| 티켓요금: ");
+		builder.append(" | 티켓요금: ");
 		builder.append(price);
-		builder.append("| 전시회 장소: ");
+		builder.append(" | 전시회 장소: ");
 		builder.append(exhibitionLocation);
 		builder.append("***");
 		return builder.toString();

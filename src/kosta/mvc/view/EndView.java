@@ -142,6 +142,8 @@ public class EndView {
 		for(StatisticsDTO statisticsDTO : exhibitionDTO.getStatisticsList()) {
 			System.out.println(statisticsDTO);
 		}
+		System.out.println("기간 내 총 방문자 수 : " + exhibitionDTO.getStatisticsSummary().getTotalVisitors() + " 명");
+		System.out.println("기간 내 총 예매 수익금 : " + exhibitionDTO.getStatisticsSummary().getTotalProfits() + " 원");
 	}
 
 }

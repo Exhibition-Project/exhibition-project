@@ -24,6 +24,7 @@ public class StatisticsDAOImpl implements StatisticsDAO{
 		ExhibitionDTO exhibitionDTO = null;
 		List<StatisticsDTO> statisticsList = new ArrayList<StatisticsDTO>();
 		String sql = proFile.getProperty("statistics.selectStatisticsByNo");
+		StatisticsDTO statisticsSummary = new StatisticsDTO();
 		try {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
@@ -34,11 +35,16 @@ public class StatisticsDAOImpl implements StatisticsDAO{
 			
 			exhibitionDTO = exhibitionDAO.exhibitionSelectByNo(no);
 			while(rs.next()) {
-				StatisticsDTO statisticsDTO = new StatisticsDTO(rs.getInt(1), rs.getInt(2), rs.getString(3));
+				int totalVisitors = rs.getInt(1);
+				int totalProfits = rs.getInt(2);
+				StatisticsDTO statisticsDTO = new StatisticsDTO(totalVisitors, totalProfits, rs.getString(3));
 				statisticsList.add(statisticsDTO);
+				statisticsSummary.setTotalVisitors(statisticsSummary.getTotalVisitors() + totalVisitors);
+				statisticsSummary.setTotalProfits(statisticsSummary.getTotalProfits() + totalProfits);
 			}
 			if(exhibitionDTO != null) {
-				exhibitionDTO.setStatisticsList(statisticsList);				
+				exhibitionDTO.setStatisticsList(statisticsList);
+				exhibitionDTO.setStatisticsSummary(statisticsSummary);
 			}
 			
 		}finally {
