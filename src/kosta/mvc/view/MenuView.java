@@ -613,6 +613,7 @@ public class MenuView {
 					break;
 				case 2:
 					InputStatisticsByNo();
+					break;
 				case 9:
 					return;
 				

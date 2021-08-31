@@ -26,7 +26,7 @@ public class ReservationService {
 		reservaton.setMemberNo(memberNo);
 		
 		int result = reservationDao.reservationInsert(reservaton);
-		if(result==0) throw new SQLException("예약하기가 실패했습니다.");
+		if(result==0) throw new SQLException("예매하기가 실패했습니다.");
 	}
 	
 	/**
@@ -35,10 +35,10 @@ public class ReservationService {
 	 * @throws SQLException
 	 */
 	public List<ReservationDTO> selctReservationByMemberNo() throws SQLException{
-		int memberNo =memberService.getSessionNo();
+		int memberNo = memberService.getSessionNo();
 		
 		List<ReservationDTO> list = reservationDao.selectReservationByMemberNo(memberNo);
-		if(list==null || list.size()==0) throw new SQLException(memberNo+"의 예약내역이 없습니다.");
+		if(list==null || list.size()==0) throw new SQLException("예매내역이 없습니다.");
 		return list;
 	}
 	
