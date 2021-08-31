@@ -121,12 +121,12 @@ public class ReservationDAOImpl implements ReservationDAO{
 			String visitAge = line.getVisitAge();
 			// 관람연령에 해당하는 할인율 가져와서 계산
 			int discountRate = this.getDiscount(visitAge);
-			System.out.println(line.getTicketQty() +" | " +discountRate + " | "  + price );
+			System.out.println("티켓수량 : "+ line.getTicketQty() +" | 할인율 "+discountRate + " % | " + price+ "원");
 			int amount = (int)((price - price * discountRate * 0.01) * line.getTicketQty());
 			total += amount;
 			line.setAmount(amount);
 		}
-		System.out.println("total = " + total);
+		System.out.println("총 예매금액 = " + total);
 		return total;
 	}
 	

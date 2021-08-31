@@ -368,7 +368,7 @@ public class MenuView {
 
 			//더 예매 추가하시겠습니까?
 			while(true) {
-				System.out.print("관람연령및 티켓수량을 더 추가하시겠습니까( yes | no )? ");
+				System.out.print("관람연령및 티켓수량을 더 추가하시겠습니까?(yes|no )? ");
 				String input  = sc.nextLine();
 				if(input.equals("yes")) {
 					reservationLineDTOList.add(moreInputLine());	
