@@ -8,4 +8,6 @@ import kosta.mvc.model.dto.StatisticsDTO;
 
 public interface StatisticsDAO {
 	ExhibitionDTO selectStatisticsByNo(int no, String firstDate, String lastDate) throws SQLException;
+
+	ExhibitionDTO selectStatisticsAll(String firstDate, String lastDate) throws SQLException;
 }

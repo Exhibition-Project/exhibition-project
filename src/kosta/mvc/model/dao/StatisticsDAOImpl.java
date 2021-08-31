@@ -53,6 +53,38 @@ public class StatisticsDAOImpl implements StatisticsDAO{
 		
 		return exhibitionDTO;
 	}
+
+	@Override
+	public ExhibitionDTO selectStatisticsAll(String firstDate, String lastDate) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ExhibitionDTO exhibitionDTO = new ExhibitionDTO();
+		List<StatisticsDTO> statisticsList = new ArrayList<StatisticsDTO>();
+		String sql = proFile.getProperty("statictics.selectStatisticsAll");
+		StatisticsDTO statisticsSummary = new StatisticsDTO();
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, firstDate);
+			ps.setString(2, lastDate);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				int totalVisitors = rs.getInt(1);
+				int totalProfits = rs.getInt(2);
+				StatisticsDTO statisticsDTO = new StatisticsDTO(totalVisitors, totalProfits, rs.getString(3));
+				statisticsList.add(statisticsDTO);
+				statisticsSummary.setTotalVisitors(statisticsSummary.getTotalVisitors() + totalVisitors);
+				statisticsSummary.setTotalProfits(statisticsSummary.getTotalProfits() + totalProfits);
+			}
+			exhibitionDTO.setStatisticsList(statisticsList);
+			exhibitionDTO.setStatisticsSummary(statisticsSummary);
+			
+		}finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return exhibitionDTO;
+	}
 	
 
 }

@@ -138,12 +138,13 @@ public class EndView {
 	 * 예매 통계 출력
 	 * */
 	public static void printStatistics(ExhibitionDTO exhibitionDTO) {
-		System.out.println(exhibitionDTO);
+		if(exhibitionDTO.getExhibitionName() != null) {
+			System.out.println(exhibitionDTO);			
+		}
 		for(StatisticsDTO statisticsDTO : exhibitionDTO.getStatisticsList()) {
 			System.out.println(statisticsDTO);
 		}
 		System.out.println("기간 내 총 방문자 수 : " + exhibitionDTO.getStatisticsSummary().getTotalVisitors() + " 명");
 		System.out.println("기간 내 총 예매 수익금 : " + exhibitionDTO.getStatisticsSummary().getTotalProfits() + " 원");
 	}
-
 }

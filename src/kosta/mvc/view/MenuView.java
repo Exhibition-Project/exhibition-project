@@ -402,7 +402,7 @@ public class MenuView {
 						printAdminReviewMenu();
 						break;
 					case 3:
-						InputStatisticsByNo();
+						printStatisticsMenu();
 						break;
 					case 4:
 						printReservationHistoryMenu();
@@ -561,6 +561,45 @@ public class MenuView {
 	/**
 	 * 예매 통계(전시회 번호 입력)
 	 * */
+	public static void printStatisticsMenu() {
+		
+		while(true) {
+			System.out.println("---------------------------------------");
+			System.out.println("1. 전체 통계  2. 전시회별 통계  9. 상위메뉴로 이동");
+			System.out.println("---------------------------------------");
+			try {
+				int choice = Integer.parseInt(sc.nextLine());
+				switch(choice) {
+				case 1:
+					InputStatisticsAll();
+					break;
+				case 2:
+					InputStatisticsByNo();
+				case 9:
+					return;
+				
+				default:
+					System.out.println("\n메뉴에 해당하는 숫자를 입력해 주세요.");
+				}
+				
+				
+			
+			}catch (NumberFormatException e) {
+				System.out.println("메뉴는 숫자만 입력하세요.");
+			}
+		}
+	}
+	
+	public static void InputStatisticsAll() {
+		
+		System.out.print("시작일을 입력하세요(yyyymmdd) -> ");
+		String firstDate = sc.nextLine();
+		System.out.print("종료일을 입력하세요(yyyymmdd) -> ");
+		String lastDate = sc.nextLine();
+		StatisticsController.selectStatisticsAll(firstDate, lastDate);
+
+	}
+	
 	public static void InputStatisticsByNo() {
 		try {
 			System.out.print("조회할 전시회 번호를 입력하세요 -> ");
@@ -570,12 +609,10 @@ public class MenuView {
 			System.out.print("종료일을 입력하세요(yyyymmdd) -> ");
 			String lastDate = sc.nextLine();
 			StatisticsController.selectStatisticsByNo(exhibitionNo, firstDate, lastDate);
-		
-		}catch (NumberFormatException e) {
-			System.out.println("전시회 번호는 숫자만 입력하세요.");
+		}catch(NumberFormatException e) {
+			System.out.println("전시회 번호는 숫자만 입력해주세요.");
 		}
 	}
-	
 	
 	//예매내역조회
 	/**
