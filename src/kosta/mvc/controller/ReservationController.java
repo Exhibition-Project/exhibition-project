@@ -48,12 +48,11 @@ public class ReservationController {
 	/**
 	 * 로그인 한 멤버에 맞는 예매내역보기
 	 * */
-	public static void selectReservationByMemberId() {
+	public static void selectReservationByMemberNo() {
 		try {
 			List<ReservationDTO> reservationList = reservationService.selctReservationByMemberNo();
-			EndView.printReservaionByMemberId(reservationList);
+			EndView.printReservaionByMemberNo(reservationList);
 		} catch (Exception e) {
-			e.printStackTrace();
 			FailView.errorMessage(e.getMessage());
 		}
 	}

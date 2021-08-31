@@ -29,18 +29,19 @@ public class ReservationDAOImpl implements ReservationDAO{
 	public int reservationInsert(ReservationDTO reservation) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
+//		String sql="insert into reservation values(RESERVATION_NO_SEQ.nextval, ?, ?, ?, ?)";
 		String sql = proFile.getProperty("reservation.insert");
 		int result = 0;
 		try {
 			con = DBUtil.getConnection();
 			con.setAutoCommit(false);
 			ps = con.prepareStatement(sql);
-
+			
 			ps.setInt(1, reservation.getMemberNo());//회원번호
 			ps.setInt(2, reservation.getExhibitionNo());//전시회번호
 			ps.setInt(3, getTotalAmount(reservation));//총구매금액 구하는 메소드 호출
 			ps.setString(4, reservation.getRegDate());//예매할 날짜
-
+			
 			result = ps.executeUpdate();
 			if(result==0) {
 				con.rollback();
@@ -68,29 +69,29 @@ public class ReservationDAOImpl implements ReservationDAO{
 	 * */
 	private int[] reservationLineInsert(Connection con, ReservationDTO reservation) throws SQLException{
 		PreparedStatement ps = null;
+//		String sql = "insert into reservation_line values(RESERVATION_LINE_NO_SEQ.nextval, reservation_no_seq.currval, ?, ?, ?)";
 		String sql = proFile.getProperty("reservation_line.insert");
 		int result [] = null;
 		try {
 			ps = con.prepareStatement(sql);
 			for(ReservationLineDTO reservationLine : reservation.getReservationLineList()) {
-
-
+				
 				ps.setString(1, reservationLine.getVisitAge());//관람연령
 				ps.setInt(2, reservationLine.getTicketQty());//티켓수량
 				ps.setInt(3, reservationLine.getAmount());//총가격 할인율이 적용된 가격 * 티켓수량
-
+				
 				ps.addBatch();
 				ps.clearParameters();
 			}
-
+			
 			result = ps.executeBatch();
-
+		
 		} finally {
 			DBUtil.dbClose(null, ps , null);
 		}
 		return result;
 	}
-
+	
 
 	/**
 	 * 예약 총구매금액 구하기
@@ -98,24 +99,23 @@ public class ReservationDAOImpl implements ReservationDAO{
 	 * */
 	public int getTotalAmount(ReservationDTO reservation) throws SQLException {          
 		List<ReservationLineDTO> reservationLineList = reservation.getReservationLineList();
-
 		ExhibitionDTO exhibition = exhibitionDao.exhibitionSelectByNo(reservation.getExhibitionNo());
 		int price = exhibition.getPrice();//전시회가격
 		int total = 0;
 		for(ReservationLineDTO line : reservationLineList) {
-
+			
 			// 연령에 해당하는 할인율 검색하기 select visit_age, discount_rate from discount where visit_age = ?;
 			String visitAge = line.getVisitAge();
 			// 관람연령에 해당하는 할인율 가져와서 계산
 			int discountRate = this.getDiscount(visitAge);
 			System.out.println(line.getTicketQty() +" | " +discountRate + " | "  + price );
-
-			total += (price * discountRate)* line.getTicketQty();
+			
+			total += (price - price * discountRate * 0.01) * line.getTicketQty();
 		}
 		System.out.println("total = " + total);
 		return total;
 	}
-
+	
 	/**
 	 * 관람연령에 해당하는 할인율 가져오기
 	 * */ 
@@ -123,23 +123,55 @@ public class ReservationDAOImpl implements ReservationDAO{
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		String sql = proFile.getProperty("discount.selectByVisitAge");
+		String sql = "select discount_rate from discount where visit_age = ?";
 		int discountRate = 0;
 		try {
 			con = DBUtil.getConnection();
 			ps= con.prepareStatement(sql);
 			ps.setString(1, visitAge);
 			rs = ps.executeQuery(); 
-			if(rs.next()) {
-				discountRate = rs.getInt(1);
-			}
-
+		     if(rs.next()) {
+		    	 discountRate = rs.getInt(1);
+		     }
+			
 		} finally {
 			DBUtil.dbClose(con, ps, rs);
 		}
 		return discountRate;
 	}
+	
 
+	/**
+	 * 로그인 한 멤버에 맞는 예매내역 출력
+	 * */
+	@Override
+	public List<ReservationDTO> selectReservationByMemberNo(int memberNo) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		String sql = proFile.getProperty("reservation.selectByMemberNo");
+		List<ReservationDTO> list = new ArrayList<>();
+		try {
+			con = DBUtil.getConnection();
+			ps= con.prepareStatement(sql);
+			ps.setInt(1, memberNo);
+			rs = ps.executeQuery(); 
+			
+			while(rs.next()) {
+				ReservationDTO reservation  = new ReservationDTO(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5));
+
+				//예매번호에 해당하는 상세정보 가져오기
+				List<ReservationLineDTO> reservationLineList = selectReservationLine(con, reservation.getReservationNo());
+				
+				reservation.setReservationLineList(reservationLineList);
+				list.add(reservation);
+			}
+		}finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return list;
+	}
+	
 	/**
 	 * 예약번호에 해당하는 예매상세 가져오기
 	 * */
@@ -162,36 +194,6 @@ public class ReservationDAOImpl implements ReservationDAO{
 		return list;
 	}
 
-	/**
-	 * 로그인 한 멤버에 맞는 예매내역 출력
-	 * */
-	@Override
-	public List<ReservationDTO> selectReservationByMemberNo(int memberNo) throws SQLException {
-		Connection con=null;
-		PreparedStatement ps=null;
-		ResultSet rs=null;
-		String sql = proFile.getProperty("reservation.selectByMemberNo");
-		List<ReservationDTO> list = new ArrayList<>();
-		try {
-			con = DBUtil.getConnection();
-			ps= con.prepareStatement(sql);
-			ps.setInt(1, memberNo);
-			rs = ps.executeQuery(); 
-
-			while(rs.next()) {
-				ReservationDTO reservation  = new ReservationDTO(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5));
-
-				//예매번호에 해당하는 상세정보 가져오기
-				List<ReservationLineDTO> reservationLineList = selectReservationLine(con, reservation.getReservationNo());
-
-				reservation.setReservationLineList(reservationLineList);
-				list.add(reservation);
-			}
-		}finally {
-			DBUtil.dbClose(con, ps, rs);
-		}
-		return list;
-	}
 	
 	/**
 	 * 예매내역 전체 검색

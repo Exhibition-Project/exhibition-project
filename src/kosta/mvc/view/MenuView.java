@@ -146,7 +146,7 @@ public class MenuView {
 						inputUpdateMember();
 						break;
 					case 3:
-						ReservationController.selectReservationByMemberId();
+						ReservationController.selectReservationByMemberNo();
 						break;
 					case 4:
 						printMemberReviewMenu();

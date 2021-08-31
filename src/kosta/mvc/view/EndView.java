@@ -47,7 +47,6 @@ public class EndView {
 			}
 			System.out.println();
 		}
-		
 	}
 	
 	/**
@@ -93,7 +92,7 @@ public class EndView {
 	/**
 	 * 예매 내역 리스트 출력
 	 * */
-	public static void printReservaionByMemberId(List<ReservationDTO> reservationList) {
+	public static void printReservaionByMemberNo(List<ReservationDTO> reservationList) {
 		for(ReservationDTO reservaion : reservationList) {
 			System.out.println(reservaion.getReservationNo()+ " | " + reservaion.getMemberNo()+ " | " + reservaion.getTotalAmount()+ " | " + reservaion.getRegDate());
 			for(ReservationLineDTO reservationLine : reservaion.getReservationLineList()) {

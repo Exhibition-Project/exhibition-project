@@ -26,7 +26,7 @@ public class ReservationService {
 	}
 	
 	/**
-	 * 로그인 한 멤버에 맞는 예매내역보기
+	 * 예약내역보기
 	 * */
 	public List<ReservationDTO> selctReservationByMemberNo() throws SQLException{
 		int memberNo =memberService.getSessionNo();
