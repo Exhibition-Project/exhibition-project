@@ -13,7 +13,7 @@ public interface ReservationDAO {
 	 * 	1) 테이블에 insert
 	 * 	2) reservation_line테이블에 insert
 	 * */
-	int reservationInsert(ReservationDTO Reservation) throws SQLException;
+	int reservationInsert(ReservationDTO Reservation) throws Exception;
 
 	/**
 	 * 로그인 한 멤버에 맞는 예매내역보기

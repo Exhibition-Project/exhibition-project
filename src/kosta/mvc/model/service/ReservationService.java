@@ -16,9 +16,8 @@ public class ReservationService {
 	/**
 	 * 예약하기
 	 * */
-	public void insertReservation(ReservationDTO reservaton) throws SQLException{
+	public void insertReservation(ReservationDTO reservaton) throws Exception{
 		int memberNo =memberService.getSessionNo();
-		System.out.println("memberNo = " + memberNo);
 		
 		reservaton.setMemberNo(memberNo);
 		

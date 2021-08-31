@@ -47,7 +47,6 @@ public class ReservationController {
 		} catch (ParseException pe) {
 			FailView.errorMessage("\n 관람하실 날짜는 yyyy-MM-dd 형식으로만 입력 가능합니다.");
 		} catch (Exception e) {
-			e.printStackTrace();
 			FailView.errorMessage(e.getMessage());
 		}
 	}

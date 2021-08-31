@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
@@ -26,11 +28,24 @@ public class ReservationDAOImpl implements ReservationDAO{
 	 * 	2) reservaion_line테이블에 insert
 	 * */
 	@Override
-	public int reservationInsert(ReservationDTO reservation) throws SQLException {
+	public int reservationInsert(ReservationDTO reservation) throws Exception {
 		Connection con = null;
 		PreparedStatement ps = null;
 		String sql = proFile.getProperty("reservation.insert");
 		int result = 0;
+		
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date regdate = sdf.parse(reservation.getRegDate());
+		int exhibitionNo = reservation.getExhibitionNo();
+		Date startDate = sdf.parse(exhibitionDao.exhibitionSelectByNo(exhibitionNo).getStartDate());
+		Date endDate = sdf.parse(exhibitionDao.exhibitionSelectByNo(exhibitionNo).getEndDate());
+
+		if(regdate.compareTo(startDate) < 0 || regdate.compareTo(endDate) > 0) {
+			throw new Exception("전시회 기간에 맞는 날짜를 입력해주세요.");
+		}
+			
+			
 		try {
 			con = DBUtil.getConnection();
 			con.setAutoCommit(false);
@@ -90,7 +105,7 @@ public class ReservationDAOImpl implements ReservationDAO{
 		return result;
 	}
 	
-
+	
 	/**
 	 * 예약 총구매금액 구하기
 	 * 전시회의 가격 price가 관람연령 adults 에 따라 10% 할인된다
@@ -107,12 +122,14 @@ public class ReservationDAOImpl implements ReservationDAO{
 			// 관람연령에 해당하는 할인율 가져와서 계산
 			int discountRate = this.getDiscount(visitAge);
 			System.out.println(line.getTicketQty() +" | " +discountRate + " | "  + price );
-			
-			total += (price - price * discountRate * 0.01) * line.getTicketQty();
+			int amount = (int)((price - price * discountRate * 0.01) * line.getTicketQty());
+			total += amount;
+			line.setAmount(amount);
 		}
 		System.out.println("total = " + total);
 		return total;
 	}
+	
 	
 	/**
 	 * 관람연령에 해당하는 할인율 가져오기
