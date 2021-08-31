@@ -3,6 +3,7 @@ package kosta.mvc.model.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import kosta.mvc.exception.SearchNotFoundException;
 import kosta.mvc.model.dao.ReviewDAO;
 import kosta.mvc.model.dao.ReviewDAOImpl;
 import kosta.mvc.model.dto.ReviewDTO;
@@ -15,11 +16,12 @@ public class ReviewService {
 	
 	/**
 	 * 전시회 번호로 조회
+	 * @throws SQLException 
 	 * */
 	public List<ReviewDTO> selectAllbyExhibitionNo(int exNo) throws SQLException{
 		List<ReviewDTO> reviewDTO = reviewDAO.selectAllbyExhibitionNo(exNo);
 		if(reviewDTO == null || reviewDTO.isEmpty()) {
-			throw new SQLException("전시회 번호" + exNo + "에 등록된 후기가 없습니다.");
+			throw new SearchNotFoundException("전시회 번호" + exNo + "에 등록된 후기가 없습니다.");
 		}
 		
 		return reviewDTO;
@@ -41,7 +43,7 @@ public class ReviewService {
 	public ReviewDTO selectByReviewNo(int reviewNo) throws SQLException {
 		ReviewDTO dto = reviewDAO.selectByReviewNo(reviewNo);
 		if(dto == null) {
-			throw new SQLException(reviewNo + " 번에 해당하는 게시물이 없습니다.");
+			throw new SearchNotFoundException(reviewNo + " 번에 해당하는 게시물이 없습니다.");
 		}
 		
 		return dto;
@@ -56,7 +58,7 @@ public class ReviewService {
 	public void reviewInsert(ReviewDTO dto) throws SQLException{
 		dto.setMemberNo(memberS.getSessionNo());
 		int result = reviewDAO.reviewInsert(dto);
-		if(result == 0)throw new SQLException("후기를 등록할 수 없습니다.");
+		if(result == 0)throw new DMLException("후기를 등록할 수 없습니다.");
 		
 	}
 	
@@ -66,7 +68,7 @@ public class ReviewService {
 	public void reviewUpdate(ReviewDTO dto) throws SQLException{
 		dto.setMemberNo(memberS.getSessionNo());
 		int result = reviewDAO.ReviewUpdate(dto);
-		if(result == 0)throw new SQLException("후기를 수정할 수 없습니다.");
+		if(result == 0)throw new DMLException("후기를 수정할 수 없습니다.");
 	}
 	
 	/**
@@ -74,7 +76,7 @@ public class ReviewService {
 	 * */
 	public void reviewDelete(int reviewNo) throws SQLException {
 		int result = reviewDAO.reviewDelete(reviewNo);
-		if(result == 0) throw new SQLException("후기 삭제에 실패했습니다.");
+		if(result == 0) throw new DMLException("후기 삭제에 실패했습니다.");
 	}
 
 }
