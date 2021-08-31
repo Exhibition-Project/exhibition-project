@@ -73,7 +73,8 @@ public class ReservationService {
 	 * @throws SQLException
 	 */
 	public void reservationDelete(int reservationNo)throws SQLException {
-		int result = reservationDao.reservationDelete(reservationNo);
+		int memberNo = memberService.getSessionNo();
+		int result = reservationDao.reservationDelete(memberNo, reservationNo);
 		if(result == 0) throw new DMLException("예매 취소에 실패했습니다.");
 	}
 

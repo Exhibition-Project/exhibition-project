@@ -47,10 +47,37 @@ public class ReviewDAOImpl implements ReviewDAO {
 
 
 	/**
-	 * 후기 삭제
+	 * 후기 삭제(회원)
 	 */
 	@Override
-	public int reviewDelete(int reviewNo) throws SQLException {
+	public int reviewDelete(int memberNo, int reviewNo) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+
+		int result = 0;
+		String sql = proFile.getProperty("review.delete");
+
+		try {
+			con = DBUtil.getConnection();
+			if(!isMyReview(con, memberNo, reviewNo)) {
+				throw new SQLException("삭제할 수 없는 후기입니다.");
+			}
+			ps = con.prepareStatement(sql);
+
+			ps.setInt(1, reviewNo);
+
+			result = ps.executeUpdate();
+		}finally {
+			DBUtil.dbClose(con, ps);
+		}
+		return result;
+	}
+	
+	/**
+	 * 후기 삭제(관리자)
+	 */
+	@Override
+	public int reviewDeleteAdmin(int reviewNo) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 
@@ -71,7 +98,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 	}
 
 	/**
-	 * 후기 수정
+	 * 후기 수정(회원)
 	 */
 	@Override
 	public int ReviewUpdate(ReviewDTO dto) throws SQLException {
@@ -84,6 +111,10 @@ public class ReviewDAOImpl implements ReviewDAO {
 
 		try {
 			con = DBUtil.getConnection();
+			if(!isMyReview(con, dto.getMemberNo(), dto.getReviewNo())) {
+				throw new SQLException("수정할 수 없는 후기입니다.");
+			}
+			
 			ps = con.prepareStatement(sql);
 
 			ps.setString(1, dto.getReviewContnet());
@@ -182,6 +213,32 @@ public class ReviewDAOImpl implements ReviewDAO {
 		}
 
 		return reviewList;
+	}
+	
+	/**
+	 * 
+	 * @param con
+	 * @param memberNo
+	 * @param reviewNo
+	 * @return 자신이 작성한 후기면 true 아니면 false
+	 * @throws SQLException
+	 */
+	private boolean isMyReview(Connection con, int memberNo, int reviewNo) throws SQLException{
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		boolean result = false;
+		String sql = proFile.getProperty("review.selectMemberNoByReviewNo");
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, reviewNo);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				result = memberNo == rs.getInt(1) ? true : false;
+			}
+		}finally {
+			DBUtil.dbClose(null, ps, rs);
+		}
+		return result;
 	}
 
 }

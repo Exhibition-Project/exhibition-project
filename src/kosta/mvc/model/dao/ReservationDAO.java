@@ -49,7 +49,7 @@ public interface ReservationDAO {
 	 * @return 예매번호에 해당하는 예매내역 레코드 삭제
 	 * @throws SQLException
 	 */
-	int reservationDelete(int reservationNo) throws SQLException;
+	int reservationDelete(int memberNo, int reservationNo) throws SQLException;
 }
 	
 

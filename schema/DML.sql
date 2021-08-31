@@ -159,7 +159,7 @@ group by reg_date;
 
 select sum(ticket_qty) ÃÑÆ¼ÄÏ¼ö, sum(amount) ÃÑÆÇ¸Å¾×, to_char(reg_date, 'YY-MM-DD') ³¯Â¥
 from reservation join reservation_line using(reservation_no)
-where reg_date between '211001' and '211005'
+where reg_date between '20210401' and '20211005'
 group by reg_date;
 
 commit;
@@ -171,7 +171,9 @@ rollback;
 delete from reservation;
 delete from reservation_line;
 delete from review;
-delete from reservation_line where reservation_no = ?
-
-
-
+delete from reservation_line where reservation_no = ?;
+select * from reservation;
+delete from reservation where reservation_no = 32;
+select * from reservation_line;
+delete from reservation_line where reservation_no = 8;
+commit;

@@ -46,9 +46,14 @@ public interface ReviewDAO {
 
 	
 	/**
+	 * 후기 번호에 해당하는 후기 삭제 (회원용)
+	 * */
+	int reviewDelete(int memberNo, int reviewNo) throws SQLException;
+	
+	/**
 	 * 후기 번호에 해당하는 후기 삭제 (관리자용)
 	 * */
-	int reviewDelete(int reviewNo) throws SQLException;
+	int reviewDeleteAdmin(int reviewNo) throws SQLException;
 	
 	
 	

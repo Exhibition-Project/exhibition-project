@@ -80,12 +80,23 @@ public class ReviewService {
 	}
 	
 	/**
-	 * 후기 삭제
+	 * 후기 삭제(회원)
 	 * @param reviewNo
 	 * @throws SQLException
 	 */
 	public void reviewDelete(int reviewNo) throws SQLException {
-		int result = reviewDAO.reviewDelete(reviewNo);
+		int memberNo = memberS.getSessionNo();
+		int result = reviewDAO.reviewDelete(memberNo, reviewNo);
+		if(result == 0) throw new DMLException("후기 삭제에 실패했습니다.");
+	}
+	
+	/**
+	 * 후기 삭제(관리자)
+	 * @param reviewNo
+	 * @throws SQLException
+	 */
+	public void reviewDeleteAdmin(int reviewNo) throws SQLException {
+		int result = reviewDAO.reviewDeleteAdmin(reviewNo);
 		if(result == 0) throw new DMLException("후기 삭제에 실패했습니다.");
 	}
 

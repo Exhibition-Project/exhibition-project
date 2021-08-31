@@ -572,7 +572,7 @@ public class MenuView {
 						InputReViewByNo();
 						break;
 					case 2:
-						InputDeleteReview(); //관리자 후기삭제를 회원의 후기삭제와 아예 다르게 만들어서 구현하는건 어떨지?
+						InputDeleteReviewAdmin(); 
 						break;
 					case 9:
 						return;
@@ -587,6 +587,13 @@ public class MenuView {
 	}
 	
 	
+	public static void InputDeleteReviewAdmin() {
+		System.out.print("삭제할 후기 번호를 입력하세요. -> ");
+		int no = Integer.parseInt(sc.nextLine());
+		ReviewController.reviewDeleteAdmin(no);
+		
+	}
+
 	//예매 통계
 	
 	/**

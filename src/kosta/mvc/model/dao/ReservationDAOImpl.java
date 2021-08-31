@@ -273,7 +273,7 @@ public class ReservationDAOImpl implements ReservationDAO{
 	 * 	2) reservation.delete
 	 */
 	@Override
-	public int reservationDelete(int reservationNo) throws SQLException {
+	public int reservationDelete(int memberNo, int reservationNo) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		String sql = proFile.getProperty("reservation.delete");
@@ -281,22 +281,24 @@ public class ReservationDAOImpl implements ReservationDAO{
 		try {
 			con = DBUtil.getConnection();
 			con.setAutoCommit(false);
-
-				int re = reservationLineDelete(con, reservationNo);//예매상세 삭제하기
-				 if(re==0) {
-						con.rollback();
-						throw new SQLException("예매를 취소할 수 없습니다.");
-				 }else {
-					ps = con.prepareStatement(sql);
-					ps.setInt(1, reservationNo);
-					result = ps.executeUpdate();
-					if(result==0) {
-						con.rollback();
-						throw new SQLException("예매취소가 실패했습니다");
-					}		
-				 }
-				
-				con.commit();
+			if(!isMyreservation(con, memberNo, reservationNo)) {
+				throw new SQLException("예매를 취소할 수 없습니다.");
+			}
+			int re = reservationLineDelete(con, reservationNo);//예매상세 삭제하기
+			 if(re==0) {
+					con.rollback();
+					throw new SQLException("예매를 취소할 수 없습니다.");
+			 }else {
+				ps = con.prepareStatement(sql);
+				ps.setInt(1, reservationNo);
+				result = ps.executeUpdate();
+				if(result==0) {
+					con.rollback();
+					throw new SQLException("예매취소가 실패했습니다");
+				}		
+			 }
+			
+			con.commit();
 			
 		}finally {
 			con.commit();
@@ -325,6 +327,33 @@ public class ReservationDAOImpl implements ReservationDAO{
 
 		} finally {
 			DBUtil.dbClose(null, ps , null);
+		}
+		return result;
+	}
+	/**
+	 * 예약상세 삭제하기
+	 * @param con
+	 * @param memberNo
+	 * @param reservationNo
+	 * @return 자신의 예매내역이라면 true 아니면 false 
+	 * @throws SQLException
+	 */
+	private boolean isMyreservation(Connection con, int memberNo, int reservationNo) throws SQLException{
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = proFile.getProperty("reservation.selectByNo");
+		boolean result = false;
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, reservationNo);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				if(memberNo == rs.getInt(2)) {
+					result = true;
+				}
+			}
+		}finally {
+			DBUtil.dbClose(null, ps, rs);
 		}
 		return result;
 	}

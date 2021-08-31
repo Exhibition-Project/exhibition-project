@@ -87,7 +87,7 @@ public class ReviewController {
 	}
 	
 	/**
-	 * 후기 삭제
+	 * 후기 삭제(회원)
 	 * @param reviewNo
 	 */
 	public static void reviewDelete(int reviewNo) {
@@ -98,5 +98,20 @@ public class ReviewController {
 			FailView.errorMessage(e.getMessage());
 		}
 	}
+	
+	/**
+	 * 후기 삭제(관리자)
+	 * @param reviewNo
+	 */
+	public static void reviewDeleteAdmin(int reviewNo) {
+		try {
+			reviewService.reviewDeleteAdmin(reviewNo);
+			EndView.printMessage("\n후기가 삭제되었습니다.");
+		}catch(SQLException e) {
+			FailView.errorMessage(e.getMessage());
+		}
+	}
+	
+	
 
 }
