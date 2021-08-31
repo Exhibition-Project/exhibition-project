@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="kosta.mvc.view.StartView" project="exhibition_project" 
+    file="/exhibition_project/src/kosta/mvc/view/StartView.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="116" width="152" x="2470" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="kosta.mvc.view.MenuView" project="exhibition_project" 
+    file="/exhibition_project/src/kosta/mvc/view/MenuView.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="716" width="296" x="1945" y="553"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="kosta.mvc.controller.ExhibitionController" project="exhibition_project" 
+    file="/exhibition_project/src/kosta/mvc/controller/ExhibitionController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="261" width="235" x="1501" y="1309"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="kosta.mvc.controller.MemberController" project="exhibition_project" 
+    file="/exhibition_project/src/kosta/mvc/controller/MemberController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="196" width="373" x="2612" y="1309"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="kosta.mvc.controller.ReservationController" project="exhibition_project" 
+    file="/exhibition_project/src/kosta/mvc/controller/ReservationController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="216" width="347" x="1776" y="1309"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="kosta.mvc.controller.ReviewController" project="exhibition_project" 
+    file="/exhibition_project/src/kosta/mvc/controller/ReviewController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="216" width="249" x="2163" y="1309"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="kosta.mvc.controller.StatisticsController" project="exhibition_project" 
+    file="/exhibition_project/src/kosta/mvc/controller/StatisticsController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="136" width="318" x="1143" y="1309"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="kosta.mvc.model.service.ExhibitionService" project="exhibition_project" 
+    file="/exhibition_project/src/kosta/mvc/model/service/ExhibitionService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="256" width="387" x="1407" y="1610"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="kosta.mvc.model.service.MemberService" project="exhibition_project" 
+    file="/exhibition_project/src/kosta/mvc/model/service/MemberService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="296" width="316" x="2284" y="1906"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="kosta.mvc.model.service.ReservationService" project="exhibition_project" 
+    file="/exhibition_project/src/kosta/mvc/model/service/ReservationService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="216" width="410" x="1834" y="1610"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="kosta.mvc.model.service.ReviewService" project="exhibition_project" 
+    file="/exhibition_project/src/kosta/mvc/model/service/ReviewService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="236" width="345" x="2284" y="1610"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="kosta.mvc.model.service.StatisticsService" project="exhibition_project" 
+    file="/exhibition_project/src/kosta/mvc/model/service/StatisticsService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="156" width="390" x="977" y="1610"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="kosta.mvc.model.dao.ExhibitionDAOImpl" project="exhibition_project" 
+    file="/exhibition_project/src/kosta/mvc/model/dao/ExhibitionDAOImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="256" width="387" x="1407" y="2282"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="kosta.mvc.model.dao.MemberDAOImpl" project="exhibition_project" 
+    file="/exhibition_project/src/kosta/mvc/model/dao/MemberDAOImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="296" width="367" x="2324" y="2282"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="kosta.mvc.model.dao.ReservationDAOImpl" project="exhibition_project" 
+    file="/exhibition_project/src/kosta/mvc/model/dao/ReservationDAOImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="336" width="482" x="1621" y="1906"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="kosta.mvc.model.dao.ReviewDAOImpl" project="exhibition_project" 
+    file="/exhibition_project/src/kosta/mvc/model/dao/ReviewDAOImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="236" width="345" x="2640" y="1906"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="kosta.mvc.model.dao.StatisticsDAOImpl" project="exhibition_project" 
+    file="/exhibition_project/src/kosta/mvc/model/dao/StatisticsDAOImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="156" width="390" x="996" y="1906"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="kosta.mvc.model.dto.ExhibitionDTO" project="exhibition_project" 
+    file="/exhibition_project/src/kosta/mvc/model/dto/ExhibitionDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="756" width="398" x="1407" y="2618"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="kosta.mvc.model.dto.DiscountDTO" project="exhibition_project" 
+    file="/exhibition_project/src/kosta/mvc/model/dto/DiscountDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="256" width="200" x="1771" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="kosta.mvc.model.dto.MemberDTO" project="exhibition_project" 
+    file="/exhibition_project/src/kosta/mvc/model/dto/MemberDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="476" width="323" x="2662" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="kosta.mvc.model.dto.ReservationDTO" project="exhibition_project" 
+    file="/exhibition_project/src/kosta/mvc/model/dto/ReservationDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="476" width="417" x="542" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="kosta.mvc.model.dto.ReservationLineDTO" project="exhibition_project" 
+    file="/exhibition_project/src/kosta/mvc/model/dto/ReservationLineDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="436" width="303" x="542" y="553"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="kosta.mvc.model.dto.ReviewDTO" project="exhibition_project" 
+    file="/exhibition_project/src/kosta/mvc/model/dto/ReviewDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="516" width="266" x="1661" y="3414"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="kosta.mvc.model.dto.StatisticsDTO" project="exhibition_project" 
+    file="/exhibition_project/src/kosta/mvc/model/dto/StatisticsDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="336" width="214" x="1407" y="3414"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="kosta.mvc.session.Session" project="exhibition_project" 
+    file="/exhibition_project/src/kosta/mvc/session/Session.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="416" width="295" x="2284" y="2618"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="kosta.mvc.session.SessionSet" project="exhibition_project" 
+    file="/exhibition_project/src/kosta/mvc/session/SessionSet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="196" width="242" x="2011" y="2282"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="kosta.mvc.view.EndView" project="exhibition_project" 
+    file="/exhibition_project/src/kosta/mvc/view/EndView.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="356" width="433" x="69" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="kosta.mvc.view.FailView" project="exhibition_project" 
+    file="/exhibition_project/src/kosta/mvc/view/FailView.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="116" width="208" x="999" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="kosta.mvc.util.DBUtil" project="exhibition_project" 
+    file="/exhibition_project/src/kosta/mvc/util/DBUtil.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="196" width="419" x="2011" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="kosta.mvc.exception.DMLException" project="exhibition_project" 
+    file="/exhibition_project/src/kosta/mvc/exception/DMLException.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="116" width="180" x="1551" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="31" language="java" name="kosta.mvc.exception.SearchNotFoundException" project="exhibition_project" 
+    file="/exhibition_project/src/kosta/mvc/exception/SearchNotFoundException.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="116" width="264" x="1247" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <dependency id="32">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <dependency id="33">    
+    <bendpoint x="1416" y="1906"/>    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="13"/>  
+  </dependency>  
+  <dependency id="34">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="13"/>  
+  </dependency>  
+  <association id="35">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="36" name="memberService"/>      
+      <multiplicity id="37" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="38">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="39" name="exhibitionService"/>      
+      <multiplicity id="40" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="41">    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="42" name="set"/>      
+      <multiplicity id="43" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="25" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="44">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="45" name="statisticsList"/>      
+      <multiplicity id="46" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="47">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="48" name="memberS"/>      
+      <multiplicity id="49" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="50">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="51" name="reservationService"/>      
+      <multiplicity id="52" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="53">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="54" name="reviewService"/>      
+      <multiplicity id="55" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="56">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="14"/>  
+  </dependency>  
+  <dependency id="57">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <dependency id="58">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <dependency id="59">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="60">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="13"/>  
+  </dependency>  
+  <dependency id="61">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <association id="62">    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="63" name="ss"/>      
+      <multiplicity id="64" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="65">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <association id="66">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="67" name="statisticsSummary"/>      
+      <multiplicity id="68" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="69">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <association id="70">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="71" name="reviewList"/>      
+      <multiplicity id="72" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="73">    
+    <bendpoint x="2293" y="2282"/>    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="74" name="set"/>      
+      <multiplicity id="75" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="25" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="76">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <association id="77">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="78" name="sessionSet"/>      
+      <multiplicity id="79" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="80">    
+    <bendpoint x="2659" y="1610"/>    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="81" name="memberService"/>      
+      <multiplicity id="82" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="83">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <association id="84">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="85" name="exhibitionService"/>      
+      <multiplicity id="86" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="87">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <association id="88">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="89" name="statisticsService"/>      
+      <multiplicity id="90" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="91">    
+    <end type="SOURCE" refId="21" navigable="false">      
+      <attribute id="92" name="reservationLineList"/>      
+      <multiplicity id="93" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="94">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
