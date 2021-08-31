@@ -33,10 +33,8 @@ public interface ReservationDAO {
 
 	/**
 	 * 예매내역 삭제
-	 * reservation.delete
-	 * 	reservation_line.delete
 	 * */
-
+	int reservationDelete(int reservationNo) throws SQLException;
 }
 	
 
