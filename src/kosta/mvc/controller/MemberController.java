@@ -1,6 +1,7 @@
 package kosta.mvc.controller;
 
 
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -28,7 +29,7 @@ public class MemberController {
 				MenuView.printMemberMenu();
 			}
 		} catch (Exception e) {
-			FailView.errorMessage(e.getMessage());
+			FailView.errorMessage("\n로그인에 실패하였습니다.");
 		}
 	}
 
@@ -93,7 +94,7 @@ public class MemberController {
 			}
 			System.out.println("\n수정에 성공하였습니다.");
 		} catch (Exception e) {
-			FailView.errorMessage(e.getMessage());
+			FailView.errorMessage("\n수정에 실패하였습니다.");
 		}
 
 	}
