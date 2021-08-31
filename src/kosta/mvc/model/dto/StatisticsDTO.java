@@ -1,8 +1,8 @@
 package kosta.mvc.model.dto;
 
 public class StatisticsDTO {
-	private String date;
-	private int totalVisitors;
+	private String date; 
+	private int totalVisitors; 
 	private int totalProfits;
 	
 	public StatisticsDTO() {}

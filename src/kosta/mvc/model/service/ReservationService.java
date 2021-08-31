@@ -8,14 +8,18 @@ import kosta.mvc.model.dao.ReservationDAO;
 import kosta.mvc.model.dao.ReservationDAOImpl;
 import kosta.mvc.model.dto.ReservationDTO;
 import kosta.mvc.model.dto.ReservationLineDTO;
-
+/**
+ * @author 박은솔
+ */
 public class ReservationService {
 	ReservationDAO reservationDao = new ReservationDAOImpl();
 	MemberService memberService = new MemberService();
 	
 	/**
-	 * 예약하기
-	 * */
+	 * 전시회 예매하기
+	 * @param reservaton
+	 * @throws Exception
+	 */
 	public void insertReservation(ReservationDTO reservaton) throws Exception{
 		int memberNo =memberService.getSessionNo();
 		
@@ -26,8 +30,10 @@ public class ReservationService {
 	}
 	
 	/**
-	 * 예약내역보기
-	 * */
+	 * 예매내역보기 
+	 * @return 로그인한 회원의 예매내역 리스트
+	 * @throws SQLException
+	 */
 	public List<ReservationDTO> selctReservationByMemberNo() throws SQLException{
 		int memberNo =memberService.getSessionNo();
 		
@@ -38,7 +44,9 @@ public class ReservationService {
 	
 	/**
 	 * 전시회 번호로 예매내역 검색
-	 * */
+	 * @return 번호에 해당하는 예매내역
+	 * @throws SQLException
+	 */
 	public List<ReservationDTO> reservationSelectAll() throws SQLException{
 		List<ReservationDTO> reservationList = reservationDao.reservationSelectAll();
 		if(reservationList.size()==0 || reservationList == null) throw new SQLException("현재 찾고있는 예매내역이 존재하지 않습니다.");
@@ -46,8 +54,11 @@ public class ReservationService {
 	}	
 	
 	/**
-	 * 예매번호로 조회 
-	 * */
+	 * 예매번호로 예매내역 조회
+	 * @param reservationNo
+	 * @return 번호에 해당하는 예매내역 리스트
+	 * @throws SQLException
+	 */
 	public List<ReservationLineDTO> selectByReservationNo(int reservationNo) throws SQLException{
 		List<ReservationLineDTO> reservationLine  = reservationDao.selectByReservationNo(reservationNo);
 		if(reservationLine == null || reservationLine.isEmpty()) {
@@ -57,8 +68,10 @@ public class ReservationService {
 	}
 
 	/**
-	 * 예매번호로 예매취소(삭제)
-	 * */
+	 * 예매번호로 예매취소(삭졔)
+	 * @param reservationNo
+	 * @throws SQLException
+	 */
 	public void reservationDelete(int reservationNo)throws SQLException {
 		int result = reservationDao.reservationDelete(reservationNo);
 		if(result == 0) throw new DMLException("예매 취소에 실패했습니다.");

@@ -10,11 +10,15 @@ import java.util.Properties;
 
 import kosta.mvc.model.dto.ExhibitionDTO;
 import kosta.mvc.util.DBUtil;
-
+/**
+ * @author 김연식
+ */
 public class ExhibitionDAOImpl implements ExhibitionDAO {
 	Properties proFile = DBUtil.getProFile();
 
-	//전체 검색
+	/**
+	 * 전시회 전체 검색
+	 */
 	@Override
 	public List<ExhibitionDTO> exhibitionSelectAll() throws SQLException{
 		Connection con=null;
@@ -37,10 +41,9 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 		return exhibitionList;
 	}
 
-
-	
-	
-	//날짜별 검색
+	/**
+	 * 전시회 날짜별 검색
+	 */
 	@Override
 	public List<ExhibitionDTO> exhibitionSelectByDate(String date) throws SQLException{
 		Connection con=null;
@@ -64,7 +67,9 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 		return exhibitionList;
 	}
 
-	//전시회 별점순으로 검색
+	/**
+	 * 전시회 별점순으로 검색
+	 */
 	@Override
 	public List<ExhibitionDTO> exhibitionSelectByStars() throws SQLException{
 		Connection con=null;
@@ -88,8 +93,9 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 		return exhibitionList;
 	}
 	
-	
-	//전시회 등록
+	/**
+	 * 전시회 등록
+	 */
 	@Override
 	public int exhibitionInsert(ExhibitionDTO dto) throws SQLException{
 		Connection con=null;
@@ -116,7 +122,9 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 		return result;
 	}
 	
-	//전시회 수정
+	/**
+	 * 전시회 수정
+	 */
 	@Override
 	public int exhibitionUpdate(ExhibitionDTO dto) throws SQLException{
 	
@@ -143,7 +151,9 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 		return result;
 	}
 
-	//전시회 삭제
+	/**
+	 * 전시회 삭제
+	 */
 	@Override
 	public int exhibitionDelete(int exhibitionNo) throws SQLException{
 		Connection con = null;

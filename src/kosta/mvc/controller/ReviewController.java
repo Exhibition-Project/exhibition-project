@@ -9,15 +9,16 @@ import kosta.mvc.model.service.ExhibitionService;
 import kosta.mvc.model.service.ReviewService;
 import kosta.mvc.view.EndView;
 import kosta.mvc.view.FailView;
-
-
+/**
+ * @author 현지윤
+ */
 public class ReviewController {
 	private static ReviewService reviewService = new ReviewService();
-	
-	
+
 	/**
-	 * 전시회 번호로 검색
-	 * */
+	 * 전시회 번호로 후기 검색
+	 * @param exNo
+	 */
 	public static void selectAllbyExhibitionNo(int exNo) {
 		ExhibitionService exhibitionSevice = new ExhibitionService();
 		try {
@@ -32,7 +33,7 @@ public class ReviewController {
 	
 	/**
 	 * 사용자 번호로 검색 (내 후기 보기)
-	 * */
+	 */
 	public static void reviewSelectByReviewNo() {
 		try {
 			List<ReviewDTO> list = reviewService.selectByMemberNo();
@@ -47,7 +48,8 @@ public class ReviewController {
 	
 	/**
 	 * 후기 번호로 검색
-	 * */
+	 * @param reviewNo
+	 */
 	public static void selectByReviewNo(int reviewNo) {
 		try {
 			ReviewDTO dto = reviewService.selectByReviewNo(reviewNo);
@@ -59,7 +61,8 @@ public class ReviewController {
 	
 	/**
 	 * 후기 등록
-	 * */
+	 * @param dto
+	 */
 	public static void reviewInsert(ReviewDTO dto) {
 		try{
 			reviewService.reviewInsert(dto);
@@ -71,7 +74,8 @@ public class ReviewController {
 	
 	/**
 	 * 후기 수정
-	 * */
+	 * @param dto
+	 */
 	public static void reviewUpdate(ReviewDTO dto) {
 		try {
 			reviewService.reviewUpdate(dto);
@@ -83,8 +87,9 @@ public class ReviewController {
 	}
 	
 	/**
-	 * 삭제
-	 * */
+	 * 후기 삭제
+	 * @param reviewNo
+	 */
 	public static void reviewDelete(int reviewNo) {
 		try {
 			reviewService.reviewDelete(reviewNo);

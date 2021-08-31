@@ -9,7 +9,9 @@ import kosta.mvc.model.dao.MemberDAOImpl;
 import kosta.mvc.model.dto.MemberDTO;
 import kosta.mvc.session.Session;
 import kosta.mvc.session.SessionSet;
-
+/**
+ * @author 박성하
+ */
 public class MemberService {
 	MemberDAO memberDAO = new MemberDAOImpl();
 
@@ -17,7 +19,11 @@ public class MemberService {
 	Set<Session> set = sessionSet.getSessionSet();
 
 	/**
-	 * id, password 받아서 맞는 MemberDTO를 가져온다.
+	 * 로그인
+	 * @param id
+	 * @param password
+	 * @return 해당 MemberDTO를 가져온다
+	 * @throws Exception
 	 */
 	public MemberDTO login(String id, String password) throws Exception {
 
@@ -34,7 +40,9 @@ public class MemberService {
 	}
 
 	/**
-	 * 회원중복조회
+	 * 회원 중복조회
+	 * @param id
+	 * @return 중복된 회원있는지 확인하는 메소드
 	 */
 	public int getMemberId(String id) {
 		return memberDAO.getMemberId(id);
@@ -42,6 +50,9 @@ public class MemberService {
 
 	/**
 	 * 회원가입
+	 * @param memberDTO
+	 * @return MemberDTO에 회원 레코드 추가
+	 * @throws SQLException
 	 */
 	public int insertMembership(MemberDTO memberDTO) throws SQLException{
 		return memberDAO.insertMembership(memberDTO);
@@ -49,6 +60,9 @@ public class MemberService {
 
 	/**
 	 * 기존비밀번호와 일치하는지 체크
+	 * @param confirmPassword
+	 * @return 비밀번호 일치여부 확인하는 메소드
+	 * @throws SQLException
 	 */
 	public int checkPassword(String confirmPassword) throws SQLException{
 
@@ -57,7 +71,11 @@ public class MemberService {
 	}
 
 	/**
-	 * 고객정보수정
+	 * 회원정보 수정
+	 * @param confirmPassword
+	 * @param updateMemberDTO
+	 * @return 수정된 회원의 MemberDTO
+	 * @throws SQLException
 	 */
 	public int updateMember(String confirmPassword, MemberDTO updateMemberDTO) throws SQLException{
 
@@ -66,7 +84,9 @@ public class MemberService {
 	}
 
 	/**
-	 * 고객 로그인한 회원정보 조회
+	 * 로그인한 회원 정보 조회
+	 * @return 회원 정보
+	 * @throws SQLException
 	 */
 	public MemberDTO memberSelectReservation() throws SQLException{
 

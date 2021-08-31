@@ -1,11 +1,13 @@
 package kosta.mvc.session;
 
 import java.util.Map;
-
 /**
- * 로그인 된 사용자 저장
- * */
+ * @author 채창완
+ */
 public class Session {
+	/**
+	 * 로그인 된 사용자 저장
+	 * */
 	private int sessionNo;
 	private String sessionId;
 	private Map<String,Object> attributes; //장바구니

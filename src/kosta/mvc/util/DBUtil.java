@@ -14,7 +14,7 @@ public class DBUtil {
 	
 	/**
 	 * 로드
-	 * */
+	 */
 	static {
 		try {
 			proFile.load(new FileInputStream("resources/dbInfo.properties"));
@@ -32,14 +32,14 @@ public class DBUtil {
 	
 	/**
 	 * 연결
-	 * */
+	 */
 	public static Connection getConnection() throws SQLException{
 		return DriverManager.getConnection(proFile.getProperty("url"), proFile.getProperty("userName"), proFile.getProperty("userPass"));
 	}
 	
 	/**
 	 * 닫기
-	 * */
+	 */
 	public static void dbClose(Connection con, PreparedStatement st, ResultSet rs) {
 		try {
 			if(con != null) con.close();

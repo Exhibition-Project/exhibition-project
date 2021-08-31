@@ -1,11 +1,11 @@
 package kosta.mvc.model.dto;
 
 public class MemberDTO {
-	private int memberNo;
-	private String memberId;
-	private String memberName;
-	private String memberBirth;
-	private String memberPass;
+	private int memberNo; //회원번호
+	private String memberId; //회원아이디
+	private String memberName; //회원번호
+	private String memberBirth; //생년월일
+	private String memberPass; //비밀번호
 	
 	public MemberDTO() {}
 	

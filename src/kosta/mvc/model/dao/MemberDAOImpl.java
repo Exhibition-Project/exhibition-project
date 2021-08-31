@@ -8,7 +8,9 @@ import java.util.Properties;
 
 import kosta.mvc.model.dto.MemberDTO;
 import kosta.mvc.util.DBUtil;
-
+/**
+ * @author 박성하
+ */
 public class MemberDAOImpl implements MemberDAO {
 	
 	private Properties proFile = DBUtil.getProFile();
@@ -133,7 +135,7 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	/**
-	 * 회원정보조회
+	 * 회원정보 조회
 	 */
 	@Override
 	public MemberDTO selectMemberInformation(int memberNo, String memberID) throws SQLException{

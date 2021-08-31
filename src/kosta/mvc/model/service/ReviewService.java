@@ -10,7 +10,9 @@ import kosta.mvc.model.dao.ReviewDAOImpl;
 import kosta.mvc.model.dto.ReviewDTO;
 import kosta.mvc.model.service.MemberService;
 import kosta.mvc.session.Session;
-
+/**
+ * @author 현지윤
+ */
 public class ReviewService {
 	private ReviewDAO reviewDAO = new ReviewDAOImpl();
 	private MemberService memberS = new MemberService();
@@ -24,13 +26,14 @@ public class ReviewService {
 		if(reviewDTO == null || reviewDTO.isEmpty()) {
 			throw new SearchNotFoundException("전시회 번호" + exNo + "에 등록된 후기가 없습니다.");
 		}
-		
 		return reviewDTO;
 	}
 	
 	/**
 	 * 사용자 번호로 조회 (내 후기 보기) 
-	 * */
+	 * @return 회원이 작성한 후기 리스트
+	 * @throws SQLException
+	 */
 	public List<ReviewDTO> selectByMemberNo()throws SQLException{
 		int memberNo = memberS.getSessionNo();
 		List<ReviewDTO> dto = reviewDAO.selectByMemberNo(memberNo);
@@ -40,7 +43,10 @@ public class ReviewService {
 	
 	/**
 	 * 후기 번호로 조회
-	 * */
+	 * @param reviewNo
+	 * @return 해당하는 후기 리스트
+	 * @throws SQLException
+	 */
 	public ReviewDTO selectByReviewNo(int reviewNo) throws SQLException {
 		ReviewDTO dto = reviewDAO.selectByReviewNo(reviewNo);
 		if(dto == null) {
@@ -49,13 +55,12 @@ public class ReviewService {
 		
 		return dto;
 	}
-	
-	
-	
-	
+
 	/**
-	 * 등록
-	 * */
+	 * 후기 등록
+	 * @param dto
+	 * @throws SQLException
+	 */
 	public void reviewInsert(ReviewDTO dto) throws SQLException{
 		dto.setMemberNo(memberS.getSessionNo());
 		int result = reviewDAO.reviewInsert(dto);
@@ -64,8 +69,10 @@ public class ReviewService {
 	}
 	
 	/**
-	 * 수정
-	 * */
+	 * 후기 수정
+	 * @param dto
+	 * @throws SQLException
+	 */
 	public void reviewUpdate(ReviewDTO dto) throws SQLException{
 		dto.setMemberNo(memberS.getSessionNo());
 		int result = reviewDAO.ReviewUpdate(dto);
@@ -73,8 +80,10 @@ public class ReviewService {
 	}
 	
 	/**
-	 * 삭제
-	 * */
+	 * 후기 삭제
+	 * @param reviewNo
+	 * @throws SQLException
+	 */
 	public void reviewDelete(int reviewNo) throws SQLException {
 		int result = reviewDAO.reviewDelete(reviewNo);
 		if(result == 0) throw new DMLException("후기 삭제에 실패했습니다.");

@@ -3,20 +3,19 @@ package kosta.mvc.model.dto;
 import java.util.List;
 
 public class ExhibitionDTO {
-	private int exhibitioNo;
-	private String exhibitionName;
-	private String startDate;
-	private String endDate;
-	private String genre;
-	private int price;
-	private String exhibitionLocation;
+	private int exhibitioNo; //전시회번호
+	private String exhibitionName; //전시회이름
+	private String startDate; //전시회시작일
+	private String endDate; //전시회종료일
+	private String genre; //장르
+	private int price; //가격
+	private String exhibitionLocation; //전시회 장소
 
-	private double avgStars;
+	private double avgStars; 
 	
 	private List<StatisticsDTO> statisticsList;
 	private StatisticsDTO statisticsSummary;
 	
-
 	private List<ReviewDTO> reviewList; //리뷰 리스트를 가지고 있을 수 있다.
 	
 	public ExhibitionDTO() {}

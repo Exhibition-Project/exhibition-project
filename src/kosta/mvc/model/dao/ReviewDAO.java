@@ -4,14 +4,19 @@ import java.sql.SQLException;
 import java.util.List;
 
 import kosta.mvc.model.dto.ReviewDTO;
-
+/**
+ * @author 현지윤
+ */
 public interface ReviewDAO {
+
 	/**
 	 * 후기 등록하기
 	 * 1) 사용자가 직접 입력한 후기 가져옴
 	 * 2) Review 테이블에 insert
-	 *
-	 * */
+	 * @param review
+	 * @return
+	 * @throws SQLException
+	 */
 	int reviewInsert(ReviewDTO review) throws SQLException;
 	
 	

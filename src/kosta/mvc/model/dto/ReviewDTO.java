@@ -1,11 +1,11 @@
 package kosta.mvc.model.dto;
 
 public class ReviewDTO {
-	private int reviewNo;
-	private int memberNo;
-	private int exhibitionNo;
-	private String reviewContnet;
-	private int stars;
+	private int reviewNo; //후기번호 
+	private int memberNo; //회원번호
+	private int exhibitionNo; //전시회번호
+	private String reviewContnet; //후기내용
+	private int stars; //별점
 	
 	private String exhibitionName;
 	

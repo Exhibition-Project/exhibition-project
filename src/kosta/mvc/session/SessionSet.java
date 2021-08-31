@@ -1,14 +1,14 @@
 package kosta.mvc.session;
-//로그인 된 사용자 저장
 
 import java.util.HashSet;
 import java.util.Set;
-
 /**
- * 싱글톤 패턴 적용
- * */
+ * @author 채창완
+ */
 public class SessionSet {
-	
+	/**
+	 * 로그인 된 사용자 저장(싱글톤 패턴 적용)
+	 * */
 	private static SessionSet ss = new SessionSet();
 	private Set<Session> set;
 	

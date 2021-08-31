@@ -22,12 +22,13 @@ public class MenuView {
 	/**
 	 * 초기화면
 	 * 로그인, 회원가입
-	 * */
+	 */
 	public static void menu() {
 		
 		while(true) {
 			SessionSet ss = SessionSet.getInstance();
-			System.out.println("----------------------------");
+			System.out.println(" ET(Exhibition Ticket)뱅크에 오신걸 환영합니다^^# ");
+			System.out.println("--------------------------------------------");
 			System.out.println("1. 로그인  2. 회원가입  9. 나가기");
 			System.out.println("----------------------------");
 			try {
@@ -53,7 +54,7 @@ public class MenuView {
 	
 	/**
 	 * 회원가입
-	 * */
+	 */
 	public static void InputInsertMember() {
 		System.out.println(">> 회원가입 정보입력");
 		System.out.print("ID :");
@@ -70,7 +71,7 @@ public class MenuView {
 	
 	/**
 	 * 로그인
-	 * */
+	 */
 	public static void login() {
 		
 		System.out.print("ID :");
@@ -83,7 +84,7 @@ public class MenuView {
 	
 	/**
 	 * 로그아웃
-	 * */
+	 */
 	public static void logout() {
 		MemberController.logout();
 	}
@@ -93,7 +94,7 @@ public class MenuView {
 	/**
 	 * 회원 메인메뉴
 	 * 마이페이지, 전시회 예매, 후기 조회, 로그아웃
-	 * */
+	 */
 	public static void printMemberMenu() {
 		while(true) {
 			System.out.println("--------------------------------------------------------");
@@ -131,7 +132,7 @@ public class MenuView {
 	/**
 	 * 마이페이지 메뉴
 	 * 고객정보수정, 내 예매내역 조회(따로 함수 X), 내 후기관리
-	 * */
+	 */
 	public static void printMyPage() {
 		while(true) {
 			System.out.println("-------------------------------------------------------------------------");
@@ -176,7 +177,7 @@ public class MenuView {
 	
 	/**
 	 * 고객정보수정(이름, 생년월일 비밀번호만 변경가능)
-	 * */
+	 */
 	public static void inputUpdateMember() {
 		
 		System.out.println(">> 수정할 정보");
@@ -195,7 +196,7 @@ public class MenuView {
 	
 	/**
 	 * 예매취소(예매내역 삭제)
-	 * */
+	 */
 	public static void inputDeleteReservation() {
 		System.out.print("취소하려는 예매 번호를 입력하세요. -> ");
 		int reservationNo = Integer.parseInt(sc.nextLine());
@@ -205,7 +206,7 @@ public class MenuView {
 	/**
 	 * 마이페이지 내 후기관리 메뉴
 	 * 내 후기 조회(따로 함수 X), 등록, 삭제
-	 * */
+	 */
 	public static void printMemberReviewMenu() {
 		while(true) {
 			System.out.println("-----------------------------------------------------------------");
@@ -240,7 +241,7 @@ public class MenuView {
 	
 	/**
 	 * 후기 등록
-	 * */
+	 */
 	public static void InputInsertReview() {
 		 System.out.print("등록할 전시회 번호를 입력하세요. -> ");
 		 int exihibitionNo = Integer.parseInt(sc.nextLine());
@@ -256,7 +257,7 @@ public class MenuView {
 	}
 	/**
 	 * 후기 삭제
-	 * */
+	 */
 	public static void InputDeleteReview() {
 		System.out.print("삭제할 후기 번호를 입력하세요. -> ");
 		int no = Integer.parseInt(sc.nextLine());
@@ -266,7 +267,7 @@ public class MenuView {
 	
 	/**
 	 * 후기 수정
-	 * */
+	 */
 	public static void InputUpdateReview() {
 		System.out.print("수정할 후기 번호를 입력하세요. -> ");
 		 int no = Integer.parseInt(sc.nextLine());
@@ -288,7 +289,7 @@ public class MenuView {
 	/**
 	 * 전시회 조회 메뉴
 	 * 전체조회(따로 함수 X), 날짜별 조회
-	 * */
+	 */
 	public static void printExhibitionMenu() {
 		while(true) {
 			System.out.println("-------------------------------------------------------");
@@ -320,7 +321,7 @@ public class MenuView {
 	
 	/**
 	 * 날짜별 전시회 조회(날짜 입력)
-	 * */
+	 */
 	public static void inputExhibitionByDate() {
 		System.out.print("전시회를 관람하고 싶은 날짜를 입력하세요.(yyyymmdd) -> ");
 		String date = sc.nextLine();
@@ -332,7 +333,7 @@ public class MenuView {
 	/**
 	 * 전시회 예매(전시회 번호 입력)
 	 * (EndView에서 예매 가능 날짜 출력후 InputReservationOption 호출)
-	 * */
+	 */
 	public static void inputInsertReservation() {
 		try{
 			System.out.print("예매할 전시회 번호를 입력하세요. -> ");
@@ -350,7 +351,7 @@ public class MenuView {
 
 	/**
 	 * 예매하기 (날짜, 관람 연령, 티켓 수량 입력)
-	 * */
+	 */
 	public static void inputReservationOption(int exhibitionNo ) {
 		try{
 			System.out.print("날짜를 입력하세요(yy-MM-dd) -> ");
@@ -400,7 +401,7 @@ public class MenuView {
 	
 	/**
 	 * 후기 조회(전시회 번호 입력)
-	 * */
+	 */
 	public static void InputReViewByNo() {
 		System.out.print("후기를 보고 싶은 전시회 번호를 입력하세요. -> ");
 		int exihibitionNo = Integer.parseInt(sc.nextLine());
@@ -415,7 +416,7 @@ public class MenuView {
 	/**
 	 * 관리자 메인메뉴
 	 * 전시회 관리, 후기관리, 예매 통계, 예매 내역 조회
-	 * */
+	 */
 	public static void printAdminMenu() {
 		while(true) {
 			System.out.println("-------------------------------------------------------------");
@@ -456,7 +457,7 @@ public class MenuView {
 	/**
 	 * 전시회 관리메뉴
 	 * 전시회 조회(회원 메소드와 동일), 등록, 수정, 삭제
-	 * */
+	 */
 	public static void printExhibitionManagementMenu() {
 		while(true) {
 			System.out.println("---------------------------------------------------------------------");
@@ -492,7 +493,7 @@ public class MenuView {
 	
 	/**
 	 * 전시회 등록
-	 * */
+	 */
 	public static void InputInsertExhibition() {
 		try {
 			System.out.print("전시회 이름 : ");
@@ -517,7 +518,7 @@ public class MenuView {
 	
 	/**
 	 * 전시회 수정
-	 * */
+	 */
 	public static void InputUpdateExhibition() {
 		try {
 			System.out.print("전시회 번호 : ");
@@ -540,7 +541,7 @@ public class MenuView {
 	
 	/**
 	 * 전시회 삭제
-	 * */
+	 */
 	public static void InputDeleteExhibition() {
 		try {
 			System.out.print("삭제할 전시회 번호 : ");
@@ -557,7 +558,7 @@ public class MenuView {
 	/**
 	 * 관리자 후기관리 메뉴
 	 * 후기 조회(회원 메소드와 동일), 후기 삭제(회원 메소드와 동일)
-	 * */
+	 */
 	public static void printAdminReviewMenu() {
 		while(true) {
 			System.out.println("---------------------------------------");
@@ -590,7 +591,7 @@ public class MenuView {
 	
 	/**
 	 * 예매 통계(전시회 번호 입력)
-	 * */
+	 */
 	public static void printStatisticsMenu() {
 		
 		while(true) {
@@ -648,7 +649,7 @@ public class MenuView {
 	/**
 	 * 예매내역조회 메뉴
 	 * 전체조회, 예매 번호로 조회
-	 * */
+	 */
 	public static void printReservationHistoryMenu() {
 		while(true) {
 			System.out.println("--------------------------------------------");
@@ -677,7 +678,7 @@ public class MenuView {
 	
 	/**
 	 * 예매번호로 조회
-	 * */
+	 */
 	public static void inputReservationByNo() {
 		System.out.println("예매번호를 입력하세요 -> ");
 		int reservationNo = Integer.parseInt(sc.nextLine());

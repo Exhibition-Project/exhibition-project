@@ -11,10 +11,15 @@ import java.util.Properties;
 import kosta.mvc.model.dto.ExhibitionDTO;
 import kosta.mvc.model.dto.StatisticsDTO;
 import kosta.mvc.util.DBUtil;
-
+/**
+ * @author 채창완
+ */
 public class StatisticsDAOImpl implements StatisticsDAO{
 	private Properties proFile = DBUtil.getProFile();
 
+	/**
+	 * 전시회 번호로 예매내역 조회
+	 */
 	@Override
 	public ExhibitionDTO selectStatisticsByNo(int no, String firstDate, String lastDate) throws SQLException{
 		ExhibitionDAO exhibitionDAO = new ExhibitionDAOImpl();
@@ -54,6 +59,9 @@ public class StatisticsDAOImpl implements StatisticsDAO{
 		return exhibitionDTO;
 	}
 
+	/**
+	 * 전체 예매내역 조회
+	 */
 	@Override
 	public ExhibitionDTO selectStatisticsAll(String firstDate, String lastDate) throws SQLException {
 		Connection con = null;

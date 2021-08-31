@@ -1,12 +1,11 @@
 package kosta.mvc.model.dto;
-//예매 상세 정보 저장
+
 public class ReservationLineDTO {
-//관람연령
-	private int reservationLineNo;
-	private int reservationNo;
+	private int reservationLineNo; //예매상세번호
+	private int reservationNo; //예매번호
 	private String visitAge;//관람연령(성인, 청소년, 어린이)
-	private int ticketQty;
-	private int amount;
+	private int ticketQty; //티켓수량
+	private int amount; //금액
 	
 	public ReservationLineDTO() {}
 	

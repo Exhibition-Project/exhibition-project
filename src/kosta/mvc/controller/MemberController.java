@@ -1,6 +1,5 @@
 package kosta.mvc.controller;
 
-
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,13 +9,16 @@ import kosta.mvc.model.service.MemberService;
 import kosta.mvc.view.EndView;
 import kosta.mvc.view.FailView;
 import kosta.mvc.view.MenuView;
-
+/**
+ * @author 박성하
+ */
 public class MemberController {
 	static MemberService memberService = new MemberService();
 	
-
 	/**
 	 * 로그인
+	 * @param id
+	 * @param password
 	 */
 	public static void login(String id, String password) {
 		
@@ -43,11 +45,13 @@ public class MemberController {
 
 	/**
 	 * 회원가입
+	 * @param memberId
+	 * @param memberPassword
+	 * @param memberName
+	 * @param memberBirth
 	 */
-	public static void inputInsertMember(String memberId, String memberPassword, String memberName,
-			String memberBirth) {
+	public static void inputInsertMember(String memberId, String memberPassword, String memberName, String memberBirth) {
 		try {
-			
 			  SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 			  sdf.setLenient(false); // 입력한 값이 설정한 형식과 다르면 오류 
 			  sdf.parse(memberBirth);
@@ -70,7 +74,8 @@ public class MemberController {
 	}
 
 	/**
-	 * 고객정보조회
+	 * 회원정보 조회
+	 * @return 회원정보
 	 */
 	public static MemberDTO memberSelectReservation() {
 		MemberDTO memberDTO = null;
@@ -79,13 +84,17 @@ public class MemberController {
 			EndView.printMemberInformation(memberDTO);
 			
 		} catch (SQLException e) {
-			System.out.println("\n고객정보조회에 실패하였습니다.");
+			System.out.println("\n회원정보조회에 실패하였습니다.");
 		}
 		return memberDTO;
 	}
 
 	/**
-	 * 고객정보수정
+	 * 회원정보 수정
+	 * @param memberName
+	 * @param memberBirth
+	 * @param memberPassword
+	 * @param confirmPassword
 	 */
 	public static void updateMember(String memberName, String memberBirth, String memberPassword, String confirmPassword) {
 		try {
@@ -102,7 +111,6 @@ public class MemberController {
 		} catch (Exception e) {
 			FailView.errorMessage("\n수정에 실패하였습니다.");
 		}
-
 	}
 
 }

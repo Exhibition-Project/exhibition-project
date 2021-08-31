@@ -14,14 +14,17 @@ import kosta.mvc.model.service.ExhibitionService;
 public class EndView {
 	
 	/**
-	 * 메시지 출력
-	 * */
+	 * 메세지 출력
+	 * @param message
+	 */
 	public static void printMessage(String message) {
 		System.out.println(message);
 	}
 	
+
 	/**
 	 * 회원정보 출력
+	 * @param memberDTO
 	 */
 	public static void printMemberInformation(MemberDTO memberDTO) {
 		System.out.println(memberDTO.toString());
@@ -29,7 +32,8 @@ public class EndView {
 	
 	/**
 	 * 전시회 리스트 출력
-	 * */
+	 * @param exhibitionList
+	 */
 	public static void printExhibitionList(List<ExhibitionDTO> exhibitionList) {
 		for(ExhibitionDTO exhibitionDTO : exhibitionList) {
 			System.out.println(exhibitionDTO.toString());
@@ -38,7 +42,8 @@ public class EndView {
 	
 	/**
 	 * 전시회 리스트 별점순 출력
-	 * */
+	 * @param exhibitionList
+	 */
 	public static void printExhibitionListbyStars(List<ExhibitionDTO> exhibitionList) {
 		for(ExhibitionDTO exhibitionDTO : exhibitionList) {
 			System.out.print(exhibitionDTO);
@@ -51,21 +56,25 @@ public class EndView {
 	
 	/**
 	 * 전시회번호에 해당하는 전시회정보 출력 
-	 * */
+	 * @param exhibitionDTO
+	 */
 	public static void selectByExhibitionxNo(ExhibitionDTO exhibitionDTO) {
 		System.out.println(exhibitionDTO);
 	}
 	
 	/**
 	 * 예매 가능 날짜 출력
-	 * */
+	 * @param startDate
+	 * @param endDate
+	 */
 	public static void printAvailableDate(String startDate, String endDate) {
 		System.out.println("예매가능한 날짜는" + startDate + " 부터 " + endDate + "까지입니다.");//깔끔하게 보여주기 필요함
 	}
 	
 	/**
 	 * 전체 예매 내역 리스트 출력
-	 * */
+	 * @param reservationList
+	 */
 	public static void printReservationList(List<ReservationDTO> reservationList) {
 		System.out.println("예매내역 총 " + reservationList.size() + " 건 검색되었습니다.");
 		System.out.println("------------------------");
@@ -77,8 +86,9 @@ public class EndView {
 	}
 
 	/**
-	 * 예매번호로 조회 
-	 * */
+	 * 예매번호로 예매내역조회 
+	 * @param reservationLineList
+	 */
 	public static void printReservationByNo(List<ReservationLineDTO> reservationLineList) {
 		System.out.println("예매내역 총 " + reservationLineList.size() + " 건 검색되었습니다.");
 		System.out.println("------------------------");
@@ -91,7 +101,8 @@ public class EndView {
 	
 	/**
 	 * 예매 내역 리스트 출력
-	 * */
+	 * @param reservationList
+	 */
 	public static void printReservaionByMemberNo(List<ReservationDTO> reservationList) {
 		for(ReservationDTO reservaion : reservationList) {
 			System.out.println(reservaion.getReservationNo()+ " | " + reservaion.getMemberNo()+ " | " + reservaion.getTotalAmount()+ " | " + reservaion.getRegDate());
@@ -101,9 +112,11 @@ public class EndView {
 			System.out.println();
 		}
 	}
+
 	/**
-	 * 후기 리스트 출력(순수하게 후기 리스트만 출력할지, 전시회 리스트를 받아서 전시회랑 후기 같이 출력할지?)
-	 * */
+	 * 후기 리스트 출력
+	 * @param reviewList
+	 */
 	public static void printReviewList(List<ReviewDTO> reviewList) {
 		System.out.println("후기 게시물이" + reviewList.size() + "개 검색되었습니다.");
 		System.out.println("-------------------------------------------------------------------------------");
@@ -115,14 +128,17 @@ public class EndView {
 	
 	/**
 	 * 후기 출력
-	 * */
+	 * @param reviewDTO
+	 */
 	public static void printReviewByNo(ReviewDTO reviewDTO) {
 		System.out.println(reviewDTO + "\n");
 	}
 	
 	/**
 	 * 후기와 전시회 리스트 동시 출력
-	 * */
+	 * @param reviewList
+	 * @param exhibitionDTO
+	 */
 	public static void printReAndEx(List<ReviewDTO> reviewList, ExhibitionDTO exhibitionDTO) {
 		System.out.println("후기 게시물이" + reviewList.size() + "개 검색되었습니다.");
 		System.out.println("------------------------");
@@ -136,7 +152,8 @@ public class EndView {
 	
 	/**
 	 * 예매 통계 출력
-	 * */
+	 * @param exhibitionDTO
+	 */
 	public static void printStatistics(ExhibitionDTO exhibitionDTO) {
 		if(exhibitionDTO.getExhibitionName() != null) {
 			System.out.println(exhibitionDTO);			

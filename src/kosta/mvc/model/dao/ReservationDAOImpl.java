@@ -10,13 +10,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
-import kosta.mvc.model.dto.DiscountDTO;
 import kosta.mvc.model.dto.ExhibitionDTO;
 import kosta.mvc.model.dto.ReservationDTO;
 import kosta.mvc.model.dto.ReservationLineDTO;
-import kosta.mvc.model.dto.ReviewDTO;
 import kosta.mvc.util.DBUtil;
-
+/**
+ * @author 박은솔
+ */
 public class ReservationDAOImpl implements ReservationDAO{
 	private Properties proFile = DBUtil.getProFile();
 
@@ -34,7 +34,6 @@ public class ReservationDAOImpl implements ReservationDAO{
 		String sql = proFile.getProperty("reservation.insert");
 		int result = 0;
 		
-		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date regdate = sdf.parse(reservation.getRegDate());
 		int exhibitionNo = reservation.getExhibitionNo();
@@ -44,7 +43,6 @@ public class ReservationDAOImpl implements ReservationDAO{
 		if(regdate.compareTo(startDate) < 0 || regdate.compareTo(endDate) > 0) {
 			throw new Exception("전시회 기간에 맞는 날짜를 입력해주세요.");
 		}
-			
 			
 		try {
 			con = DBUtil.getConnection();
@@ -77,10 +75,13 @@ public class ReservationDAOImpl implements ReservationDAO{
 		return result;
 	}
 
-
 	/**
 	 * 예약상세 등록하기
-	 * */
+	 * @param con
+	 * @param reservation
+	 * @return 예매상세 등록(관람연령, 티켓수량, 총금액) 
+	 * @throws SQLException
+	 */
 	private int[] reservationLineInsert(Connection con, ReservationDTO reservation) throws SQLException{
 		PreparedStatement ps = null;
 		String sql = proFile.getProperty("reservation_line.insert");
@@ -96,7 +97,6 @@ public class ReservationDAOImpl implements ReservationDAO{
 				ps.addBatch();
 				ps.clearParameters();
 			}
-			
 			result = ps.executeBatch();
 		
 		} finally {
@@ -105,11 +105,13 @@ public class ReservationDAOImpl implements ReservationDAO{
 		return result;
 	}
 	
-	
 	/**
 	 * 예약 총구매금액 구하기
 	 * 전시회의 가격 price가 관람연령 adults 에 따라 10% 할인된다
-	 * */
+	 * @param reservation
+	 * @return getTotalAmount 
+	 * @throws SQLException
+	 */
 	public int getTotalAmount(ReservationDTO reservation) throws SQLException {          
 		List<ReservationLineDTO> reservationLineList = reservation.getReservationLineList();
 		ExhibitionDTO exhibition = exhibitionDao.exhibitionSelectByNo(reservation.getExhibitionNo());
@@ -130,10 +132,12 @@ public class ReservationDAOImpl implements ReservationDAO{
 		return total;
 	}
 	
-	
 	/**
 	 * 관람연령에 해당하는 할인율 가져오기
-	 * */ 
+	 * @param visitAge
+	 * @return discountRate
+	 * @throws SQLException
+	 */
 	public int getDiscount(String visitAge)throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -154,11 +158,10 @@ public class ReservationDAOImpl implements ReservationDAO{
 		}
 		return discountRate;
 	}
-	
 
 	/**
 	 * 로그인 한 멤버에 맞는 예매내역 출력
-	 * */
+	 */
 	@Override
 	public List<ReservationDTO> selectReservationByMemberNo(int memberNo) throws SQLException {
 		Connection con=null;
@@ -189,7 +192,11 @@ public class ReservationDAOImpl implements ReservationDAO{
 	
 	/**
 	 * 예약번호에 해당하는 예매상세 가져오기
-	 * */
+	 * @param con
+	 * @param reservationNo
+	 * @return reservationLine 
+	 * @throws SQLException
+	 */
 	private List<ReservationLineDTO> selectReservationLine(Connection con, int reservationNo) throws SQLException {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -212,7 +219,7 @@ public class ReservationDAOImpl implements ReservationDAO{
 	
 	/**
 	 * 예매내역 전체 검색
-	 * */
+	 */
 	@Override
 	public List<ReservationDTO> reservationSelectAll() throws SQLException {
 		Connection con=null;
@@ -235,8 +242,8 @@ public class ReservationDAOImpl implements ReservationDAO{
 	}
 
 	/**
-	 * 예매번호로 조회
-	 * */
+	 * 예매번호로 예매내역 조회
+	 */
 	@Override
 	public List<ReservationLineDTO> selectByReservationNo(int reservationNo) throws SQLException {
 		Connection con = null;
@@ -260,13 +267,11 @@ public class ReservationDAOImpl implements ReservationDAO{
 		return reservationLineList;
 	}
 
-
-
 	/**
 	 * 예매 취소(삭제)
 	 * 	1) 예매상세 reservation_line.delete
 	 * 	2) reservation.delete
-	 * */
+	 */
 	@Override
 	public int reservationDelete(int reservationNo) throws SQLException {
 		Connection con = null;
@@ -303,7 +308,11 @@ public class ReservationDAOImpl implements ReservationDAO{
 
 	/**
 	 * 예약상세 삭제하기
-	 * */
+	 * @param con
+	 * @param reservationNo
+	 * @return 예약상세내역 삭제 
+	 * @throws SQLException
+	 */
 	private int reservationLineDelete(Connection con, int reservationNo) throws SQLException{
 		PreparedStatement ps = null;
 		String sql = proFile.getProperty("reservation_line.delete");
