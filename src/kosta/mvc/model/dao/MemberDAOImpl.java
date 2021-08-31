@@ -21,7 +21,7 @@ public class MemberDAOImpl implements MemberDAO {
 	 * 아이디에 맞는 MemberDTO 객체 반환
 	 */
 	@Override
-	public MemberDTO login(String id, String password) {
+	public MemberDTO login(String id, String password) throws SQLException{
 
 		MemberDTO memberDTO = null;
 		String sql = proFile.getProperty("member.login");
@@ -81,7 +81,7 @@ public class MemberDAOImpl implements MemberDAO {
 	 * 회원추가
 	 */
 	@Override
-	public int insertMembership(MemberDTO memberDTO) {
+	public int insertMembership(MemberDTO memberDTO) throws SQLException{
 		int result = 0;
 		String sql = proFile.getProperty("member.insertMembership");
 		//INSERT INTO MEMBER(MEMBER_NO, MEMBER_ID, MEMBER_NAME, MEMBER_BIRTH, MEMBER_PASS) VALUES(MEMBER_NO_SEQ.NEXTVAL, ?, ?, TO_DATE(?, 'YYYYMMDD'), ?)
@@ -96,9 +96,7 @@ public class MemberDAOImpl implements MemberDAO {
 
 			result = st.executeUpdate();
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
+		}finally {
 			DBUtil.dbClose(con, st);
 		}
 
@@ -109,7 +107,7 @@ public class MemberDAOImpl implements MemberDAO {
 	 * 회원수정
 	 */
 	@Override
-	public int updateMember(int sessionNo, MemberDTO updateMemberDTO) {
+	public int updateMember(int sessionNo, MemberDTO updateMemberDTO) throws SQLException{
 
 		int result = 0;
 		String sql = proFile.getProperty("member.updateMember");
@@ -126,8 +124,6 @@ public class MemberDAOImpl implements MemberDAO {
 
 			result = st.executeUpdate();
 
-		} catch (SQLException e) { // 여기서 에러남..
-			e.printStackTrace();
 		} finally {
 			DBUtil.dbClose(con, st);
 		}
@@ -140,7 +136,7 @@ public class MemberDAOImpl implements MemberDAO {
 	 * 회원정보조회
 	 */
 	@Override
-	public MemberDTO selectMemberInformation(int memberNo, String memberID) {
+	public MemberDTO selectMemberInformation(int memberNo, String memberID) throws SQLException{
 		MemberDTO memberDTO = null;
 		String sql = proFile.getProperty("member.selectMemberInformation");
 		//SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, MEMBER_BIRTH, MEMBER_PASS FROM MEMBER WHERE MEMBER_NO=? AND MEMBER_ID=?
@@ -158,8 +154,6 @@ public class MemberDAOImpl implements MemberDAO {
 						rs.getString(5));
 			}
 
-		} catch (SQLException e) {
-			e.printStackTrace();
 		} finally {
 			DBUtil.dbClose(con, st, rs);
 		}
@@ -171,7 +165,7 @@ public class MemberDAOImpl implements MemberDAO {
 	 * 기존 비밀번호 확인
 	 */
 	@Override
-	public int checkPassword(int memberNo, String confirmPassword) {
+	public int checkPassword(int memberNo, String confirmPassword) throws SQLException{
 		int count = 0;
 		String sql = proFile.getProperty("member.checkPassword");
 		//SELECT COUNT(1) FROM MEMBER WHERE MEMBER_NO = ? AND MEMBER_PASS = ?
@@ -188,9 +182,7 @@ public class MemberDAOImpl implements MemberDAO {
 				count = rs.getInt(1);
 			}
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
+		}finally {
 			DBUtil.dbClose(con, st, rs);
 		}
 		return count;

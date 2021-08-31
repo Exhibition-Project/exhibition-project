@@ -1,5 +1,6 @@
 package kosta.mvc.model.service;
 
+import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -42,14 +43,14 @@ public class MemberService {
 	/**
 	 * 회원가입
 	 */
-	public int insertMembership(MemberDTO memberDTO) {
+	public int insertMembership(MemberDTO memberDTO) throws SQLException{
 		return memberDAO.insertMembership(memberDTO);
 	}
 
 	/**
 	 * 기존비밀번호와 일치하는지 체크
 	 */
-	public int checkPassword(String confirmPassword) {
+	public int checkPassword(String confirmPassword) throws SQLException{
 
 		int result = memberDAO.checkPassword(getSessionNo(), confirmPassword);
 		return result;
@@ -58,7 +59,7 @@ public class MemberService {
 	/**
 	 * 고객정보수정
 	 */
-	public int updateMember(String confirmPassword, MemberDTO updateMemberDTO) {
+	public int updateMember(String confirmPassword, MemberDTO updateMemberDTO) throws SQLException{
 
 		int memberNo = getSessionNo();
 		return memberDAO.updateMember(memberNo, updateMemberDTO);
@@ -67,7 +68,7 @@ public class MemberService {
 	/**
 	 * 고객 로그인한 회원정보 조회
 	 */
-	public MemberDTO memberSelectReservation() {
+	public MemberDTO memberSelectReservation() throws SQLException{
 
 		int memberNo = getSessionNo();
 		String memberID = getSessionId();

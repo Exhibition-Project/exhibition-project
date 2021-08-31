@@ -73,8 +73,14 @@ public class MemberController {
 	 * 고객정보조회
 	 */
 	public static MemberDTO memberSelectReservation() {
-		MemberDTO memberDTO = memberService.memberSelectReservation();
-		EndView.printMemberInformation(memberDTO);
+		MemberDTO memberDTO = null;
+		try {
+			memberDTO = memberService.memberSelectReservation();
+			EndView.printMemberInformation(memberDTO);
+			
+		} catch (SQLException e) {
+			System.out.println("\n고객정보조회에 실패하였습니다.");
+		}
 		return memberDTO;
 	}
 
