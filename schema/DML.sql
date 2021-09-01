@@ -177,3 +177,5 @@ delete from reservation where reservation_no = 32;
 select * from reservation_line;
 delete from reservation_line where reservation_no = 8;
 commit;
+select * from review;
+select * from member;

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import kosta.mvc.exception.DMLException;
 import kosta.mvc.model.dto.ExhibitionDTO;
 import kosta.mvc.util.DBUtil;
 /**
@@ -116,6 +117,8 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 			ps.setString(6, dto.getExhibitionLocation());
 			
 			result = ps.executeUpdate();
+		}catch(SQLException e){
+			throw new DMLException("전시회를 등록에 실패하였습니다.");
 		}finally {
 			DBUtil.dbClose(con, ps);
 		}
@@ -144,6 +147,8 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 			result = ps.executeUpdate();
 			System.out.println(result);
 
+		}catch(SQLException e){
+			throw new DMLException("이 전시회를 수정할 수 없습니다.");
 		}finally {
 				DBUtil.dbClose(con, ps);
 		}
@@ -166,6 +171,8 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 			ps.setInt(1, exhibitionNo);
 			result = ps.executeUpdate();
 			
+		}catch(SQLException e){
+			throw new DMLException("이 전시회를 삭제할 수 없습니다.");
 		}finally {
 			DBUtil.dbClose(con, ps);
 		}
