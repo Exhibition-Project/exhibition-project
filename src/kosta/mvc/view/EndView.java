@@ -104,10 +104,12 @@ public class EndView {
 	 * @param reservationList
 	 */
 	public static void printReservaionByMemberNo(List<ReservationDTO> reservationList) {
-		for(ReservationDTO reservaion : reservationList) {
-			System.out.println(reservaion.getReservationNo()+ " | " + reservaion.getMemberNo()+ " | " + reservaion.getTotalAmount()+ " | " + reservaion.getRegDate());
-			for(ReservationLineDTO reservationLine : reservaion.getReservationLineList()) {
-				System.out.println("  ▶예매상세내역 "+reservationLine);
+		for(ReservationDTO reservation : reservationList) {
+//			System.out.println(reservaion.getReservationNo()+ " | " + reservaion.getMemberNo()+ " | " + reservaion.getTotalAmount()+ " | " + reservaion.getRegDate());
+			System.out.println(" 예매번호 : "+ reservation.getReservationNo() + " | 회원번호 : "+ reservation.getMemberNo()+ " | 전시회번호 : " + reservation.getExhibitionNo() + 
+					" | 총구매금액 : " + reservation.getTotalAmount() + " 원 | 예매날짜 : " + reservation.getRegDate());
+			for(ReservationLineDTO reservationLine : reservation.getReservationLineList()) {
+				System.out.println("  ▶ 예매상세내역 "+reservationLine);
 			}
 			System.out.println();
 		}

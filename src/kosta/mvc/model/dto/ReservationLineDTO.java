@@ -61,16 +61,17 @@ public class ReservationLineDTO {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("|예매상세 번호: ");
+		builder.append("| 예매상세번호: ");
 		builder.append(reservationLineNo);
-		builder.append("| 예매내역 번호:");
+		builder.append(" | 예매번호:");
 		builder.append(reservationNo);
-		builder.append("| 관람 연령: ");
+		builder.append(" | 관람연령: ");
 		builder.append(visitAge);
-		builder.append("| 티켓 수량: ");
+		builder.append(" | 티켓수량: ");
 		builder.append(ticketQty);
-		builder.append("| 총 결제 금액|");
+		builder.append(" | 총 결제금액: ");
 		builder.append(amount);
+		builder.append("원");
 		return builder.toString();
 	}
 	
