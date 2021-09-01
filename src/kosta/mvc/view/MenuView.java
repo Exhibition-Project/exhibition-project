@@ -27,6 +27,7 @@ public class MenuView {
 		
 		while(true) {
 			SessionSet ss = SessionSet.getInstance();
+			System.out.println("--------------------------------------------");
 			System.out.println(" ET(Exhibition Ticket)뱅크에 오신걸 환영합니다^^# ");
 			System.out.println("--------------------------------------------");
 			System.out.println("1. 로그인  2. 회원가입  9. 나가기");
@@ -97,9 +98,9 @@ public class MenuView {
 	 */
 	public static void printMemberMenu() {
 		while(true) {
-			System.out.println("--------------------------------------------------------");
+			System.out.println("-------------------------------------------------------");
 			System.out.println("1. 마이페이지 2. 전시회조회 3. 전시회예매  4. 후기조회  9. 로그아웃");
-			System.out.println("--------------------------------------------------------");
+			System.out.println("-------------------------------------------------------");
 			try {
 				int choice = Integer.parseInt(sc.nextLine());
 				switch(choice) {
@@ -135,9 +136,9 @@ public class MenuView {
 	 */
 	public static void printMyPage() {
 		while(true) {
-			System.out.println("-------------------------------------------------------------------------");
+			System.out.println("---------------------------------------------------------------------------------");
 			System.out.println("1. 고객정보조회 2. 고객정보 수정  3. 내 예매내역 조회  4. 예매취소 5.  내 후기관리  9. 상위메뉴로 이동");
-			System.out.println("-------------------------------------------------------------------------");
+			System.out.println("---------------------------------------------------------------------------------");
 			try {
 				int choice = Integer.parseInt(sc.nextLine());
 				switch(choice) {			
@@ -354,11 +355,11 @@ public class MenuView {
 	 */
 	public static void inputReservationOption(int exhibitionNo ) {
 		try{
-			System.out.print("날짜를 입력하세요(yy-MM-dd) -> ");
+			System.out.print("날짜를 입력하세요(입력예시: yy-MM-dd) -> ");
 			String regDate = sc.nextLine();
-			System.out.print("관람 연령을 입력하세요 (adults, youth, kids) -> ");
+			System.out.print("관람 연령을 입력하세요(입력예시: adults, youth, kids) -> ");
 			String visitAge = sc.nextLine();
-			System.out.print("예매할 티켓 수량을 입력하세요 -> ");
+			System.out.print("예매하실 티켓 수량을 입력하세요 -> ");
 			int ticketQty = Integer.parseInt(sc.nextLine());
 
 			ReservationDTO reservation = new ReservationDTO(0, 0, exhibitionNo , 0, regDate); //서비스에 가서 memberNo 넣기 
@@ -369,7 +370,7 @@ public class MenuView {
 
 			//더 예매 추가하시겠습니까?
 			while(true) {
-				System.out.print("관람연령및 티켓수량을 더 추가하시겠습니까?(yes|no )? ");
+				System.out.print("관람연령및 티켓수량을 더 추가하시겠습니까?(yes|no) -> ");
 				String input  = sc.nextLine();
 				if(input.equals("yes")) {
 					reservationLineDTOList.add(moreInputLine());	
