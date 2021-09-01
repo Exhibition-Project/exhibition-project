@@ -69,7 +69,7 @@ public class ReservationLineDTO {
 		builder.append(visitAge);
 		builder.append(" | 티켓수량: ");
 		builder.append(ticketQty);
-		builder.append(" | 총 결제금액: ");
+		builder.append(" | 금액: ");
 		builder.append(amount);
 		builder.append("원");
 		return builder.toString();
