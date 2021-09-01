@@ -16,16 +16,16 @@ public class SessionSet {
 		this.set = new HashSet<Session>();
 	}
 	
-	/**
-	 * SessionSet 객체 얻는 메소드 
-	 * */
+
 	public static SessionSet getInstance() {
 		return ss;
 	}
 	
 	/**
-	 * 사용자 찾기
-	 * */
+	 * 로그인된 아이디로 세션 찾기
+	 * @param sessionId
+	 * @return session
+	 */
 	public Session get(String sessionId) {//로그인된 아이디를 들고와서 객체 찾기
 		for(Session session : set) {
 			if(session.getSessionId().equals(sessionId)) {
@@ -36,15 +36,13 @@ public class SessionSet {
 	}
 	
 	
-	/**
-	 * 세션 목록 집합 얻는 메소드 
-	 * */
 	public Set<Session> getSessionSet() {
 		return set;
 	}
 	
 	/**
 	 * 로그인시 세션 목록에 사용자 추가
+	 * @param session 
 	 * */
 	public void addSession(Session session) {
 		set.add(session);
@@ -52,6 +50,7 @@ public class SessionSet {
 	
 	/**
 	 * 로그아웃시 세션 목록 집합에서 삭제
+	 * @param session
 	 * */
 	public void removeSession(Session session) {
 		set.remove(session);
