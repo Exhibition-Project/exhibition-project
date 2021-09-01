@@ -388,6 +388,9 @@ public class MenuView {
 		}
 	}
 	
+	/**
+	 * 관람연령, 티켓수량 추가 예매
+	 * */
 	public static ReservationLineDTO moreInputLine() {
 		System.out.print("관람 연령을 입력하세요 (adults, youth, kids) -> ");
 		String visitAge = sc.nextLine();
@@ -587,7 +590,9 @@ public class MenuView {
 		}
 	}
 	
-	
+	/**
+	 * 관리자 후기 삭제
+	 */
 	public static void InputDeleteReviewAdmin() {
 		System.out.print("삭제할 후기 번호를 입력하세요. -> ");
 		int no = Integer.parseInt(sc.nextLine());
@@ -630,6 +635,9 @@ public class MenuView {
 		}
 	}
 	
+	/**
+	 * 전체 통계 
+	 */
 	public static void InputStatisticsAll() {
 		
 		System.out.print("시작일을 입력하세요(yyyymmdd) -> ");
@@ -640,6 +648,9 @@ public class MenuView {
 
 	}
 	
+	/**
+	 * 전시회별 통계
+	 */
 	public static void InputStatisticsByNo() {
 		try {
 			System.out.print("조회할 전시회 번호를 입력하세요 -> ");
